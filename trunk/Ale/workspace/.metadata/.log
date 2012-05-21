@@ -1,9 +1,0 @@
-!SESSION 2012-05-19 14:46:38.102 -----------------------------------------------
-eclipse.buildId=I20110613-1736
-java.version=1.6.0_24
-java.vendor=Sun Microsystems Inc.
-BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
-Command-line arguments:  -data /media/20D64784D64758E4/Linux/Ale/workspace -os linux -ws gtk -arch x86_64
-
-!ENTRY org.eclipse.cdt.core 1 0 2012-05-19 14:48:40.670
-!MESSAGE Indexed 'tpbeta1' (0 sources, 76 headers) in 1,15 sec: 2.139 declarations; 2.375 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0,00%)
