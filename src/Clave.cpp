@@ -8,12 +8,19 @@
 #include "Clave.h"
 
 Clave::Clave() {
-	// TODO Auto-generated constructor stub
-
+	this->listaCampos = new Campo[this->cantDimensiones];
+	for(int i=0; i < this->cantDimensiones; i++){
+		this->listaCampos[i]=NULL;
+	}
 }
 
 Clave::~Clave() {
-	// TODO Auto-generated destructor stub
+	for(int i=0; i < this->cantDimensiones; i++){
+		if (this->listaCampos[i]!=NULL){
+			delete this->listaCampos[i];
+		}
+	}
+	delete this->listaCampos;
 }
 
 /*
