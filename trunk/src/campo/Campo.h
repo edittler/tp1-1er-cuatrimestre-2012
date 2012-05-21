@@ -10,6 +10,8 @@
 
 using namespace std;
 
+namespace campo{
+
 class Campo {
 public:
 
@@ -32,5 +34,5 @@ public:
 	virtual int comparar(Campo otroCampo);
 };
 
-
+} /* namespace campo */
 #endif /* CAMPO_H_ */
