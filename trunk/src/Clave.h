@@ -8,14 +8,17 @@
 #ifndef CLAVE_H_
 #define CLAVE_H_
 
-#include "campo/Campo.h"
+#include<stdlib.h>
+#include<stdio.h>
+#include"campo/Campo.h"
 
 using namespace std;
 using namespace campo;
 
 class Clave {
 private:
-	Campo listaCampos;
+	Campo **listaCampos;
+	const unsigned int cantDimensiones = 5;
 
 public:
 	/*
