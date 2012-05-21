@@ -8,9 +8,10 @@
 #ifndef CLAVE_H_
 #define CLAVE_H_
 
-#include "Campo.h"
+#include "campo/Campo.h"
 
 using namespace std;
+using namespace campo;
 
 class Clave {
 private:
