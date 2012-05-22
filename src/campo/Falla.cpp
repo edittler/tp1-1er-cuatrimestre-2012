@@ -8,8 +8,6 @@
 
 #include "Falla.h"
 
-namespace campo {
-
 /*
  * Constructor de la clase Falla
  * Se pasa el tipo de falla como string por parámetro
@@ -31,9 +29,7 @@ Falla::~Falla() {
  * Se puede considerar devolver -1 si el campo es menor que el pasado por parámetro
  * y 1 si el campo es mayor que el pasado por parámetro
  */
-virtual int Falla::comparar(Campo otroCampo){
+int Falla::comparar(Campo* otroCampo){
 	// TODO Implementar
 	return 0;
 }
-
-} /* namespace campo */

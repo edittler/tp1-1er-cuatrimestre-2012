@@ -12,9 +12,7 @@
 #include <string>
 #include "Campo.h"
 
-namespace campo {
-
-class Falla: public campo::Campo {
+class Falla: public Campo {
 private:
 	string tipo; // Tipo de falla
 
@@ -37,8 +35,7 @@ public:
 	 * Se puede considerar devolver -1 si el campo es menor que el pasado por parámetro
 	 * y 1 si el campo es mayor que el pasado por parámetro
 	 */
-	virtual int comparar(Campo otroCampo);
+	virtual int comparar(Campo* otroCampo);
 };
 
-} /* namespace campo */
 #endif /* FALLA_H_ */

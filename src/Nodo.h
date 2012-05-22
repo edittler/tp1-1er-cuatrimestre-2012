@@ -13,6 +13,12 @@ private:
 	int id;
 
 public:
+
+	/*
+	 * Contructor por defecto.
+	 */
+	Nodo();
+
 	/*
 	 * Constructor de la clase Nodo, que debe inicializarse con el ID correspondiente
 	 */

@@ -5,7 +5,7 @@
  *      Author: ezequiel
  */
 
-#include "Linea.h"
+#include "../src/campo/Linea.h"
 
 namespace campo {
 

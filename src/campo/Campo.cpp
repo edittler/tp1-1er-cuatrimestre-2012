@@ -7,8 +7,6 @@
 
 #include "Campo.h"
 
-namespace campo{
-
 	/*
 	 * Constructor de la clase Campo
 	 */
@@ -23,5 +21,3 @@ Campo::Campo() {
 Campo::~Campo() {
 	// TODO Auto-generated destructor stub
 }
-
-} /* namespace campo */

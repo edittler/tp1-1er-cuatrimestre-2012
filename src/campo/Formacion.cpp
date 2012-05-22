@@ -8,8 +8,6 @@
 
 #include "Formacion.h"
 
-namespace campo {
-
 /*
  * Constructor de la clase Formacion
  * Se pasa por parámetro el numero de formacion del tren
@@ -29,9 +27,7 @@ Formacion::~Formacion() {
  * Se puede considerar devolver -1 si el campo es menor que el pasado por parámetro
  * y 1 si el campo es mayor que el pasado por parámetro
  */
-virtual int Formacion::comparar(Campo otroCampo){
+int Formacion::comparar(Campo* otroCampo){
 	// TODO Implementar
 	return 0;
 }
-
-} /* namespace campo */
