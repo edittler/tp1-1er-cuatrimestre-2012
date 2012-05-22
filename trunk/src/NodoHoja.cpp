@@ -1,5 +1,5 @@
 /*
- * NodoHoja.cpp
+ * Implementacion de la clase NodoHoja, que hereda de Nodo
  *
  *  Created on: 21/05/2012
  *      Author: ezequiel
