@@ -10,9 +10,7 @@
 
 #include "Campo.h"
 
-namespace campo {
-
-class Formacion: public campo::Campo {
+class Formacion: public Campo {
 private:
 	int numero;
 
@@ -35,9 +33,8 @@ public:
 	 * Se puede considerar devolver -1 si el campo es menor que el pasado por parámetro
 	 * y 1 si el campo es mayor que el pasado por parámetro
 	 */
-	virtual int comparar(Campo otroCampo);
+	virtual int comparar(Campo* otroCampo);
 };
 
-} /* namespace campo */
 #endif /* FORMACION_H_ */
 

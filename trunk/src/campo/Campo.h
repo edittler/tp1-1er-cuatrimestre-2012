@@ -10,8 +10,6 @@
 
 using namespace std;
 
-namespace campo{
-
 class Campo {
 public:
 
@@ -31,8 +29,7 @@ public:
 	 * Se puede considerar devolver -1 si el campo es menor que el pasado por parámetro
 	 * y 1 si el campo es mayor que el pasado por parámetro
 	 */
-	virtual int comparar(Campo otroCampo);
+	virtual int comparar(Campo* otroCampo) = 0;
 };
 
-} /* namespace campo */
 #endif /* CAMPO_H_ */

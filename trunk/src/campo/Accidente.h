@@ -12,9 +12,7 @@
 #include <string>
 #include "Campo.h"
 
-namespace campo {
-
-class Accidente: public campo::Campo {
+class Accidente: public Campo {
 private:
 	string tipo; // Tipo de accidente
 public:
@@ -36,9 +34,8 @@ public:
 	 * Se puede considerar devolver -1 si el campo es menor que el pasado por parámetro
 	 * y 1 si el campo es mayor que el pasado por parámetro
 	 */
-	virtual int comparar(Campo otroCampo);
+	virtual int comparar(Campo* otroCampo);
 
 };
 
-} /* namespace campo */
 #endif /* ACCIDENTE_H_ */

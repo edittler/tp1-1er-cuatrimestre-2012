@@ -9,6 +9,7 @@
 #define NODOHOJA_H_
 
 #include "Nodo.h"
+#include "Clave.h"
 
 class NodoHoja: public Nodo {
 private:

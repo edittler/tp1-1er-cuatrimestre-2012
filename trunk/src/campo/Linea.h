@@ -11,9 +11,7 @@
 #include <string>
 #include "Campo.h"
 
-namespace campo {
-
-class Linea: public campo::Campo {
+class Linea: public Campo {
 private:
 	string nombre; // Nombre de la linea
 
@@ -36,8 +34,7 @@ public:
 	 * Se puede considerar devolver -1 si el campo es menor que el pasado por parámetro
 	 * y 1 si el campo es mayor que el pasado por parámetro
 	 */
-	virtual int comparar(Campo otroCampo);
+	virtual int comparar(Campo* otroCampo);
 };
 
-} /* namespace campo */
 #endif /* LINEA_H_ */

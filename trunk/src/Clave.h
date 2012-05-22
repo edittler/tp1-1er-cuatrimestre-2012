@@ -19,14 +19,15 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include"campo/Campo.h"
+#include <iostream>
 
 using namespace std;
-using namespace campo;
+//using namespace campo;
 
 class Clave {
 private:
 	Campo **listaCampos;
-	const int cantDimensiones = 5;
+	const static int cantDimensiones = 5;
 
 public:
 	/*

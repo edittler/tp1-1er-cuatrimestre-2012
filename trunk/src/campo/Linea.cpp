@@ -6,8 +6,7 @@
  */
 
 #include "Linea.h"
-
-namespace campo {
+#include "Campo.h"
 
 Linea::Linea(string nombreLinea) {
 	// TODO Auto-generated constructor stub
@@ -24,9 +23,7 @@ Linea::~Linea() {
  * Se puede considerar devolver -1 si el campo es menor que el pasado por parámetro
  * y 1 si el campo es mayor que el pasado por parámetro
  */
-virtual int Linea::comparar(Campo otroCampo){
+int Linea::comparar(Campo* otroCampo){
 	// TODO Implementar
 	return 0;
 }
-
-} /* namespace campo */
