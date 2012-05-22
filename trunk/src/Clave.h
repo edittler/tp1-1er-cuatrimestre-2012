@@ -16,13 +16,17 @@
 #ifndef CLAVE_H_
 #define CLAVE_H_
 
-#include<stdlib.h>
-#include<stdio.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string>
 #include"campo/Campo.h"
-#include <iostream>
+#include"campo/Linea.h"
+#include"campo/Formacion.h"
+#include"campo/FranjaHoraria.h"
+#include"campo/Falla.h"
+#include"campo/Accidente.h"
 
 using namespace std;
-//using namespace campo;
 
 class Clave {
 private:
