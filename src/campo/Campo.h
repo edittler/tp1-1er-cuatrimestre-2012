@@ -29,7 +29,7 @@ public:
 	 * Se puede considerar devolver -1 si el campo es menor que el pasado por parámetro
 	 * y 1 si el campo es mayor que el pasado por parámetro
 	 */
-	virtual int comparar(Campo* otroCampo) = 0;
+	virtual int comparar(Campo* otroCampo);
 };
 
 #endif /* CAMPO_H_ */
