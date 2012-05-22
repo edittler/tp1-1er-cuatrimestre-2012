@@ -1,6 +1,14 @@
 /*
  * Interface de la clase base Clave
  *
+ * Esta implementación de clave almacenará 5 dimensiones para la solución del problema
+ * de los trenes. El orden de los Campos en las dimensiones será:
+ * 		0: Linea
+ * 		1: Formacion
+ * 		2: FranjaHoraria
+ * 		3: Falla
+ * 		4: Accidente
+ *
  *  Created on: 12/05/2012
  *      Author: ezequiel
  */
@@ -18,7 +26,7 @@ using namespace campo;
 class Clave {
 private:
 	Campo **listaCampos;
-	const unsigned int cantDimensiones = 5;
+	const int cantDimensiones = 5;
 
 public:
 	/*
@@ -28,10 +36,37 @@ public:
 	Clave();
 
 	/*
-	* Destructor de la clase Clave
-	* Libera la lista de campos almacenada
-	*/
+	 * Constructor de la clase Clave, que inicializa los campos Linea y Formacion,
+	 * el resto de sus dimensiones en NULL
+	 */
+	Clave(string linea, int formacion);
+
+	/*
+	 * Destructor de la clase Clave
+	 * Libera la lista de campos almacenada
+	 */
 	virtual ~Clave();
+
+	void setLinea(string linea);
+
+	void setFormacion(int formacion);
+
+	void setFranjaHoraria(); //TODO agregar los parametros Fecha
+
+	void setFalla(string falla);
+
+	void setAccidente(string accidente);
+
+	/*
+	 * Se obtiene el campo correspondiente a la dimension requerida, siendo:
+	 * 		0: Linea
+	 * 		1: Formacion
+	 * 		2: FranjaHoraria
+	 * 		3: Falla
+	 * 		4: Accidente
+	 * 	Si se pasa un valor diferente a los mencionados anteriormente, devuelve un puntero NULL
+	 */
+	Campo* getCampo(int dimension) const;
 
 	/*
 	 * Funcion que evalúa si esta clave es igual a otra pasada por parámetro.
