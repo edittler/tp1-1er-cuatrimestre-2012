@@ -8,7 +8,10 @@
 #ifndef CAMPO_H_
 #define CAMPO_H_
 
-using namespace std;
+#include "iostream"
+#include "ResultadoComparacion.h"
+
+using namespace comparacion;
 
 class Campo {
 public:
@@ -29,7 +32,7 @@ public:
 	 * Se puede considerar devolver -1 si el campo es menor que el pasado por parámetro
 	 * y 1 si el campo es mayor que el pasado por parámetro
 	 */
-	virtual int comparar(Campo* otroCampo);
+	virtual ResultadoComparacion comparar(Campo* otroCampo) = 0;
 };
 
 #endif /* CAMPO_H_ */

@@ -9,14 +9,15 @@
 #ifndef FALLA_H_
 #define FALLA_H_
 
-#include <string>
-#include "Campo.h"
+#include "CampoCadena.h"
 
-class Falla: public Campo {
-private:
-	string tipo; // Tipo de falla
-
+class Falla: public CampoCadena {
 public:
+
+	/*
+	 * Constructor por defecto
+	 */
+	Falla();
 
 	/*
 	 * Constructor de la clase Falla
@@ -29,13 +30,6 @@ public:
 	 */
 	virtual ~Falla();
 
-	/*
-	 * Metodo virtual que compara este campo con otro pasado por parámetro.
-	 * Como estándar, debe devolver 0 si son iguales y distinto de 0 si son distintos.
-	 * Se puede considerar devolver -1 si el campo es menor que el pasado por parámetro
-	 * y 1 si el campo es mayor que el pasado por parámetro
-	 */
-	virtual int comparar(Campo* otroCampo);
 };
 
 #endif /* FALLA_H_ */
