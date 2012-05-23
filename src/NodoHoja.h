@@ -10,6 +10,9 @@
 
 #include "Nodo.h"
 #include "Clave.h"
+#include "campo/ResultadoComparacion.h"
+
+using namespace comparacion;
 
 class NodoHoja: public Nodo {
 private:

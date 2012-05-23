@@ -95,9 +95,16 @@ Campo* Clave::getCampo(int dimension) const{
  * Compara todos los campos y evuelve 0 si son iguales, o un valor distinto de 0 si
  * no son iguales
  */
-int Clave::comparar(Clave otraClave){
-	// TODO HACER
-	return 0;
+ResultadoComparacion Clave::comparar(Clave otraClave){
+	ResultadoComparacion lineaIgual = this->listaCampos[0]->comparar(otraClave.listaCampos[0]);
+	ResultadoComparacion formacionIgual = this->listaCampos[1]->comparar(otraClave.listaCampos[1]);
+	ResultadoComparacion franjaIgual = this->listaCampos[2]->comparar(otraClave.listaCampos[2]);
+	ResultadoComparacion fallaIgual = this->listaCampos[3]->comparar(otraClave.listaCampos[3]);
+	ResultadoComparacion accidenteIgual = this->listaCampos[4]->comparar(otraClave.listaCampos[4]);
+	if(lineaIgual==IGUAL && formacionIgual==IGUAL && franjaIgual==IGUAL && fallaIgual==IGUAL && accidenteIgual==IGUAL){
+		return IGUAL;
+	}
+	return COMPARACION_NO_VALIDA;
 }
 
 /*
@@ -106,7 +113,7 @@ int Clave::comparar(Clave otraClave){
  * devuelve 0 si son iguales, -1 si el campo es menor que el pasado por parametro y
  * 1 si el campo es mayor.
  */
-int Clave::comparar(Clave otraClave, int dimesion){
-	// TODO HACER
-	return 0;
+ResultadoComparacion Clave::comparar(Clave otraClave, int dimension){
+	ResultadoComparacion resultComparacion = this->listaCampos[dimension]->comparar(otraClave.listaCampos[dimension]);
+	return resultComparacion;
 }

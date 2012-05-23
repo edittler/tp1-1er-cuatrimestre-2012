@@ -46,8 +46,17 @@ NodoHoja::~NodoHoja() {
  * Metodo para verificar si el nodo contiene la clave que se le pasa por parametro
  */
 bool NodoHoja::contiene(Clave clave){
-	// TODO
-	return false;
+	bool tieneClave = false;
+	int i = 0;
+	while((!tieneClave) && (i < this->cantClaves)){
+		if (this->listaClaves[i] != NULL){
+			if (this->listaClaves[i]->comparar(clave) == IGUAL){
+				tieneClave = true;
+			}
+		}
+		i++;
+	}
+	return tieneClave;
 }
 
 /*
