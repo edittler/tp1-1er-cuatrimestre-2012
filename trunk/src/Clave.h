@@ -19,14 +19,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string>
-#include"campo/Campo.h"
-#include"campo/Linea.h"
-#include"campo/Formacion.h"
-#include"campo/FranjaHoraria.h"
-#include"campo/Falla.h"
-#include"campo/Accidente.h"
+#include "campo/Campo.h"
+#include "campo/Linea.h"
+#include "campo/Formacion.h"
+#include "campo/FranjaHoraria.h"
+#include "campo/Falla.h"
+#include "campo/Accidente.h"
+#include "campo/ResultadoComparacion.h"
 
 using namespace std;
+using namespace comparacion;
 
 class Clave {
 private:
@@ -56,7 +58,7 @@ public:
 
 	void setFormacion(int formacion);
 
-	void setFranjaHoraria(); //TODO agregar los parametros Fecha
+	void setFranjaHoraria();
 
 	void setFalla(string falla);
 
@@ -78,7 +80,7 @@ public:
 	 * Compara todos los campos y evuelve 0 si son iguales, o un valor distinto de 0 si
 	 * no son iguales
 	 */
-	virtual int comparar(Clave otraClave);
+	virtual ResultadoComparacion comparar(Clave otraClave);
 
 	/*
 	 * Funcion que evalúa solo la dimensión de esta clave con otra pasada por parámetro
@@ -86,7 +88,7 @@ public:
 	 * devuelve 0 si son iguales, -1 si el campo es menor que el pasado por parametro y
 	 * 1 si el campo es mayor.
 	 */
-	virtual int comparar(Clave otraClave, int dimesion);
+	virtual ResultadoComparacion comparar(Clave otraClave, int dimesion);
 
 };
 
