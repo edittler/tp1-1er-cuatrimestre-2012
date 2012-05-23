@@ -8,14 +8,12 @@
 #ifndef LINEA_H_
 #define LINEA_H_
 
-#include <string>
-#include "Campo.h"
+#include "CampoCadena.h"
 
-class Linea: public Campo {
-private:
-	string nombre; // Nombre de la linea
-
+class Linea: public CampoCadena {
 public:
+
+	Linea();
 
 	/*
 	 * Constructor de la clase Linea
@@ -27,14 +25,6 @@ public:
 	 * Destructor de la clase Linea
 	 */
 	virtual ~Linea();
-
-	/*
-	 * Metodo virtual que compara este campo con otro pasado por parámetro.
-	 * Como estándar, debe devolver 0 si son iguales y distinto de 0 si son distintos.
-	 * Se puede considerar devolver -1 si el campo es menor que el pasado por parámetro
-	 * y 1 si el campo es mayor que el pasado por parámetro
-	 */
-	virtual int comparar(Campo* otroCampo);
 };
 
 #endif /* LINEA_H_ */

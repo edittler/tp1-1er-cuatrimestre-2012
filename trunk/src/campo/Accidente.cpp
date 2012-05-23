@@ -8,29 +8,14 @@
 
 #include "Accidente.h"
 
-/*
- * Constructor de la clase Accidente
- * Recibe el tipo de Accidente como string por parámetro
- */
-Accidente::Accidente(string tipoAccidente) {
-	// TODO Auto-generated constructor stub
+Accidente::Accidente() : CampoCadena() {
 
 }
 
-/*
- * Destructor de la clase Accidente
- */
+Accidente::Accidente(string tipoAccidente) : CampoCadena(tipoAccidente){
+
+}
+
 Accidente::~Accidente() {
-	// TODO Auto-generated destructor stub
-}
 
-/*
- * Metodo virtual que compara este campo con otro pasado por parámetro.
- * Como estándar, debe devolver 0 si son iguales y distinto de 0 si son distintos.
- * Se puede considerar devolver -1 si el campo es menor que el pasado por parámetro
- * y 1 si el campo es mayor que el pasado por parámetro
- */
-int Accidente::comparar(Campo* otroCampo){
-	// TODO Implementar
-	return 0;
 }
