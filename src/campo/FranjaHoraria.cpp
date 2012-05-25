@@ -11,41 +11,53 @@
 
 
 FranjaHoraria::FranjaHoraria() {
+	this->fecha = new Fecha();
+	this->horario = new Horario();
+}
 
+FranjaHoraria::FranjaHoraria(Fecha* fecha, Horario* horario) {
+	this->fecha = fecha;
+	this->horario = horario;
 }
 
 FranjaHoraria::~FranjaHoraria() {
-
+	delete this->fecha;
+	delete this->horario;
 }
 
-string FranjaHoraria::getFechaString() {
-//	stringstream s;
-//	s << this->fecha;
-//	return s;
-	return "";
+Fecha* FranjaHoraria::getFecha() {
+	return this->fecha;
 }
 
-int FranjaHoraria::getFecha() {
-	return 0;
+void FranjaHoraria::setFecha(Fecha* fecha) {
+	this->fecha = fecha;
 }
 
-void FranjaHoraria::setFecha(string fecha) {
-
-}
-
-void FranjaHoraria::setFecha(int fecha) {
-
-}
-
-string FranjaHoraria::getHorarioString() {
-	return "";
-}
-
-int FranjaHoraria::getHorario() {
+Horario* FranjaHoraria::getHorario() {
 	return this->horario;
 }
 
+void FranjaHoraria::setHorario(Horario* horario) {
+	this->horario = horario;
+}
+
 ResultadoComparacion FranjaHoraria::comparar(Campo* otroCampo){
-	// TODO Implementar
+
+	FranjaHoraria* otraFranjaHoraria = dynamic_cast<FranjaHoraria*>(otroCampo);
+
+	if (!otraFranjaHoraria) {
+		return COMPARACION_NO_VALIDA;
+	}
+
+	if (this->fecha->comparar(otraFranjaHoraria->getFecha()) == MAYOR) {
+		return MAYOR;
+	} else if (this->fecha->comparar(otraFranjaHoraria->getFecha()) == MENOR) {
+		return MENOR;
+	} else if (this->horario->comparar(otraFranjaHoraria->getHorario()) == MAYOR) {
+		return MAYOR;
+	} else if (this->horario->comparar(otraFranjaHoraria->getHorario()) == MENOR) {
+		return MENOR;
+	} else {
 	return IGUAL;
+	}
 }

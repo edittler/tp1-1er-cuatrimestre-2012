@@ -8,7 +8,6 @@
 #include "CampoCadena.h"
 
 CampoCadena::CampoCadena() {
-	// TODO Auto-generated constructor stub
 
 }
 
@@ -17,7 +16,7 @@ CampoCadena::CampoCadena(string descripcion) {
 }
 
 CampoCadena::~CampoCadena() {
-	// TODO Auto-generated destructor stub
+
 }
 
 string CampoCadena::getDescripcion() {
@@ -31,11 +30,9 @@ void CampoCadena::setDescripcion(string descripcion) {
 ResultadoComparacion CampoCadena::comparar(Campo* otroCampo) {
 	//Downcasting.
 	CampoCadena* otraCampoCadena = dynamic_cast<CampoCadena*>(otroCampo);
-	ResultadoComparacion resultado;
 
 	if (!otraCampoCadena) {
-		resultado = COMPARACION_NO_VALIDA;
-		return resultado;
+		return COMPARACION_NO_VALIDA;
 	}
 
 	if (otraCampoCadena->getDescripcion() < this->getDescripcion()) {
