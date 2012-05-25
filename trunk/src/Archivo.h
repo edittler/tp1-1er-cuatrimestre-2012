@@ -29,6 +29,8 @@ private:
 
 	void escribirBloque(PosBloque, Byte *, int);
 	PosBloque obtenerBloqueLibre();
+
+	char * aCharP(string);
 public:
 	
 

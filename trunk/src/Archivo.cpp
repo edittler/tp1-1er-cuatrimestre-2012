@@ -9,10 +9,11 @@ Archivo::Archivo(string nombreArchivoNuevo)
 //	nombreArchivo = nombreArchivoNuevo;
 //	nombreArchivoEspaciosLibres.append("EspaciosLibres");
 //	nombreArchivoEspaciosLibres.append(nombreArchivoNuevo);
-
-	//FIXME borrar hardcode, implementar append para char* si hace falta
-	nombreArchivo = "Test.bin";
-	nombreArchivoEspaciosLibres = "EspaciosLibresTest.bin";
+	nombreArchivo = aCharP(nombreArchivoNuevo);
+	string temp;
+	temp.append("EspaciosLibres");
+	temp.append(nombreArchivoNuevo);
+	nombreArchivoEspaciosLibres = aCharP(temp);
 	tamBloque = 512*4; // tama�o en bytes de un bloque 
 	cantBloquesLibres = 0;
 	cantBloques = 0;
@@ -23,6 +24,15 @@ Archivo::~Archivo(void)
 {
 }
 
+char * Archivo::aCharP(string unString) {
+	int tam = unString.size();
+	char * unCharP = new char[tam];
+	int i;
+	for (i=0; i<tam; i++) {
+		unCharP[i] = unString[i];
+	}
+	return unCharP;
+}
 
 
 void Archivo::escribirBloque(PosBloque bloqueEscritura, Byte * bloqueMemoria, int tam) {
