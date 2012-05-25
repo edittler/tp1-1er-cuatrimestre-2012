@@ -11,19 +11,15 @@
 
 #include "Campo.h"
 #include "iostream"
+#include "Fecha.h"
+#include "Horario.h"
 
 using namespace std;
 
 class FranjaHoraria: public Campo {
 private:
-	int fecha;
-	int horario;
-
-	bool validarFecha(int fecha);
-	bool validarFecha(string fecha);
-
-	bool validarHorario(int horario);
-	bool validarHorario(string horario);
+	Fecha* fecha;
+	Horario* horario;
 
 public:
 
@@ -32,22 +28,19 @@ public:
 	 */
 	FranjaHoraria();
 
+
+	FranjaHoraria(Fecha* fecha, Horario* horario);
+
 	/*
 	 * Destructor de la clase FranjaHoraria
 	 */
 	virtual ~FranjaHoraria();
 
-	string getFechaString();
-	int getFecha();
+	Fecha* getFecha();
+	void setFecha(Fecha* fecha);
 
-	void setFecha(int fecha);
-	void setFecha(string fecha);
-
-	string getHorarioString();
-	int getHorario();
-
-	void setHorario(int horario);
-	void setHorario(string horario);
+	Horario* getHorario();
+	void setHorario(Horario* horario);
 
 	/*
 	 * Metodo virtual que compara este campo con otro pasado por parámetro.
