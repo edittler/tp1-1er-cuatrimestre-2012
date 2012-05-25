@@ -46,6 +46,9 @@ void FechaTest() {
 		cout << "Fail...comparacion igual" <<endl;
 	}
 
+	delete fecha1;
+	delete fecha2;
+
 	cout << endl;
 
 }

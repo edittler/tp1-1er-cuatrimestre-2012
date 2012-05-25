@@ -12,15 +12,15 @@
 
 void ArchivoTest() {
 
-	std::cout << "Prueba Unitaria: Clase Archivo." << endl;
+	cout << "Prueba Unitaria: Clase Archivo." << endl;
 
-	Archivo archivo = Archivo("datos.bin");
+	Archivo* archivo = new Archivo("datos.bin");
 	Byte bloqueMemoria[] = "Bjarne Stroustrup";
-	PosBloque bloqueEscrito = archivo.escribir(bloqueMemoria, 18);
+	PosBloque bloqueEscrito = archivo->escribir(bloqueMemoria, 18);
 
 	Byte * contenido;
 	int tam;
-	archivo.leer(bloqueEscrito, &contenido, &tam);
+	archivo->leer(bloqueEscrito, &contenido, &tam);
 
 	//TODO hacer comparacion entre Byte* y string.
 //	if (contenido == "Bjarne Stroustrup") {
@@ -30,6 +30,8 @@ void ArchivoTest() {
 //	}
 
 	cout << contenido << " == " << "Bjarne Stroustrup" << endl;
+
+	delete archivo;
 	cout << endl;
 }
 

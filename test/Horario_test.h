@@ -51,5 +51,8 @@ void HorarioTest() {
 		cout << "Fail...comparacion igual" <<endl;
 	}
 
+	delete horario1;
+	delete horario2;
+
 	cout << endl;
 }

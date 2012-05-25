@@ -30,6 +30,9 @@ Fecha* FranjaHoraria::getFecha() {
 }
 
 void FranjaHoraria::setFecha(Fecha* fecha) {
+	if (this->fecha != NULL) {
+		delete this->fecha;
+	}
 	this->fecha = fecha;
 }
 
@@ -38,6 +41,9 @@ Horario* FranjaHoraria::getHorario() {
 }
 
 void FranjaHoraria::setHorario(Horario* horario) {
+	if (this->horario != NULL) {
+		delete this->horario;
+	}
 	this->horario = horario;
 }
 

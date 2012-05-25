@@ -48,6 +48,13 @@ void CampoCadenaTest() {
 		std::cout << "Fail...comparacion no valida" << endl;
 	}
 
+	delete campoCadena1;
+	delete campoCadena2;
+	delete campoCadena3;
+	delete campoCadena4;
+	delete campoCadena5;
+	delete otraFormacion;
+
 	cout << endl;
 }
 
