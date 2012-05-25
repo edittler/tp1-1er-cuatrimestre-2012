@@ -45,6 +45,10 @@ void FormacionTest() {
 		std::cout << "Fail...comparacion no valida" << endl;
 	}
 
+	delete falla;
+	delete formacion1;
+	delete formacion2;
+
 	cout << endl;
 }
 

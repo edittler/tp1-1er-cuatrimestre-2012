@@ -48,6 +48,10 @@ void FranjaHorariaTest() {
 		std::cout << "Fail...comparacion no valida" << endl;
 	}
 
+	delete falla;
+	delete franja1;
+	delete franja2;
+
 	cout << endl;
 }
 
