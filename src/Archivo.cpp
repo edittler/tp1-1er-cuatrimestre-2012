@@ -1,4 +1,3 @@
-#include "StdAfx.h"
 #include "Archivo.h"
 #include <iostream>
 using namespace std;
@@ -7,10 +6,14 @@ using namespace std;
 
 Archivo::Archivo(string nombreArchivoNuevo)
 {
-	nombreArchivo = nombreArchivoNuevo;
-	nombreArchivoEspaciosLibres.append("EspaciosLibres");
-	nombreArchivoEspaciosLibres.append(nombreArchivoNuevo);
-	tamBloque = 512*4; // tamaño en bytes de un bloque 
+//	nombreArchivo = nombreArchivoNuevo;
+//	nombreArchivoEspaciosLibres.append("EspaciosLibres");
+//	nombreArchivoEspaciosLibres.append(nombreArchivoNuevo);
+
+	//FIXME borrar hardcode, implementar append para char* si hace falta
+	nombreArchivo = "Test.bin";
+	nombreArchivoEspaciosLibres = "EspaciosLibresTest.bin";
+	tamBloque = 512*4; // tamaï¿½o en bytes de un bloque 
 	cantBloquesLibres = 0;
 	cantBloques = 0;
 }
@@ -27,20 +30,20 @@ void Archivo::escribirBloque(PosBloque bloqueEscritura, Byte * bloqueMemoria, in
 	oarchivo.open(nombreArchivo, ios::out | ios::binary | ios::app);
 	if (oarchivo.is_open()) {
 		if (tam <= tamBloque-4) {
-			oarchivo.seekp(bloqueEscritura); // posiciona el puntero del stream en el bloque indicado
+			oarchivo.seekp(bloqueEscritura, ios::beg); // posiciona el puntero del stream en el bloque indicado
 			Byte * tamRegistro;
 			tamRegistro =  new Byte[4];
 			*tamRegistro = tam;
 			oarchivo.write(tamRegistro, 4);
-			oarchivo.seekp(bloqueEscritura+4);
-			oarchivo.write(bloqueMemoria, tam); // escribe la información en el bloque
+			oarchivo.seekp(bloqueEscritura+4, ios::beg);
+			oarchivo.write(bloqueMemoria, tam); // escribe la informaciï¿½n en el bloque
 			Byte * relleno;
 			relleno = new Byte[tamBloque-tam-4];
 			int i;
 			for (i=0; i<tamBloque-tam-4; i++) {
 				relleno[i] = '0';
 			}
-			oarchivo.seekp(bloqueEscritura+tam+4);
+			oarchivo.seekp(bloqueEscritura+tam+4, ios::beg);
 			oarchivo.write(relleno, tamBloque-tam-4);
 			oarchivo.close();
 		}
@@ -74,11 +77,11 @@ void Archivo::leer(PosBloque bloqueLectura, Byte ** bloqueMemoria, int * tamanio
 	if (iarchivo.is_open()) {
 		Byte * tamRegistro;
 		tamRegistro = new Byte[4];
-		iarchivo.seekg(bloqueLectura);
+		iarchivo.seekg(bloqueLectura, ios::beg);
 		iarchivo.read(tamRegistro, 4);
 		*tamanio = *tamRegistro;
 		*bloqueMemoria = new char [*tamanio]; // reservo memoria para el bloque a leer
-		iarchivo.seekg(bloqueLectura+4);
+		iarchivo.seekg(bloqueLectura+4, ios::beg);
 		iarchivo.read(*bloqueMemoria, *tamanio);
 		iarchivo.close();
 	}
@@ -92,9 +95,9 @@ void Archivo::liberarBloque(PosBloque bloqueLibre) {
 	oarchivo.open(nombreArchivoEspaciosLibres, ios::out | ios::binary | ios::app);
 	if (oarchivo.is_open()) {
 		Byte * registro;
-		registro = new Byte[4]; // registro de 4 bytes, que es el tamaño del tipo PosBloque
+		registro = new Byte[4]; // registro de 4 bytes, que es el tamaï¿½o del tipo PosBloque
 		*registro = bloqueLibre;
-		oarchivo.seekp(cantBloquesLibres*4);
+		oarchivo.seekp(cantBloquesLibres*4, ios::beg);
 		oarchivo.write(registro, 4);
 		oarchivo.close();
 		cantBloquesLibres++;
@@ -116,7 +119,7 @@ PosBloque Archivo::obtenerBloqueLibre() {
 		if (iarchivo.is_open()) {
 			Byte * registro;
 			registro = new Byte[4];
-			iarchivo.seekg((cantBloquesLibres-1)*4);
+			iarchivo.seekg((cantBloquesLibres-1)*4, ios::beg);
 			iarchivo.read(registro, 4);
 			iarchivo.close();
 			cantBloquesLibres--;

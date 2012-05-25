@@ -9,8 +9,7 @@
 #include "FranjaHoraria_test.h"
 #include "Fecha_test.h"
 #include "Horario_test.h"
-
-#include "sstream"
+#include "Archivo_test.h"
 
 int main() {
 
@@ -19,6 +18,7 @@ int main() {
 	FranjaHorariaTest();
 	FechaTest();
 	HorarioTest();
+	ArchivoTest();
 
 	return 0;
 }
