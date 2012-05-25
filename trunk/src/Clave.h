@@ -43,6 +43,12 @@ public:
 	Clave();
 
 	/*
+	 * Constructor de la clase Clave
+	 * Inicializa sus campos copiando los de la otra clave.
+	 */
+	Clave(Clave &otraClave);
+
+	/*
 	 * Constructor de la clase Clave, que inicializa los campos Linea y Formacion,
 	 * el resto de sus dimensiones en NULL
 	 */
@@ -58,7 +64,7 @@ public:
 
 	void setFormacion(int formacion);
 
-	void setFranjaHoraria();
+	void setFranjaHoraria(); //TODO corregir
 
 	void setFalla(string falla);
 
@@ -89,6 +95,11 @@ public:
 	 * 1 si el campo es mayor.
 	 */
 	virtual ResultadoComparacion comparar(Clave otraClave, int dimesion);
+
+	/*
+	 * Funcion que copia el contenido de la clave pasada por parametro a su clave.
+	 */
+	void copiar(Clave otraClave);
 
 };
 

@@ -18,6 +18,15 @@ Clave::Clave() {
 }
 
 /*
+ * Constructor de la clase Clave
+ * Inicializa sus campos copiando los de la otra clave.
+ */
+Clave::Clave(Clave &otraClave){
+	this->listaCampos = new Campo*[this->cantDimensiones];
+	this->copiar(otraClave);
+}
+
+/*
  * Constructor de la clase Clave, que inicializa los campos Linea y Formacion,
  * el resto de sus dimensiones en NULL
  */
@@ -82,7 +91,7 @@ void Clave::setAccidente(string accidente){
  * 		4: Accidente
  * Si se pasa un valor diferente a los mencionados anteriormente, devuelve un puntero NULL
  */
-Campo* Clave::getCampo(int dimension) const{
+Campo *Clave::getCampo(int dimension) const{
 	Campo *unCampo = NULL;
 	if (0 <= dimension && dimension < this->cantDimensiones){
 		unCampo = this->listaCampos[dimension];
@@ -116,4 +125,51 @@ ResultadoComparacion Clave::comparar(Clave otraClave){
 ResultadoComparacion Clave::comparar(Clave otraClave, int dimension){
 	ResultadoComparacion resultComparacion = this->listaCampos[dimension]->comparar(otraClave.listaCampos[dimension]);
 	return resultComparacion;
+}
+
+/*
+ * Funcion que copia el contenido de la clave pasada por parametro a su clave.
+ */
+void Clave::copiar(Clave otraClave){
+	Campo *unCampo;
+
+	if (otraClave.getCampo(0) == NULL){
+		this->listaCampos[0] = NULL;
+	} else {
+		unCampo = new Linea();	// Creo el campo Linea
+		unCampo->copiar(otraClave.getCampo(0));	// Cargo el campo Linea de otraClave
+		this->listaCampos[0] = unCampo;	// Almaceno el campo en la clave
+	}
+
+	if (otraClave.getCampo(1) == NULL){
+		this->listaCampos[1] = NULL;
+	} else {
+	unCampo = new Formacion();	// Creo el campo Formacion
+	unCampo->copiar(otraClave.getCampo(1));	// Cargo el campo Formacion de otraClave
+	this->listaCampos[1] = unCampo;	// Almaceno el campo de la clave
+	}
+
+	if (otraClave.getCampo(2) == NULL){
+		this->listaCampos[2] = NULL;
+	} else {
+	unCampo = new FranjaHoraria();	// Creo el campo FranjaHoraria
+	unCampo->copiar(otraClave.getCampo(2));	// Cargo el campo FranjaHoraria de otraClave
+	this->listaCampos[2] = unCampo;	// Almaceno el campo de la clave
+	}
+
+	if (otraClave.getCampo(3) == NULL){
+		this->listaCampos[3] = NULL;
+	} else {
+	unCampo = new Falla();	// Creo el campo Falla
+	unCampo->copiar(otraClave.getCampo(3));	// Cargo el campo Falla de otraClave
+	this->listaCampos[3] = unCampo;	// Almaceno el campo de la clave
+	}
+
+	if (otraClave.getCampo(4) == NULL){
+		this->listaCampos[4] = NULL;
+	} else {
+	unCampo = new Formacion();	// Creo el campo Accidente
+	unCampo->copiar(otraClave.getCampo(4));	// Cargo el campo Accidente de otraClave
+	this->listaCampos[4] = unCampo;	// Almaceno el campo de la clave
+	}
 }

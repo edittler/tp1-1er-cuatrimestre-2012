@@ -33,6 +33,8 @@ public:
 	 * y 1 si el campo es mayor que el pasado por parámetro
 	 */
 	virtual ResultadoComparacion comparar(Campo* otroCampo) = 0;
+
+	virtual void copiar(const Campo* otroCampo);
 };
 
 #endif /* CAMPO_H_ */

@@ -21,9 +21,9 @@ private:
 	 * Se usará el valor 2 para probar el funcionamiento del arbol.
 	 * Luego especificamos un valor correcto.
 	 */
-	const static int cantClaves = 2;
-
-	Clave** listaClaves;
+	const static int capacidadNodo = 2; // Define el tamaño del nodo
+	int cantClaves;	// Almacena la cantidad de claves que contiene el nodo
+	Clave** listaClaves; // Contenedor de las claves
 
 public:
 	/*
@@ -36,7 +36,7 @@ public:
 	 * Constructor de la clase NodoHoja
 	 * Inicializa la lista con capacidad para 2 claves y almacena la que recibe por parametro.
 	 */
-	NodoHoja(Clave *clave);
+	NodoHoja(Clave clave);
 
 	/*
 	 * Destructor de la clase NodoHoja. Debe liberar la memoria de la lista de claves.
@@ -46,7 +46,7 @@ public:
 	/*
 	 * Metodo para verificar si el nodo contiene la clave que se le pasa por parametro
 	 */
-	bool contiene(Clave clave);
+	bool contiene(const Clave clave);
 
 	/*
 	 * Metodo de inserccion de clave. Los valores de retorno son:
@@ -62,7 +62,7 @@ public:
 	 * 		2: el nodo quedó con subflujo
 	 * 		3: no existe la clave que se quiere eliminar
 	 */
-	int eliminar(Clave clave);
+	int eliminar(const Clave clave);
 
 	/*
 	 * Metodo que devuelve el campo que se encuentra en el medio (o el derecho, en caso

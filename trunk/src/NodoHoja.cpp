@@ -12,8 +12,13 @@
  * Inicializa la lista con capacidad para 2 claves, pero la deja vacía.
  */
 NodoHoja::NodoHoja() {
-	this->listaClaves = new Clave*[this->cantClaves];
-	for (int i=0; i < this->cantClaves; i++){
+	this->cantClaves = 0;
+	this->listaClaves = new Clave*[(this->capacidadNodo + 1)];
+	/*
+	 * Creo la lista de claves con capacidad para 1 clave más para poder ordenar las
+	 * claves cuando éste se desborda.
+	 */
+	for (int i=0; i < this->capacidadNodo; i++){
 		this->listaClaves[i] = NULL;
 	}
 }
@@ -22,10 +27,16 @@ NodoHoja::NodoHoja() {
  * Constructor de la clase NodoHoja
  * Inicializa la lista con capacidad para 2 claves y almacena la que recibe por parametro.
  */
-NodoHoja::NodoHoja(Clave *clave){
-	this->listaClaves = new Clave*[this->cantClaves];
-	this->listaClaves[0] = clave;
-		for (int i=1; i < this->cantClaves; i++){
+NodoHoja::NodoHoja(Clave clave){
+	this->listaClaves = new Clave*[(this->capacidadNodo + 1)];
+	/*
+	 * Creo la lista de claves con capacidad para 1 clave más para poder ordenar las
+	 * claves cuando éste se desborda.
+	 */
+	this->cantClaves = 1;
+	Clave *unaClave = new Clave(clave);
+	this->listaClaves[0] = unaClave;
+		for (int i=1; i < this->capacidadNodo; i++){
 			this->listaClaves[i] = NULL;
 		}
 }
@@ -34,7 +45,7 @@ NodoHoja::NodoHoja(Clave *clave){
  * Destructor de la clase NodoHoja. Debe liberar la memoria de la lista de claves.
  */
 NodoHoja::~NodoHoja() {
-	for(int i=0; i < this->cantClaves; i++){
+	for(int i=0; i < (this->capacidadNodo + 1); i++){
 		if (this->listaClaves[i] != NULL){
 			delete this->listaClaves[i];
 		}
@@ -48,7 +59,7 @@ NodoHoja::~NodoHoja() {
 bool NodoHoja::contiene(Clave clave){
 	bool tieneClave = false;
 	int i = 0;
-	while((!tieneClave) && (i < this->cantClaves)){
+	while((!tieneClave) && (i < this->capacidadNodo)){
 		if (this->listaClaves[i] != NULL){
 			if (this->listaClaves[i]->comparar(clave) == IGUAL){
 				tieneClave = true;
@@ -66,8 +77,32 @@ bool NodoHoja::contiene(Clave clave){
  * 		3: el nodo ya tiene la clave que se desea insertar
  */
 int NodoHoja::insertar(Clave clave){
-	// TODO
-	return 0;
+	int valorRetorno;
+	if (this->contiene(clave)){
+		valorRetorno = 3;	// Devuelvo 3, que significa que la clave ya se encuentra en el nodo
+	} else {
+		if (this->cantClaves == this->capacidadNodo){
+			/* Si la cantidad de claves que contiene el nodo es igual a la capacidad
+			 * el nodo se desborda, por lo que se retorna el valor 2
+			 */
+			valorRetorno = 2;
+		} else {
+			Clave *unaClave = new Clave(clave);
+			bool insertoClave = false;
+			int i = 0;
+			while ((!insertoClave) && (i < this->capacidadNodo)){
+				// Si hay una posicion NULL en el vector, inserto la clave
+				if (this->listaClaves[i] == NULL){
+					this->listaClaves[i] = unaClave;
+					insertoClave = true;	// cambio el valor del booleano
+					this->cantClaves++;
+					valorRetorno = 1; // Devuelvo 1, que significa que el nodo se actualizó
+				}
+				i++;
+			} // Fin while
+		}
+	}
+	return valorRetorno;
 }
 
 /*
@@ -77,7 +112,15 @@ int NodoHoja::insertar(Clave clave){
  * 		3: no existe la clave que se quiere eliminar
  */
 int NodoHoja::eliminar(Clave clave){
-	// TODO
+	if ( ! this->contiene(clave)){
+		return 3;	// Devuelvo 3, que significa que la clave no existe
+	} else {
+		bool eliminoClave = false;
+		int i = 0;
+		while ((!eliminoClave) && (i < this->capacidadNodo)){
+			// TODO falta terminar
+		}
+	}
 	return 0;
 }
 
@@ -89,7 +132,7 @@ int NodoHoja::eliminar(Clave clave){
  * en el tiempo el dato almacenado en el NodoInterno
  */
 Campo* NodoHoja::getValorMedio(int dimension) const{
-	// TODO
+	// TODO Analizar si esto lo hace la clase NodoHoja o ArbolKD
 	return NULL;
 }
 
@@ -99,5 +142,5 @@ Campo* NodoHoja::getValorMedio(int dimension) const{
  * quiere ordenar.
  */
 void NodoHoja::ordenarListaClaves(int dimension){
-	// TODO
+	// TODO Analizar si esto lo hace la clase NodoHoja o ArbolKD
 }
