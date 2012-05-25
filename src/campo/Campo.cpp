@@ -21,3 +21,9 @@ Campo::Campo() {
 Campo::~Campo() {
 	// TODO Auto-generated destructor stub
 }
+
+
+//FIXME agregue para que compile el proyecto.
+void Campo::copiar(const Campo* otroCampo) {
+
+}

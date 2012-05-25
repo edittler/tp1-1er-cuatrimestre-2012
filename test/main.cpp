@@ -10,6 +10,7 @@
 #include "Fecha_test.h"
 #include "Horario_test.h"
 #include "Archivo_test.h"
+#include "Clave_test.h"
 
 int main() {
 
@@ -19,6 +20,7 @@ int main() {
 	FechaTest();
 	HorarioTest();
 	ArchivoTest();
+	ClaveTest();
 
 	return 0;
 }
