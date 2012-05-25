@@ -9,20 +9,20 @@ using namespace std;
 
 Clase Archivo
 
-Esta clase soporta acceso relativo para lecturas y asignación automática de
+Esta clase soporta acceso relativo para lecturas y asignaciï¿½n automï¿½tica de
 bloques para escritura a archivo.
 
 */
 
 typedef char Byte;
-typedef int PosBloque; // posición en archivo de un bloque de datos
+typedef int PosBloque; // posiciï¿½n en archivo de un bloque de datos
 
 
 class Archivo
 {
 private:
-	string nombreArchivo;
-	string nombreArchivoEspaciosLibres;
+	char* nombreArchivo;
+	char* nombreArchivoEspaciosLibres;
 	int tamBloque;
 	int cantBloquesLibres;
 	int cantBloques;
@@ -35,12 +35,12 @@ public:
 	Archivo(string);
 	~Archivo(void);
 
-	// Escribe en el archivo un arreglo de bytes de tamaño dado por un int,
-	// devuelve la posición del bloque donde se insertó el arreglo de bytes.
+	// Escribe en el archivo un arreglo de bytes de tamaï¿½o dado por un int,
+	// devuelve la posiciï¿½n del bloque donde se insertï¿½ el arreglo de bytes.
 	PosBloque escribir(Byte *, int);
 
 
-	// lee de archivo un bloque especificado por la posición PosBloque, devuelve 
+	// lee de archivo un bloque especificado por la posiciï¿½n PosBloque, devuelve 
 	// el contenido en un arreglo de bytes.
 	void leer(PosBloque, Byte **, int *);
 
