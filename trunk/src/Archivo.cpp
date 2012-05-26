@@ -140,6 +140,8 @@ PosBloque Archivo::obtenerBloqueLibre() {
 			//lanzar excepcion de error al abrir archivo
 		}
 	}
+	//PosBloque bloque;
+	return 0;
 }
 
 int Archivo::obtenerTamBloque() {
