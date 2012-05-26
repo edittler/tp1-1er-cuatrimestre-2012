@@ -33,9 +33,10 @@ using namespace comparacion;
 class Clave {
 private:
 	Campo **listaCampos;
-	const static int cantDimensiones = 5;
 
 public:
+	const static int cantDimensiones = 5;
+
 	/*
 	 * Constructor de la clase Clave
 	 * Inicializa la lista de campos con 5 posiciones en NULL
@@ -94,7 +95,10 @@ public:
 	 * devuelve 0 si son iguales, -1 si el campo es menor que el pasado por parametro y
 	 * 1 si el campo es mayor.
 	 */
-	virtual ResultadoComparacion comparar(Clave otraClave, int dimesion);
+	virtual ResultadoComparacion comparar(Clave otraClave, int dimension);
+
+	//TODO Para comparar con nodos internos necesito un comparador por campo. Consultar con Eze.
+	virtual ResultadoComparacion comparar(Campo* otraClave, int dimension);
 
 	/*
 	 * Funcion que copia el contenido de la clave pasada por parametro a su clave.

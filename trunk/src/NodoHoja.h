@@ -21,11 +21,11 @@ private:
 	 * Se usará el valor 2 para probar el funcionamiento del arbol.
 	 * Luego especificamos un valor correcto.
 	 */
-	const static int capacidadNodo = 2; // Define el tamaño del nodo
 	int cantClaves;	// Almacena la cantidad de claves que contiene el nodo
 	Clave** listaClaves; // Contenedor de las claves
 
 public:
+	const static int capacidadNodo = 2; // Define el tamaño del nodo
 	/*
 	 * Constructor de la clase NodoHoja
 	 * Inicializa la lista con capacidad para 2 claves, pero la deja vacía.
@@ -72,6 +72,10 @@ public:
 	 * en el tiempo el dato almacenado en el NodoInterno
 	 */
 	Campo* getValorMedio(int dimension) const;
+
+	Clave* getClave(int i);
+
+	Clave* getClave(Clave* clave);
 
 private:
 	/*
