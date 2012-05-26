@@ -110,6 +110,8 @@ ResultadoComparacion Clave::comparar(Clave otraClave){
 			if (this->listaCampos[i]->comparar(otraClave.listaCampos[i]) != IGUAL) {
 				return COMPARACION_NO_VALIDA;
 			}
+		} else if(otraClave.listaCampos[i] != NULL) {
+			return COMPARACION_NO_VALIDA;
 		}
 	}
 	return IGUAL;
