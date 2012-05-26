@@ -155,3 +155,15 @@ Campo* NodoHoja::getValorMedio(int dimension) const{
 void NodoHoja::ordenarListaClaves(int dimension){
 	// TODO Analizar si esto lo hace la clase NodoHoja o ArbolKD
 }
+
+Clave* NodoHoja::getClave(int i) {
+	// TODO no hay metodos para obtener las claves guardadas en el nodo hoja. Este metodo
+	// devuelve la clave en posicion i. Si esta fuera de rango devuelve NULL.
+	return NULL;
+}
+
+Clave* NodoHoja::getClave(Clave* clave) {
+	// TODO devuelve la clave.
+	return NULL;
+}
+

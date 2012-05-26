@@ -128,6 +128,13 @@ ResultadoComparacion Clave::comparar(Clave otraClave, int dimension){
 	return resultComparacion;
 }
 
+//TODO ver en Clave.h
+ResultadoComparacion Clave::comparar(Campo* otraCampo, int dimension) {
+	ResultadoComparacion resultComparacion = this->listaCampos[dimension]->comparar(otraCampo);
+	return resultComparacion;
+}
+
+
 /*
  * Funcion que copia el contenido de la clave pasada por parametro a su clave.
  */
