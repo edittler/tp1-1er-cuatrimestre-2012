@@ -18,7 +18,7 @@ class NodoInterno: public Nodo {
 private:
 	Campo* atributo;
 	Nodo* hijoIzq;
-	Nodo* HijoDer;
+	Nodo* hijoDer;
 	int IDizq;
 	int IDder;
 
@@ -40,12 +40,15 @@ public:
 
 	/* Destructor de la clase NodoInterno
 	 * Debe eliminar la memoria reservada por los punteros y establecerlos como NULL
+	 * Si los nodos hijos de este nodo se van a seguir usando, previo a la destruccion del
+	 * objeto, se deben establecer como NULL los hijos de este nodo para no cometer
+	 * liberaciones de memoria erroneas.
 	 */
 	virtual ~NodoInterno();
 
 	/* Retorna el atributo que identifica al nodo
 	 */
-	Campo* getAtributo();
+	Campo* getAtributo() const;
 
 	/* Modifica el atributo del nodo, estableciendo el que recibe por parámetro.
 	 */
@@ -60,10 +63,10 @@ public:
 	int getIDHijoIzq();
 
 	/* Edita el hijo izquierdo.
-	 * Si previamente el nodo interno ya tenia hijo izquierdo, libera la memoria y
-	 * carga el nuevo hijo
+	 * Si previamente el nodo interno ya tenia hijo izquierdo, se reemplaza la referencia de
+	 * memoria, pero no libera la memoria del hijo almacenado previamente.
 	 */
-	void setHijoIzq(Nodo* hijoIzq);
+	void setHijoIzq(Nodo* hijoIzquierdo);
 
 	/* Retorna la direccion de memoria del hijo derecho
 	 */
@@ -74,10 +77,10 @@ public:
 	int getIDHijoDer();
 
 	/* Edita el hijo derecho.
-	 * Si previamente el nodo interno ya tenia hijo derecho, libera la memoria y
-	 * carga el nuevo hijo
+	 * Si previamente el nodo interno ya tenia hijo derecho, se reemplaza la referencia de
+	 * memoria, pero no libera la memoria del hijo almacenado previamente.
 	 */
-	void setHijoDer(Nodo* hijoIzq);
+	void setHijoDer(Nodo* hijoDerecho);
 
 };
 
