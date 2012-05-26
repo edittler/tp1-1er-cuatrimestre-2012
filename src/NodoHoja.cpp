@@ -112,16 +112,27 @@ int NodoHoja::insertar(Clave clave){
  * 		3: no existe la clave que se quiere eliminar
  */
 int NodoHoja::eliminar(Clave clave){
+	int valorRetorno;
 	if ( ! this->contiene(clave)){
-		return 3;	// Devuelvo 3, que significa que la clave no existe
+		valorRetorno = 3;	// Devuelvo 3, que significa que la clave no existe
 	} else {
 		bool eliminoClave = false;
 		int i = 0;
 		while ((!eliminoClave) && (i < this->capacidadNodo)){
-			// TODO falta terminar
+			if (this->listaClaves[i]->comparar(clave) == IGUAL){	// Si las claves son iguales, debo eliminar la almacenada en el nodo.
+				delete this->listaClaves[i];	// Elimino la memoria reservada
+				this->listaClaves[i] = NULL;	// Establezco como NULL al puntero
+				eliminoClave = true;	// Establezco como verdadero que se eliminó la clave
+			}
+			i++;	// Incremento i
 		}
+		// Ahora debo analizar si el nodo no quedó con subflujo
+		// TODO Agregar codigo if con subflujo
+
+		// Si no hay subflujo, hay que devolver 1, que el nodo se actualizo con exito
+		valorRetorno = 1;
 	}
-	return 0;
+	return valorRetorno;
 }
 
 /*
