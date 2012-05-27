@@ -26,6 +26,11 @@ public:
 	Falla(string tipoFalla);
 
 	/*
+	 * Constructor copia de la clase Falla
+	 */
+	Falla(Campo* campo);
+
+	/*
 	 * Destructor de la clase Falla
 	 */
 	virtual ~Falla();

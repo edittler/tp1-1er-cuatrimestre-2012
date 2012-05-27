@@ -16,6 +16,10 @@ Accidente::Accidente(string tipoAccidente) : CampoCadena(tipoAccidente){
 
 }
 
+Accidente::Accidente(Campo* campo){
+	// TODO Implementar constructor copia
+}
+
 Accidente::~Accidente() {
 
 }

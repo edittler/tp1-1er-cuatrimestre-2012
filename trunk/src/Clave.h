@@ -65,7 +65,7 @@ public:
 
 	void setFormacion(int formacion);
 
-	void setFranjaHoraria(); //TODO corregir
+	void setFranjaHoraria();
 
 	void setFalla(string falla);
 
@@ -97,8 +97,10 @@ public:
 	 */
 	virtual ResultadoComparacion comparar(Clave otraClave, int dimension);
 
-	//TODO Para comparar con nodos internos necesito un comparador por campo. Consultar con Eze.
-	virtual ResultadoComparacion comparar(Campo* otraClave, int dimension);
+	/*
+	 * Funcion que evalúa el campo de la clave con el campo que recibe por parametro.
+	 */
+	virtual ResultadoComparacion comparar(Campo* otraClave);
 
 	/*
 	 * Funcion que copia el contenido de la clave pasada por parametro a su clave.
