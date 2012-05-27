@@ -8,14 +8,14 @@
 #ifndef ARBOLKD_H_
 #define ARBOLKD_H_
 
-#include "NodoInterno.h"
-#include "NodoHoja.h"
+#include "kdNodoInterno.h"
+#include "kdNodoHoja.h"
 
 using namespace std;
 
 class ArbolKD {
 private:
-	NodoKD raiz;
+	kdNodo raiz;
 
 public:
 	ArbolKD();

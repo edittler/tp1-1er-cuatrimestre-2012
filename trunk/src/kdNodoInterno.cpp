@@ -5,12 +5,12 @@
  *      Author: ezequiel
  */
 
-#include "NodoInterno.h"
+#include "kdNodoInterno.h"
 
 /* Constructor de la clase NodoInterno
  * Inicializa todos sus atributos en null
  */
-NodoInterno::NodoInterno() {
+kdNodoInterno::kdNodoInterno() {
 	this->atributo = NULL;
 	this->hijoIzq = NULL;
 	this->hijoDer = NULL;
@@ -21,7 +21,7 @@ NodoInterno::NodoInterno() {
 /* Constructor de la clase NodoInterno
  * Inicializa con el atributo que recibe por parámetro y los los demas en NULL
  */
-NodoInterno::NodoInterno(Campo* atributo){
+kdNodoInterno::kdNodoInterno(Campo* atributo){
 	this->setAtributo(atributo);
 	this->hijoIzq = NULL;
 	this->hijoDer = NULL;
@@ -32,7 +32,7 @@ NodoInterno::NodoInterno(Campo* atributo){
 /* Constructor de la clase NodoInterno
  * Inicializa todos sus atributos con los argumentos recibidos por parámtetros.
  */
-NodoInterno::NodoInterno(Campo* atributo, NodoKD* hijoIzq, NodoKD* hijoDer){
+kdNodoInterno::kdNodoInterno(Campo* atributo, kdNodo* hijoIzq, kdNodo* hijoDer){
 	this->setAtributo(atributo);
 	this->setHijoIzq(hijoIzq);
 	this->setHijoDer(hijoDer);
@@ -44,7 +44,7 @@ NodoInterno::NodoInterno(Campo* atributo, NodoKD* hijoIzq, NodoKD* hijoDer){
  * se deben establecer como NULL los hijos de este nodo para no cometer liberaciones de
  * memoria erroneas.
  */
-NodoInterno::~NodoInterno() {
+kdNodoInterno::~kdNodoInterno() {
 	delete this->atributo;
 	delete this->hijoIzq;
 	delete this->hijoDer;
@@ -52,13 +52,13 @@ NodoInterno::~NodoInterno() {
 
 /* Retorna el atributo que identifica al nodo
  */
-Campo* NodoInterno::getAtributo() const{
+Campo* kdNodoInterno::getAtributo() const{
 	return this->atributo;
 }
 
 /* Modifica el atributo del nodo, estableciendo el que recibe por parámetro.
  */
-void NodoInterno::setAtributo(Campo* atributo){
+void kdNodoInterno::setAtributo(Campo* atributo){
 	if (this->atributo != NULL){
 		delete this->atributo;
 	}
@@ -114,13 +114,13 @@ void NodoInterno::setAtributo(Campo* atributo){
 
 /* Retorna la direccion de memoria del hijo izquierdo
  */
-NodoKD* NodoInterno::getHijoIzq() const{
+kdNodo* kdNodoInterno::getHijoIzq() const{
 	return this->hijoIzq;
 }
 
 /* Retorna el identificador del nodo hijo izquierdo
  */
-int NodoInterno::getIDHijoIzq(){
+int kdNodoInterno::getIDHijoIzq(){
 	return this->IDizq;
 }
 
@@ -128,7 +128,7 @@ int NodoInterno::getIDHijoIzq(){
  * Si previamente el nodo interno ya tenia hijo izquierdo, se reemplaza la referencia de
  * memoria, pero no libera la memoria del hijo almacenado previamente.
  */
-void NodoInterno::setHijoIzq(NodoKD* hijoIzquierdo){
+void kdNodoInterno::setHijoIzq(kdNodo* hijoIzquierdo){
 	this->hijoIzq = hijoIzquierdo;
 	if (this->hijoIzq != NULL){
 		this->IDizq = this->hijoIzq->getId();
@@ -139,13 +139,13 @@ void NodoInterno::setHijoIzq(NodoKD* hijoIzquierdo){
 
 /* Retorna la direccion de memoria del hijo derecho
  */
-NodoKD* NodoInterno::getHijoDer() const{
+kdNodo* kdNodoInterno::getHijoDer() const{
 	return this->hijoDer;
 }
 
 /* Retorna el identificador del nodo hijo derecho
  */
-int NodoInterno::getIDHijoDer(){
+int kdNodoInterno::getIDHijoDer(){
 	return this->IDder;
 }
 
@@ -153,7 +153,7 @@ int NodoInterno::getIDHijoDer(){
  * Si previamente el nodo interno ya tenia hijo derecho, se reemplaza la referencia de
  * memoria, pero no libera la memoria del hijo almacenado previamente.
  */
-void NodoInterno::setHijoDer(NodoKD* hijoDerecho){
+void kdNodoInterno::setHijoDer(kdNodo* hijoDerecho){
 	this->hijoDer = hijoDerecho;
 	if (this->hijoDer != NULL){
 		this->IDder = this->hijoDer->getId();

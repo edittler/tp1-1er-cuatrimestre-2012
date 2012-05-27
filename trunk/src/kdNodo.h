@@ -8,7 +8,7 @@
 #ifndef NODO_H_
 #define NODO_H_
 
-class NodoKD {
+class kdNodo {
 private:
 	int id;
 
@@ -17,17 +17,17 @@ public:
 	/*
 	 * Contructor por defecto.
 	 */
-	NodoKD();
+	kdNodo();
 
 	/*
 	 * Constructor de la clase Nodo, que debe inicializarse con el ID correspondiente
 	 */
-	NodoKD(int ID);
+	kdNodo(int ID);
 
 	/*
 	 * Destructor de la clase Nodo
 	 */
-	virtual ~NodoKD();
+	virtual ~kdNodo();
 
 	int getId() const;
 
