@@ -16,17 +16,16 @@ public:
 
 	Accidente();
 
+	/*
+	 * Constructor copia de la clase Accidente
+	 */
 	Accidente(Accidente& accidente);
+
 	/*
 	 * Constructor de la clase Accidente
 	 * Recibe el tipo de Accidente como string por parámetro
 	 */
 	Accidente(string tipoAccidente);
-
-	/*
-	 * Constructor copia de la clase Accidente
-	 */
-	Accidente(Campo* campo);
 
 	/*
 	 * Destructor de la clase Accidente

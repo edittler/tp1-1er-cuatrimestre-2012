@@ -15,6 +15,9 @@ public:
 
 	Linea();
 
+	/*
+	 * Constructor copia de la clase Linea
+	 */
 	Linea(Linea& linea);
 
 	/*
@@ -22,11 +25,6 @@ public:
 	 * Se para el nombre de la linea por parámetro
 	 */
 	Linea(string nombreLinea);
-
-	/*
-	 * Constructor copia de la clase Linea
-	 */
-	Linea(Campo* campo);
 
 	/*
 	 * Destructor de la clase Linea

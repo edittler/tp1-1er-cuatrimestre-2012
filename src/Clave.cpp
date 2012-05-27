@@ -140,45 +140,70 @@ ResultadoComparacion Clave::comparar(Campo* otraCampo) {
  * Funcion que copia el contenido de la clave pasada por parametro a su clave.
  */
 void Clave::copiar(Clave otraClave){
-	Campo *unCampo;
-
+	// Copio el campo Linea
 	if (otraClave.getCampo(0) == NULL){
 		this->listaCampos[0] = NULL;
 	} else {
-		unCampo = new Linea();	// Creo el campo Linea
-		unCampo->copiar(otraClave.getCampo(0));	// Cargo el campo Linea de otraClave
-//		this->listaCampos[0] = unCampo;	// Almaceno el campo en la clave
+		// Verifico si es campo Linea con un casteo dinamico
+		Linea* unaLinea = dynamic_cast<Linea*>(otraClave.listaCampos[0]);
+		if (unaLinea) {
+			// Si el casteo fallo, establezco como null el puntero de Linea
+			this->listaCampos[0] = NULL;
+		} else {
+			Linea* otraLinea = new Linea(unaLinea->getDescripcion());	// Creo el campo Linea
+			this->listaCampos[0] = otraLinea;	// Almaceno el campo en la clave
+		}
 	}
-
+	// Copio el campo Formacion
 	if (otraClave.getCampo(1) == NULL){
 		this->listaCampos[1] = NULL;
 	} else {
-	unCampo = new Formacion();	// Creo el campo Formacion
-	unCampo->copiar(otraClave.getCampo(1));	// Cargo el campo Formacion de otraClave
-	this->listaCampos[1] = unCampo;	// Almaceno el campo de la clave
+		// Verifico si es campo Formacion con un casteo dinamico
+		Formacion* unaFormacion = dynamic_cast<Formacion*>(otraClave.listaCampos[1]);
+		if (unaFormacion) {
+			this->listaCampos[1] = NULL;
+		} else {
+			Formacion* otraFormacion = new Formacion(unaFormacion->getNumeroFormacion());	// Creo el campo Formacion
+			this->listaCampos[1] = otraFormacion;	// Almaceno el campo de la clave
+		}
 	}
-
+	// Copio el campo FranjaHoraria
 	if (otraClave.getCampo(2) == NULL){
 		this->listaCampos[2] = NULL;
 	} else {
-	unCampo = new FranjaHoraria();	// Creo el campo FranjaHoraria
-	unCampo->copiar(otraClave.getCampo(2));	// Cargo el campo FranjaHoraria de otraClave
-	this->listaCampos[2] = unCampo;	// Almaceno el campo de la clave
+		// Verifico si es campo FranjaHoraria con un casteo dinamico
+		FranjaHoraria* unaFranjaHoraria = dynamic_cast<FranjaHoraria*>(otraClave.listaCampos[2]);
+		if (unaFranjaHoraria) {
+			this->listaCampos[2] = NULL;
+		} else {
+			FranjaHoraria *otraFranjaHoraria = new FranjaHoraria(unaFranjaHoraria->getFecha(), unaFranjaHoraria->getHorario());	// Creo el campo FranjaHoraria
+			this->listaCampos[2] = otraFranjaHoraria;	// Almaceno el campo de la clave
+		}
 	}
-
+	// Copio el campo Falla
 	if (otraClave.getCampo(3) == NULL){
 		this->listaCampos[3] = NULL;
 	} else {
-	unCampo = new Falla();	// Creo el campo Falla
-	unCampo->copiar(otraClave.getCampo(3));	// Cargo el campo Falla de otraClave
-	this->listaCampos[3] = unCampo;	// Almaceno el campo de la clave
+		// Verifico si es campo FranjaHoraria con un casteo dinamico
+		Falla* unaFalla = dynamic_cast<Falla*>(otraClave.listaCampos[3]);
+		if (unaFalla) {
+			this->listaCampos[3] = NULL;
+		} else {
+			Falla *otraFalla = new Falla(unaFalla->getDescripcion());	// Creo el campo Falla
+			this->listaCampos[3] = otraFalla;	// Almaceno el campo de la clave
+		}
 	}
-
+	// Copio el campo Accidente
 	if (otraClave.getCampo(4) == NULL){
 		this->listaCampos[4] = NULL;
 	} else {
-	unCampo = new Formacion();	// Creo el campo Accidente
-	unCampo->copiar(otraClave.getCampo(4));	// Cargo el campo Accidente de otraClave
-	this->listaCampos[4] = unCampo;	// Almaceno el campo de la clave
+		// Verifico si es campo Accidente con un casteo dinamico
+		Accidente* unAccidente = dynamic_cast<Accidente*>(otraClave.listaCampos[4]);
+		if (unAccidente) {
+			this->listaCampos[4] = NULL;
+		} else {
+			Accidente *otroAccidente = new Accidente(unAccidente->getDescripcion());	// Creo el campo Accidente
+			this->listaCampos[4] = otroAccidente;	// Almaceno el campo de la clave
+		}
 	}
 }

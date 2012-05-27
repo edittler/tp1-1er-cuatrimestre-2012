@@ -28,14 +28,12 @@ public:
 	 */
 	FranjaHoraria();
 
-	FranjaHoraria(FranjaHoraria& franja);
-
-	FranjaHoraria(Fecha* fecha, Horario* horario);
-
 	/*
 	 * Constructor copia de la clase FranjaHoraria
 	 */
-	FranjaHoraria(Campo* campo);
+	FranjaHoraria(FranjaHoraria& franja);
+
+	FranjaHoraria(Fecha* fecha, Horario* horario);
 
 	/*
 	 * Destructor de la clase FranjaHoraria

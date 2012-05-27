@@ -47,5 +47,3 @@ ResultadoComparacion CampoCadena::comparar(Campo* otroCampo) {
 		return IGUAL;
 	}
 }
-
-

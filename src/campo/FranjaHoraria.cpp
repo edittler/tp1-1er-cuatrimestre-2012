@@ -18,6 +18,7 @@ FranjaHoraria::FranjaHoraria() {
 FranjaHoraria::FranjaHoraria(FranjaHoraria& franja) {
 	this->fecha = new Fecha();
 	this->horario = new Horario();
+	// TODO ¿Realmente está copiando la franja horaria recibida por parametro??
 }
 
 FranjaHoraria::FranjaHoraria(Fecha* fecha, Horario* horario) {

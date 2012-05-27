@@ -67,55 +67,48 @@ void NodoInterno::setAtributo(Campo* atributo){
 	 * metodo 'setAtributo'. Averiguar si se puede realizar una implementacion
 	 * más feliz del problema.
 	 */
-	if (atributo != NULL){
+	if (atributo == NULL){
+		this->atributo = NULL;
+	} else {
 		/* Realiza un casteo dinamico de Linea. Si resulta positivo el casteo,
 		 * realiza una copia del campo
 		 */
-		Campo* unAtributo = dynamic_cast<Linea*>(atributo);
-		if (!unAtributo) {
-			unAtributo = new Linea(atributo);
-			this->atributo = unAtributo;
+		Linea *unaLinea = dynamic_cast<Linea*>(atributo);
+		if (!unaLinea) {
+			this->atributo = new Linea(unaLinea->getDescripcion());
 		} else {
-		/* Realiza un casteo dinamico de Formacion. Si resulta positivo el casteo,
-		 * realiza una copia del campo
-		 */
-		unAtributo = dynamic_cast<Formacion*>(atributo);
-		if (!unAtributo) {
-			Campo* unAtributo = new Formacion(atributo);
-			this->atributo = unAtributo;
-		} else {
-			/* Realiza un casteo dinamico de FranjaHoraria. Si resulta positivo el casteo,
+			/* Realiza un casteo dinamico de Formacion. Si resulta positivo el casteo,
 			 * realiza una copia del campo
 			 */
-			unAtributo = dynamic_cast<FranjaHoraria*>(atributo);
-			if (!unAtributo) {
-				Campo* unAtributo = new FranjaHoraria(atributo);
-				this->atributo = unAtributo;
+			Formacion *unaFormacion = dynamic_cast<Formacion*>(atributo);
+			if (!unaFormacion) {
+				this->atributo = new Formacion(unaFormacion->getNumeroFormacion());
 			} else {
-				/* Realiza un casteo dinamico de Falla. Si resulta positivo el casteo,
+				/* Realiza un casteo dinamico de FranjaHoraria. Si resulta positivo el casteo,
 				 * realiza una copia del campo
 				 */
-				unAtributo = dynamic_cast<Falla*>(atributo);
-				if (!unAtributo) {
-					Campo* unAtributo = new Falla(atributo);
-					this->atributo = unAtributo;
+				FranjaHoraria *unaFranja = dynamic_cast<FranjaHoraria*>(atributo);
+				if (!unaFranja) {
+					this->atributo = new FranjaHoraria(unaFranja->getFecha(), unaFranja->getHorario());
 				} else {
-					/* Realiza un casteo dinamico de FranjaHoraria. Si resulta positivo el casteo,
+					/* Realiza un casteo dinamico de Falla. Si resulta positivo el casteo,
 					 * realiza una copia del campo
 					 */
-					unAtributo = dynamic_cast<Accidente*>(atributo);
-					if (!unAtributo) {
-						Campo* unAtributo = new Accidente(atributo);
-						this->atributo = unAtributo;
-					}
-				}
-			}
-		}
-	}
-
-	} else {
-		/* si llego acá, es porque el parametro recibido es null  */
-		this->atributo = NULL;
+					Falla *unaFalla = dynamic_cast<Falla*>(atributo);
+					if (!unaFalla) {
+						this->atributo = new Falla(unaFalla->getDescripcion());
+					} else {
+						/* Realiza un casteo dinamico de Accidente. Si resulta positivo el
+						 * casteo, realiza una copia del campo
+						 */
+						Accidente *unAccidente = dynamic_cast<Accidente*>(atributo);
+						if (!unAccidente) {
+							this->atributo = new Accidente(unAccidente->getDescripcion());
+						} // Fin if Accidente
+					} // Fin if Falla
+				} // Fin if FranjaHoraria
+			} // Fin if Formacion
+		} // Fin if Linea
 	}
 }
 
