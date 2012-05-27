@@ -20,10 +20,6 @@ Falla::Falla(string tipoFalla) : CampoCadena(tipoFalla) {
 
 }
 
-Falla::Falla(Campo* campo){
-	// TODO Implementar constructor copia
-}
-
 Falla::~Falla() {
 
 }
