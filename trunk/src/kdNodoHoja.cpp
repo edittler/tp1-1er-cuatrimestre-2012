@@ -54,6 +54,13 @@ kdNodoHoja::~kdNodoHoja() {
 }
 
 /*
+ * Función que devuelve si el nodo es hoja, que devuelve verdadero por defecto
+ */
+bool kdNodoHoja::esHoja(){
+	return true;
+}
+
+/*
  * Metodo para verificar si el nodo contiene la clave que se le pasa por parametro
  */
 bool kdNodoHoja::contiene(Clave clave){
