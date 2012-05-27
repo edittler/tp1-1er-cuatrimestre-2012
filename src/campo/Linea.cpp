@@ -15,6 +15,10 @@ Linea::Linea() : CampoCadena() {
 Linea::Linea(string nombreLinea) : CampoCadena(nombreLinea){
 }
 
+Linea::Linea(Campo* campo){
+	// TODO Implementar constructor copia
+}
+
 Linea::~Linea() {
 
 }

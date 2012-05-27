@@ -129,9 +129,10 @@ ResultadoComparacion Clave::comparar(Clave otraClave, int dimension){
 }
 
 //TODO ver en Clave.h
-ResultadoComparacion Clave::comparar(Campo* otraCampo, int dimension) {
-	ResultadoComparacion resultComparacion = this->listaCampos[dimension]->comparar(otraCampo);
-	return resultComparacion;
+ResultadoComparacion Clave::comparar(Campo* otraCampo) {
+	// TODO  Hacer
+	//ResultadoComparacion resultComparacion = this->listaCampos[dimension]->comparar(otraCampo);
+	return COMPARACION_NO_VALIDA;
 }
 
 
@@ -146,7 +147,7 @@ void Clave::copiar(Clave otraClave){
 	} else {
 		unCampo = new Linea();	// Creo el campo Linea
 		unCampo->copiar(otraClave.getCampo(0));	// Cargo el campo Linea de otraClave
-		this->listaCampos[0] = unCampo;	// Almaceno el campo en la clave
+//		this->listaCampos[0] = unCampo;	// Almaceno el campo en la clave
 	}
 
 	if (otraClave.getCampo(1) == NULL){

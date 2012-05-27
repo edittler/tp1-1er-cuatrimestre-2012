@@ -32,6 +32,11 @@ public:
 	FranjaHoraria(Fecha* fecha, Horario* horario);
 
 	/*
+	 * Constructor copia de la clase FranjaHoraria
+	 */
+	FranjaHoraria(Campo* campo);
+
+	/*
 	 * Destructor de la clase FranjaHoraria
 	 */
 	virtual ~FranjaHoraria();

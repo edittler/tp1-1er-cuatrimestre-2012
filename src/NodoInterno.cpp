@@ -14,8 +14,8 @@ NodoInterno::NodoInterno() {
 	this->atributo = NULL;
 	this->hijoIzq = NULL;
 	this->hijoDer = NULL;
-	this->IDizq = 0;
-	this->IDder = 0;
+	this->IDizq = -1;
+	this->IDder = -1;
 }
 
 /* Constructor de la clase NodoInterno
@@ -25,8 +25,8 @@ NodoInterno::NodoInterno(Campo* atributo){
 	this->setAtributo(atributo);
 	this->hijoIzq = NULL;
 	this->hijoDer = NULL;
-	this->IDizq = 0;
-	this->IDder = 0;
+	this->IDizq = -1;
+	this->IDder = -1;
 }
 
 /* Constructor de la clase NodoInterno
@@ -62,8 +62,61 @@ void NodoInterno::setAtributo(Campo* atributo){
 	if (this->atributo != NULL){
 		delete this->atributo;
 	}
-	// FIXME Hay que realizar un casteo, inicializar un campo correspondiente y almacenar
-	// Campo* unCampo = new Campo(atributo);
+
+	/* FIXME Provisoriamente se implementa la solucion de if anidados del
+	 * metodo 'setAtributo'. Averiguar si se puede realizar una implementacion
+	 * más feliz del problema.
+	 */
+	if (atributo != NULL){
+		/* Realiza un casteo dinamico de Linea. Si resulta positivo el casteo,
+		 * realiza una copia del campo
+		 */
+		Campo* unAtributo = dynamic_cast<Linea*>(atributo);
+		if (!unAtributo) {
+			unAtributo = new Linea(atributo);
+			this->atributo = unAtributo;
+		} else {
+		/* Realiza un casteo dinamico de Formacion. Si resulta positivo el casteo,
+		 * realiza una copia del campo
+		 */
+		unAtributo = dynamic_cast<Formacion*>(atributo);
+		if (!unAtributo) {
+			Campo* unAtributo = new Formacion(atributo);
+			this->atributo = unAtributo;
+		} else {
+			/* Realiza un casteo dinamico de FranjaHoraria. Si resulta positivo el casteo,
+			 * realiza una copia del campo
+			 */
+			unAtributo = dynamic_cast<FranjaHoraria*>(atributo);
+			if (!unAtributo) {
+				Campo* unAtributo = new FranjaHoraria(atributo);
+				this->atributo = unAtributo;
+			} else {
+				/* Realiza un casteo dinamico de Falla. Si resulta positivo el casteo,
+				 * realiza una copia del campo
+				 */
+				unAtributo = dynamic_cast<Falla*>(atributo);
+				if (!unAtributo) {
+					Campo* unAtributo = new Falla(atributo);
+					this->atributo = unAtributo;
+				} else {
+					/* Realiza un casteo dinamico de FranjaHoraria. Si resulta positivo el casteo,
+					 * realiza una copia del campo
+					 */
+					unAtributo = dynamic_cast<Accidente*>(atributo);
+					if (!unAtributo) {
+						Campo* unAtributo = new Accidente(atributo);
+						this->atributo = unAtributo;
+					}
+				}
+			}
+		}
+	}
+
+	} else {
+		/* si llego acá, es porque el parametro recibido es null  */
+		this->atributo = NULL;
+	}
 }
 
 /* Retorna la direccion de memoria del hijo izquierdo
@@ -87,7 +140,7 @@ void NodoInterno::setHijoIzq(Nodo* hijoIzquierdo){
 	if (this->hijoIzq != NULL){
 		this->IDizq = this->hijoIzq->getId();
 	} else {
-		this->IDizq = 0;
+		this->IDizq = -1;
 	}
 }
 
@@ -112,6 +165,6 @@ void NodoInterno::setHijoDer(Nodo* hijoDerecho){
 	if (this->hijoDer != NULL){
 		this->IDder = this->hijoDer->getId();
 	} else {
-		this->IDder = 0;
+		this->IDder = -1;
 	}
 }

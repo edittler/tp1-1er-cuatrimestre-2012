@@ -22,6 +22,11 @@ public:
 	Accidente(string tipoAccidente);
 
 	/*
+	 * Constructor copia de la clase Accidente
+	 */
+	Accidente(Campo* campo);
+
+	/*
 	 * Destructor de la clase Accidente
 	 */
 	virtual ~Accidente();

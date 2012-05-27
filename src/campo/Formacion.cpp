@@ -16,6 +16,10 @@ Formacion::Formacion(int numeroFormacion) {
 	this->numero = numeroFormacion;
 }
 
+Formacion::Formacion(Campo* campo){
+	// TODO Implementar constructor copia
+}
+
 Formacion::~Formacion() {
 
 }

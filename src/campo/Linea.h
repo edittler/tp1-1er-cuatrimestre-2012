@@ -22,6 +22,11 @@ public:
 	Linea(string nombreLinea);
 
 	/*
+	 * Constructor copia de la clase Linea
+	 */
+	Linea(Campo* campo);
+
+	/*
 	 * Destructor de la clase Linea
 	 */
 	virtual ~Linea();
