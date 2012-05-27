@@ -25,10 +25,6 @@ FranjaHoraria::FranjaHoraria(Fecha* fecha, Horario* horario) {
 	this->horario = new Horario(*horario);
 }
 
-FranjaHoraria::FranjaHoraria(Campo* campo){
-	// TODO Implementar constructor copia
-}
-
 FranjaHoraria::~FranjaHoraria() {
 	delete this->fecha;
 	delete this->horario;
