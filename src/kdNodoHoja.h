@@ -44,6 +44,11 @@ public:
 	virtual ~kdNodoHoja();
 
 	/*
+	 * Función que devuelve si el nodo es hoja, que devuelve verdadero por defecto
+	 */
+	virtual bool esHoja();
+
+	/*
 	 * Metodo para verificar si el nodo contiene la clave que se le pasa por parametro
 	 */
 	bool contiene(const Clave clave);

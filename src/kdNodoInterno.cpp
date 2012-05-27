@@ -50,6 +50,13 @@ kdNodoInterno::~kdNodoInterno() {
 	delete this->hijoDer;
 }
 
+/*
+ * Función que devuelve si el nodo es hoja, que devuelve verdadero por defecto
+ */
+bool kdNodoInterno::esHoja(){
+	return false;
+}
+
 /* Retorna el atributo que identifica al nodo
  */
 Campo* kdNodoInterno::getAtributo() const{

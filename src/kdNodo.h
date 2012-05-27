@@ -33,6 +33,8 @@ public:
 
 	void setId(int id);
 
+	virtual bool esHoja() = 0;
+
 };
 
 #endif /* NODO_H_ */

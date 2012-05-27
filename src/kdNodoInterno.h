@@ -46,6 +46,11 @@ public:
 	 */
 	virtual ~kdNodoInterno();
 
+	/*
+	 * Función que devuelve si el nodo es hoja, que devuelve falso por defecto
+	 */
+	virtual bool esHoja();
+
 	/* Retorna el atributo que identifica al nodo
 	 */
 	Campo* getAtributo() const;
