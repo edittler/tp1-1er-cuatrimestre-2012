@@ -14,7 +14,7 @@
 
 using namespace comparacion;
 
-class NodoHoja: public Nodo {
+class NodoHoja: public NodoKD {
 private:
 	/* El atributo estatico especifica cuantas claves se pueden almacenar dentro
 	 * del NodoHoja.

@@ -10,26 +10,26 @@
 /*
  * Contructor por defecto.
  */
-Nodo::Nodo() {}
+NodoKD::NodoKD() {}
 
 /*
  * Constructor de la clase Nodo, que debe inicializarse con el ID correspondiente
  */
-Nodo::Nodo(int ID) {
+NodoKD::NodoKD(int ID) {
 	this->id = ID;
 }
 
 /*
  * Destructor de la clase Clave
  */
-Nodo::~Nodo() {
+NodoKD::~NodoKD() {
 
 }
 
-int Nodo::getId() const {
+int NodoKD::getId() const {
 	return id;
 }
 
-void Nodo::setId(int id) {
+void NodoKD::setId(int id) {
 	this->id = id;
 }
