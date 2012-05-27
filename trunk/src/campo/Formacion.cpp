@@ -12,6 +12,10 @@ Formacion::Formacion(){
 	this->numero = 0;
 }
 
+Formacion::Formacion(Formacion& formacion){
+	this->numero = formacion.numero;
+}
+
 Formacion::Formacion(int numeroFormacion) {
 	this->numero = numeroFormacion;
 }

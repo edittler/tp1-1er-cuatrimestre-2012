@@ -24,6 +24,7 @@ private:
 
 public:
 	Horario();
+	Horario(Horario& horario);
 	Horario(int comienzo, int fin);
 	virtual ~Horario();
 

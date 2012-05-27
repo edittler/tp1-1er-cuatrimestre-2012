@@ -28,6 +28,7 @@ public:
 	 */
 	FranjaHoraria();
 
+	FranjaHoraria(FranjaHoraria& franja);
 
 	FranjaHoraria(Fecha* fecha, Horario* horario);
 

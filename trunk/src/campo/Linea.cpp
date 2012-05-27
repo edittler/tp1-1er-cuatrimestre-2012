@@ -12,6 +12,10 @@ Linea::Linea() : CampoCadena() {
 
 }
 
+Linea::Linea(Linea& linea) : CampoCadena(linea) {
+
+}
+
 Linea::Linea(string nombreLinea) : CampoCadena(nombreLinea){
 }
 

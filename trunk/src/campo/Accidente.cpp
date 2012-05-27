@@ -12,6 +12,10 @@ Accidente::Accidente() : CampoCadena() {
 
 }
 
+Accidente::Accidente(Accidente& accidente) : CampoCadena(accidente) {
+
+}
+
 Accidente::Accidente(string tipoAccidente) : CampoCadena(tipoAccidente){
 
 }

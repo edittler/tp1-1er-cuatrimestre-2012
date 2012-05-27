@@ -15,6 +15,8 @@ public:
 
 	Linea();
 
+	Linea(Linea& linea);
+
 	/*
 	 * Constructor de la clase Linea
 	 * Se para el nombre de la linea por parámetro

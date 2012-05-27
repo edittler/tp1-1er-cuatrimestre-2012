@@ -19,6 +19,7 @@ private:
 
 public:
 	CampoCadena();
+	CampoCadena(CampoCadena &campoCadena);
 	CampoCadena(string descripcion);
 	virtual ~CampoCadena();
 

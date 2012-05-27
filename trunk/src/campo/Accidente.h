@@ -15,6 +15,8 @@ class Accidente: public CampoCadena {
 public:
 
 	Accidente();
+
+	Accidente(Accidente& accidente);
 	/*
 	 * Constructor de la clase Accidente
 	 * Recibe el tipo de Accidente como string por parámetro

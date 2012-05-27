@@ -19,6 +19,8 @@ public:
 	 */
 	Falla();
 
+	Falla(Falla& falla);
+
 	/*
 	 * Constructor de la clase Falla
 	 * Se pasa el tipo de falla como string por parámetro

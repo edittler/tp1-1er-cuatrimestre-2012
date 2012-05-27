@@ -11,6 +11,10 @@ CampoCadena::CampoCadena() {
 
 }
 
+CampoCadena::CampoCadena(CampoCadena &campoCadena) {
+	this->descripcion = campoCadena.descripcion;
+}
+
 CampoCadena::CampoCadena(string descripcion) {
 	this->descripcion = descripcion;
 }

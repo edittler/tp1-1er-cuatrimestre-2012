@@ -12,6 +12,10 @@ Falla::Falla() : CampoCadena() {
 
 }
 
+Falla::Falla(Falla& falla) : CampoCadena(falla) {
+
+}
+
 Falla::Falla(string tipoFalla) : CampoCadena(tipoFalla) {
 
 }

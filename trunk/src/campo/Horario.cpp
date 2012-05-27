@@ -13,6 +13,11 @@ Horario::Horario() {
 	this->horarioFin = 0;
 }
 
+Horario::Horario(Horario& horario) {
+	this->horarioComienzo = horario.horarioComienzo;
+	this->horarioFin = horario.horarioFin;
+}
+
 Horario::Horario(int comienzo, int fin) {
 	this->setHorario(comienzo, fin);
 }

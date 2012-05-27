@@ -12,6 +12,10 @@ Fecha::Fecha() {
 
 }
 
+Fecha::Fecha(Fecha &fecha) {
+
+}
+
 Fecha::Fecha(int dia, int mes, int anio) {
 	this->setFecha(dia, mes, anio);
 }
