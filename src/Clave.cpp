@@ -13,7 +13,7 @@
 Clave::Clave() {
 	this->listaCampos = new Campo*[this->cantDimensiones];
 	for(int i=0; i < this->cantDimensiones; i++){
-		this->listaCampos[i]=NULL;
+		this->listaCampos[i] = NULL;
 	}
 }
 
@@ -37,7 +37,7 @@ Clave::Clave(string linea, int formacion) {
 	this->listaCampos[0] = unaLinea;
 	this->listaCampos[1] = unaFormacion;
 	for(int i=2; i < this->cantDimensiones; i++){
-		this->listaCampos[i]=NULL;
+		this->listaCampos[i] = NULL;
 	}
 }
 
@@ -64,8 +64,8 @@ void Clave::setFormacion(int formacion){
 	this->listaCampos[1] = new Formacion(formacion);
 }
 
-void Clave::setFranjaHoraria(){
-	//TODO agregar los parametros Fecha
+void Clave::setFranjaHoraria(FranjaHoraria *franja){
+	this->listaCampos[2] = franja;
 }
 
 void Clave::setFalla(string falla){
@@ -93,7 +93,8 @@ void Clave::setAccidente(string accidente){
  */
 Campo *Clave::getCampo(int dimension) const{
 	Campo *unCampo = NULL;
-	if (0 <= dimension && dimension < this->cantDimensiones){
+	// Valido que la dimension sea mayor o igual que 0 y menor que la cantidad de dimensiones
+	if ((0 <= dimension) && (dimension < this->cantDimensiones)){
 		unCampo = this->listaCampos[dimension];
 	}
 	return unCampo;
@@ -105,16 +106,27 @@ Campo *Clave::getCampo(int dimension) const{
  * no son iguales
  */
 ResultadoComparacion Clave::comparar(Clave otraClave){
-	for (int i = 0; i < this->cantDimensiones; i++) {
-		if (this->listaCampos[i] != NULL) {
-			if (this->listaCampos[i]->comparar(otraClave.listaCampos[i]) != IGUAL) {
-				return COMPARACION_NO_VALIDA;
+	ResultadoComparacion resultado = IGUAL;
+	int i = 0;
+	while ((resultado == IGUAL) && (i < this->cantDimensiones)){
+		Campo *unCampo = this->listaCampos[i]; // Copio el campo correspondiente a la dimension i
+		Campo *otroCampo = otraClave.getCampo(i);
+		// Si ambos campos son no nulos, los comparo
+		if ((unCampo != NULL) && (otroCampo != NULL)){
+			ResultadoComparacion tmp = unCampo->comparar(otroCampo);
+			if (tmp != IGUAL){
+				resultado = COMPARACION_NO_VALIDA;
 			}
-		} else if(otraClave.listaCampos[i] != NULL) {
-			return COMPARACION_NO_VALIDA;
+		} else {
+			// Si ambos campos son nulos, se sigue cumpliendo la igualdad
+			if ((unCampo == NULL) && (otroCampo == NULL)){
+				resultado = IGUAL;
+			} else {
+				resultado = COMPARACION_NO_VALIDA;
+			}
 		}
 	}
-	return IGUAL;
+	return resultado;
 }
 
 /*
@@ -128,13 +140,15 @@ ResultadoComparacion Clave::comparar(Clave otraClave, int dimension){
 	return resultComparacion;
 }
 
-//TODO ver en Clave.h
-ResultadoComparacion Clave::comparar(Campo* otraCampo) {
-	// TODO  Hacer
-	//ResultadoComparacion resultComparacion = this->listaCampos[dimension]->comparar(otraCampo);
-	return COMPARACION_NO_VALIDA;
+ResultadoComparacion Clave::comparar(Campo* otroCampo) {
+	ResultadoComparacion resultado = COMPARACION_NO_VALIDA;
+	int i = 0;
+	while ((resultado == COMPARACION_NO_VALIDA) && (i < this->cantDimensiones)){
+		resultado = this->listaCampos[i]->comparar(otroCampo);
+		i++;
+	}
+	return resultado;
 }
-
 
 /*
  * Funcion que copia el contenido de la clave pasada por parametro a su clave.
@@ -146,7 +160,7 @@ void Clave::copiar(Clave otraClave){
 	} else {
 		// Verifico si es campo Linea con un casteo dinamico
 		Linea* unaLinea = dynamic_cast<Linea*>(otraClave.listaCampos[0]);
-		if (unaLinea) {
+		if (!unaLinea) {
 			// Si el casteo fallo, establezco como null el puntero de Linea
 			this->listaCampos[0] = NULL;
 		} else {
@@ -160,7 +174,7 @@ void Clave::copiar(Clave otraClave){
 	} else {
 		// Verifico si es campo Formacion con un casteo dinamico
 		Formacion* unaFormacion = dynamic_cast<Formacion*>(otraClave.listaCampos[1]);
-		if (unaFormacion) {
+		if (!unaFormacion) {
 			this->listaCampos[1] = NULL;
 		} else {
 			Formacion* otraFormacion = new Formacion(unaFormacion->getNumeroFormacion());	// Creo el campo Formacion
@@ -173,7 +187,7 @@ void Clave::copiar(Clave otraClave){
 	} else {
 		// Verifico si es campo FranjaHoraria con un casteo dinamico
 		FranjaHoraria* unaFranjaHoraria = dynamic_cast<FranjaHoraria*>(otraClave.listaCampos[2]);
-		if (unaFranjaHoraria) {
+		if (!unaFranjaHoraria) {
 			this->listaCampos[2] = NULL;
 		} else {
 			FranjaHoraria *otraFranjaHoraria = new FranjaHoraria(unaFranjaHoraria->getFecha(), unaFranjaHoraria->getHorario());	// Creo el campo FranjaHoraria
@@ -186,7 +200,7 @@ void Clave::copiar(Clave otraClave){
 	} else {
 		// Verifico si es campo FranjaHoraria con un casteo dinamico
 		Falla* unaFalla = dynamic_cast<Falla*>(otraClave.listaCampos[3]);
-		if (unaFalla) {
+		if (!unaFalla) {
 			this->listaCampos[3] = NULL;
 		} else {
 			Falla *otraFalla = new Falla(unaFalla->getDescripcion());	// Creo el campo Falla
@@ -199,7 +213,7 @@ void Clave::copiar(Clave otraClave){
 	} else {
 		// Verifico si es campo Accidente con un casteo dinamico
 		Accidente* unAccidente = dynamic_cast<Accidente*>(otraClave.listaCampos[4]);
-		if (unAccidente) {
+		if (!unAccidente) {
 			this->listaCampos[4] = NULL;
 		} else {
 			Accidente *otroAccidente = new Accidente(unAccidente->getDescripcion());	// Creo el campo Accidente

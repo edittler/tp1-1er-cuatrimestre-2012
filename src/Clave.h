@@ -65,7 +65,10 @@ public:
 
 	void setFormacion(int formacion);
 
-	void setFranjaHoraria();
+	/*
+	 * Establece como franja horaria el puntero que recibe como parametro
+	 */
+	void setFranjaHoraria(FranjaHoraria *franja);
 
 	void setFalla(string falla);
 

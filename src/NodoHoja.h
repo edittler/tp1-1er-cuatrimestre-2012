@@ -50,9 +50,14 @@ public:
 
 	/*
 	 * Metodo de inserccion de clave. Los valores de retorno son:
+	 * 		0: el nodo no se actualizó (puede que esté con sobreflujo y no fue solucionado anteriormente)
 	 * 		1: el nodo se actualizó
 	 * 		2: el nodo se desbordó
 	 * 		3: el nodo ya tiene la clave que se desea insertar
+	 *
+	 * 	Cuando se desborda, la clave es almacenada en un lugar extra para que el padre
+	 * 	pida obtener el valor medio y obtener ordenadamente cada clave para poder dividirlo
+	 * 	facilmente.
 	 */
 	int insertar(Clave clave);
 
@@ -64,7 +69,19 @@ public:
 	 */
 	int eliminar(const Clave clave);
 
-	/*
+	/* Funcion booleana para conocer el estado de sobreflujo del nodo hoja.
+	 * El nodo tiene SOBREFLUJO cuando la cantidad de claves almacenadas
+	 * excede a la capacidad del nodo.
+	 */
+	bool tieneSobreflujo();
+
+	/* Funcion booleana para conocer el estado de subflujo del nodo hoja.
+	 * El nodo tiene SUBFLUJO cuando la cantidad de claves almacenadas
+	 * es menor que la mitad de la capacidad maxima del nodo.
+	 */
+	bool tieneSubflujo();
+
+	/* Metodo que solo devuelve un campo válido si el nodo se encuentra desbordado
 	 * Metodo que devuelve el campo que se encuentra en el medio (o el derecho, en caso
 	 * de cantidad par de Claves
 	 * ATENCION: Devuelve la direccion de memoria del campo, pero el NodoInterno debe realizar
@@ -75,7 +92,7 @@ public:
 
 	Clave* getClave(int i);
 
-	Clave* getClave(Clave* clave);
+	Clave* getClave(Clave clave);
 
 private:
 	/*
