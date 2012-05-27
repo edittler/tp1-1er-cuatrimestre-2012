@@ -23,7 +23,7 @@ Nodo::Nodo(int ID) {
  * Destructor de la clase Clave
  */
 Nodo::~Nodo() {
-	// TODO Auto-generated destructor stub
+
 }
 
 int Nodo::getId() const {
