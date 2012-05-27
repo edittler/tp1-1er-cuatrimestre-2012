@@ -5,31 +5,31 @@
  *      Author: ezequiel
  */
 
-#include "NodoKD.h"
+#include "kdNodo.h"
 
 /*
  * Contructor por defecto.
  */
-NodoKD::NodoKD() {}
+kdNodo::kdNodo() {}
 
 /*
  * Constructor de la clase Nodo, que debe inicializarse con el ID correspondiente
  */
-NodoKD::NodoKD(int ID) {
+kdNodo::kdNodo(int ID) {
 	this->id = ID;
 }
 
 /*
  * Destructor de la clase Clave
  */
-NodoKD::~NodoKD() {
+kdNodo::~kdNodo() {
 
 }
 
-int NodoKD::getId() const {
+int kdNodo::getId() const {
 	return id;
 }
 
-void NodoKD::setId(int id) {
+void kdNodo::setId(int id) {
 	this->id = id;
 }

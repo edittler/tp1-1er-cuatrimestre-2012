@@ -8,13 +8,13 @@
 #ifndef NODOHOJA_H_
 #define NODOHOJA_H_
 
-#include "NodoKD.h"
+#include "kdNodo.h"
 #include "Clave.h"
 #include "campo/ResultadoComparacion.h"
 
 using namespace comparacion;
 
-class NodoHoja: public NodoKD {
+class kdNodoHoja: public kdNodo {
 private:
 	/* El atributo estatico especifica cuantas claves se pueden almacenar dentro
 	 * del NodoHoja.
@@ -30,18 +30,18 @@ public:
 	 * Constructor de la clase NodoHoja
 	 * Inicializa la lista con capacidad para 2 claves, pero la deja vacía.
 	 */
-	NodoHoja();
+	kdNodoHoja();
 
 	/*
 	 * Constructor de la clase NodoHoja
 	 * Inicializa la lista con capacidad para 2 claves y almacena la que recibe por parametro.
 	 */
-	NodoHoja(Clave clave);
+	kdNodoHoja(Clave clave);
 
 	/*
 	 * Destructor de la clase NodoHoja. Debe liberar la memoria de la lista de claves.
 	 */
-	virtual ~NodoHoja();
+	virtual ~kdNodoHoja();
 
 	/*
 	 * Metodo para verificar si el nodo contiene la clave que se le pasa por parametro

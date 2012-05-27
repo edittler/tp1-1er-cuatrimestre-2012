@@ -5,13 +5,13 @@
  *      Author: ezequiel
  */
 
-#include "NodoHoja.h"
+#include "kdNodoHoja.h"
 
 /*
  * Constructor de la clase NodoHoja
  * Inicializa la lista con capacidad para 2 claves, pero la deja vacía.
  */
-NodoHoja::NodoHoja() {
+kdNodoHoja::kdNodoHoja() {
 	this->cantClaves = 0;
 	this->listaClaves = new Clave*[(this->capacidadNodo + 1)];
 	/*
@@ -27,7 +27,7 @@ NodoHoja::NodoHoja() {
  * Constructor de la clase NodoHoja
  * Inicializa la lista con capacidad para 2 claves y almacena la que recibe por parametro.
  */
-NodoHoja::NodoHoja(Clave clave){
+kdNodoHoja::kdNodoHoja(Clave clave){
 	this->listaClaves = new Clave*[(this->capacidadNodo + 1)];
 	/*
 	 * Creo la lista de claves con capacidad para 1 clave más para poder ordenar las
@@ -44,7 +44,7 @@ NodoHoja::NodoHoja(Clave clave){
 /*
  * Destructor de la clase NodoHoja. Debe liberar la memoria de la lista de claves.
  */
-NodoHoja::~NodoHoja() {
+kdNodoHoja::~kdNodoHoja() {
 	for(int i=0; i < (this->capacidadNodo + 1); i++){
 		if (this->listaClaves[i] != NULL){
 			delete this->listaClaves[i];
@@ -56,7 +56,7 @@ NodoHoja::~NodoHoja() {
 /*
  * Metodo para verificar si el nodo contiene la clave que se le pasa por parametro
  */
-bool NodoHoja::contiene(Clave clave){
+bool kdNodoHoja::contiene(Clave clave){
 	bool tieneClave = false;
 	int i = 0;
 	while((!tieneClave) && (i < this->capacidadNodo)){
@@ -81,7 +81,7 @@ bool NodoHoja::contiene(Clave clave){
  * 	pida obtener el valor medio y obtener ordenadamente cada clave para poder dividirlo
  * 	facilmente.
  */
-int NodoHoja::insertar(Clave clave){
+int kdNodoHoja::insertar(Clave clave){
 	// Si el nodo tiene sobreflujo, no se actualiza. Retorna el valor 0
 	if(this->tieneSobreflujo()){
 		return 0;
@@ -125,7 +125,7 @@ int NodoHoja::insertar(Clave clave){
  * 		2: el nodo quedó con subflujo
  * 		3: no existe la clave que se quiere eliminar
  */
-int NodoHoja::eliminar(Clave clave){
+int kdNodoHoja::eliminar(Clave clave){
 	int valorRetorno;
 	if ( ! this->contiene(clave)){
 		valorRetorno = 3;	// Devuelvo 3, que significa que la clave no existe
@@ -158,7 +158,7 @@ int NodoHoja::eliminar(Clave clave){
  * El nodo tiene SOBREFLUJO cuando la cantidad de claves almacenadas
  * excede a la capacidad del nodo.
  */
-bool NodoHoja::tieneSobreflujo(){
+bool kdNodoHoja::tieneSobreflujo(){
 	return (this->cantClaves > this->capacidadNodo);
 }
 
@@ -166,7 +166,7 @@ bool NodoHoja::tieneSobreflujo(){
  * El nodo tiene SUBFLUJO cuando la cantidad de claves almacenadas
  * es menor que la mitad de la capacidad maxima del nodo.
  */
-bool NodoHoja::tieneSubflujo(){
+bool kdNodoHoja::tieneSubflujo(){
 	/* Para valores impares de la capacidad del nodo, se trunca el valor de la mitad y
 	 * ése será la cantidad mínima de claves que debe contener.
 	 */
@@ -184,7 +184,7 @@ bool NodoHoja::tieneSubflujo(){
  * una copia de su contenido para almacenarlo como atributo, para que sea persistente
  * en el tiempo el dato almacenado en el NodoInterno
  */
-Campo* NodoHoja::getValorMedio(int dimension) const{
+Campo* kdNodoHoja::getValorMedio(int dimension) const{
 	/* Verifico si el nodo tiene sobreflujo. Sino, no es necesario entregar el valor medio
 	 * el retorno NULL
 	 */
@@ -222,7 +222,7 @@ Campo* NodoHoja::getValorMedio(int dimension) const{
 	return this->listaClaves[posicionMedio]->getCampo(dimension);
 }
 
-Clave* NodoHoja::getClave(int i) {
+Clave* kdNodoHoja::getClave(int i) {
 	Clave *clave = NULL;
 	if ((i >= 0) && (i <= this->capacidadNodo)){
 		clave = this->listaClaves[i];
@@ -230,7 +230,7 @@ Clave* NodoHoja::getClave(int i) {
 	return clave;
 }
 
-Clave* NodoHoja::getClave(Clave clave){
+Clave* kdNodoHoja::getClave(Clave clave){
 	if (! this->contiene(clave)){
 		return NULL;
 	}
@@ -251,6 +251,6 @@ Clave* NodoHoja::getClave(Clave clave){
  * Metodo privado que ordena las claves del Nodo según la dimension con la que se
  * quiere ordenar.
  */
-void NodoHoja::ordenarListaClaves(int dimension){
+void kdNodoHoja::ordenarListaClaves(int dimension){
 	// TODO Implementar un burbujeo, dado que no se ordenaran grandes cantidades de datos.
 }
