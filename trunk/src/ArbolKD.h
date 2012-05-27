@@ -15,7 +15,7 @@ using namespace std;
 
 class ArbolKD {
 private:
-	Nodo raiz;
+	NodoKD raiz;
 
 public:
 	ArbolKD();

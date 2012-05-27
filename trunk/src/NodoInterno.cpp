@@ -32,7 +32,7 @@ NodoInterno::NodoInterno(Campo* atributo){
 /* Constructor de la clase NodoInterno
  * Inicializa todos sus atributos con los argumentos recibidos por parámtetros.
  */
-NodoInterno::NodoInterno(Campo* atributo, Nodo* hijoIzq, Nodo* hijoDer){
+NodoInterno::NodoInterno(Campo* atributo, NodoKD* hijoIzq, NodoKD* hijoDer){
 	this->setAtributo(atributo);
 	this->setHijoIzq(hijoIzq);
 	this->setHijoDer(hijoDer);
@@ -114,7 +114,7 @@ void NodoInterno::setAtributo(Campo* atributo){
 
 /* Retorna la direccion de memoria del hijo izquierdo
  */
-Nodo* NodoInterno::getHijoIzq() const{
+NodoKD* NodoInterno::getHijoIzq() const{
 	return this->hijoIzq;
 }
 
@@ -128,7 +128,7 @@ int NodoInterno::getIDHijoIzq(){
  * Si previamente el nodo interno ya tenia hijo izquierdo, se reemplaza la referencia de
  * memoria, pero no libera la memoria del hijo almacenado previamente.
  */
-void NodoInterno::setHijoIzq(Nodo* hijoIzquierdo){
+void NodoInterno::setHijoIzq(NodoKD* hijoIzquierdo){
 	this->hijoIzq = hijoIzquierdo;
 	if (this->hijoIzq != NULL){
 		this->IDizq = this->hijoIzq->getId();
@@ -139,7 +139,7 @@ void NodoInterno::setHijoIzq(Nodo* hijoIzquierdo){
 
 /* Retorna la direccion de memoria del hijo derecho
  */
-Nodo* NodoInterno::getHijoDer() const{
+NodoKD* NodoInterno::getHijoDer() const{
 	return this->hijoDer;
 }
 
@@ -153,7 +153,7 @@ int NodoInterno::getIDHijoDer(){
  * Si previamente el nodo interno ya tenia hijo derecho, se reemplaza la referencia de
  * memoria, pero no libera la memoria del hijo almacenado previamente.
  */
-void NodoInterno::setHijoDer(Nodo* hijoDerecho){
+void NodoInterno::setHijoDer(NodoKD* hijoDerecho){
 	this->hijoDer = hijoDerecho;
 	if (this->hijoDer != NULL){
 		this->IDder = this->hijoDer->getId();

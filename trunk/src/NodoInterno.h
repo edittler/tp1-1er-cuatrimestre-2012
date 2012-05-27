@@ -11,14 +11,14 @@
 #include "Nodo.h"
 #include "Clave.h"
 
-class NodoInterno: public Nodo {
+class NodoInterno: public NodoKD {
 /*
  * Atributos privados de la clase
  */
 private:
 	Campo* atributo;
-	Nodo* hijoIzq;
-	Nodo* hijoDer;
+	NodoKD* hijoIzq;
+	NodoKD* hijoDer;
 	int IDizq;
 	int IDder;
 
@@ -36,7 +36,7 @@ public:
 	/* Constructor de la clase NodoInterno
 	 * Inicializa todos sus atributos con los argumentos recibidos por parámtetros.
 	 */
-	NodoInterno(Campo* atributo, Nodo* hijoIzq, Nodo* hijoDer);
+	NodoInterno(Campo* atributo, NodoKD* hijoIzq, NodoKD* hijoDer);
 
 	/* Destructor de la clase NodoInterno
 	 * Debe eliminar la memoria reservada por los punteros y establecerlos como NULL
@@ -56,7 +56,7 @@ public:
 
 	/* Retorna la direccion de memoria del hijo izquierdo
 	 */
-	Nodo* getHijoIzq() const;
+	NodoKD* getHijoIzq() const;
 
 	/* Retorna el identificador del nodo hijo izquierdo
 	 */
@@ -66,11 +66,11 @@ public:
 	 * Si previamente el nodo interno ya tenia hijo izquierdo, se reemplaza la referencia de
 	 * memoria, pero no libera la memoria del hijo almacenado previamente.
 	 */
-	void setHijoIzq(Nodo* hijoIzquierdo);
+	void setHijoIzq(NodoKD* hijoIzquierdo);
 
 	/* Retorna la direccion de memoria del hijo derecho
 	 */
-	Nodo* getHijoDer() const;
+	NodoKD* getHijoDer() const;
 
 	/* Retorna el identificador del nodo hijo derecho
 	 */
@@ -80,7 +80,7 @@ public:
 	 * Si previamente el nodo interno ya tenia hijo derecho, se reemplaza la referencia de
 	 * memoria, pero no libera la memoria del hijo almacenado previamente.
 	 */
-	void setHijoDer(Nodo* hijoDerecho);
+	void setHijoDer(NodoKD* hijoDerecho);
 
 };
 
