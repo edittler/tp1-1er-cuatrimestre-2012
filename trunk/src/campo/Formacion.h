@@ -18,6 +18,9 @@ public:
 
 	Formacion();
 
+	/*
+	 * Constructor copia de la clase Formacion
+	 */
 	Formacion(Formacion& formacion);
 
 	/*
@@ -25,12 +28,6 @@ public:
 	 * Se pasa por parámetro el numero de formacion del tren
 	 */
 	Formacion(int numeroFormacion);
-
-	/*
-	 * Constructor copia de Formacion
-	 * Se pasa por parámetro el campo del cual copiar.
-	 */
-	Formacion(Campo* campo);
 
 	/*
 	 * Destructor de la clase Formacion

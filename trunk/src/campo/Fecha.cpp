@@ -13,7 +13,7 @@ Fecha::Fecha() {
 }
 
 Fecha::Fecha(Fecha &fecha) {
-
+	this->fecha = fecha.getFechaInt();
 }
 
 Fecha::Fecha(int dia, int mes, int anio) {

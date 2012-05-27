@@ -19,6 +19,9 @@ public:
 	 */
 	Falla();
 
+	/*
+	 * Constructor copia de la clase Falla
+	 */
 	Falla(Falla& falla);
 
 	/*
@@ -26,11 +29,6 @@ public:
 	 * Se pasa el tipo de falla como string por parámetro
 	 */
 	Falla(string tipoFalla);
-
-	/*
-	 * Constructor copia de la clase Falla
-	 */
-	Falla(Campo* campo);
 
 	/*
 	 * Destructor de la clase Falla
