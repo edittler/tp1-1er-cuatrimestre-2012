@@ -5,7 +5,7 @@
  *      Author: ezequiel
  */
 
-#include "Nodo.h"
+#include "NodoKD.h"
 
 /*
  * Contructor por defecto.

@@ -8,7 +8,7 @@
 #ifndef NODOHOJA_H_
 #define NODOHOJA_H_
 
-#include "Nodo.h"
+#include "NodoKD.h"
 #include "Clave.h"
 #include "campo/ResultadoComparacion.h"
 
