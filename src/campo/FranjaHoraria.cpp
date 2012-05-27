@@ -15,9 +15,14 @@ FranjaHoraria::FranjaHoraria() {
 	this->horario = new Horario();
 }
 
+FranjaHoraria::FranjaHoraria(FranjaHoraria& franja) {
+	this->fecha = new Fecha();
+	this->horario = new Horario();
+}
+
 FranjaHoraria::FranjaHoraria(Fecha* fecha, Horario* horario) {
-	this->fecha = fecha;
-	this->horario = horario;
+	this->fecha = new Fecha(*fecha);
+	this->horario = new Horario(*horario);
 }
 
 FranjaHoraria::FranjaHoraria(Campo* campo){

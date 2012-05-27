@@ -18,6 +18,8 @@ public:
 
 	Formacion();
 
+	Formacion(Formacion& formacion);
+
 	/*
 	 * Constructor de la clase Formacion
 	 * Se pasa por parámetro el numero de formacion del tren

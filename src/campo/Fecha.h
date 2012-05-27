@@ -23,6 +23,7 @@ private:
 public:
 	Fecha();
 	Fecha(int dia, int mes, int anio);
+	Fecha(Fecha &fecha);
 	virtual ~Fecha();
 
 	int getFechaInt();
