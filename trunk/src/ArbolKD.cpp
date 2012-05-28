@@ -8,6 +8,7 @@
 #include "ArbolKD.h"
 
 ArbolKD::ArbolKD() {
+	raiz = NULL;
 	// TODO
 }
 
