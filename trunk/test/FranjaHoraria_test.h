@@ -14,6 +14,8 @@ void FranjaHorariaTest() {
 
 	cout << "Prueba unitaria: Clase FranjaHoraria" <<endl;
 
+	// FIXME Probar constructor copia de la clase FranjaHoraria
+
 	Fecha* fecha1 = new Fecha(25, 5, 2012);
 	Horario* horario1 = new Horario(2030, 2130);
 
@@ -35,6 +37,15 @@ void FranjaHorariaTest() {
 		std::cout << "Fail...comparacion menor" << endl;
 	}
 
+	delete franja2;
+	franja2 = NULL;
+
+	if (franja1->comparar(franja2) == MAYOR) {
+		std::cout << "Ok.....comparacion mayor con null" << endl;
+	} else {
+		std::cout << "Fail...comparacion mayor con null" << endl;
+	}
+
 	if (franja1->comparar(franja1) == IGUAL) {
 		std::cout << "Ok.....comparacion igual" << endl;
 	} else {
@@ -50,10 +61,8 @@ void FranjaHorariaTest() {
 
 	delete falla;
 	delete franja1;
-	delete franja2;
 
 	cout << endl;
 }
-
 
 #endif /* FRANJAHORARIA_TEST_H_ */

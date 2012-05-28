@@ -23,7 +23,7 @@ Clave::Clave() {
  */
 Clave::Clave(Clave &otraClave){
 	this->listaCampos = new Campo*[this->cantDimensiones];
-	this->copiar(otraClave);
+	this->copiar(&otraClave);
 }
 
 /*
@@ -105,26 +105,39 @@ Campo *Clave::getCampo(int dimension) const{
  * Compara todos los campos y evuelve 0 si son iguales, o un valor distinto de 0 si
  * no son iguales
  */
-ResultadoComparacion Clave::comparar(Clave otraClave){
+ResultadoComparacion Clave::comparar(const Clave *otraClave){
+	// Si ambos punteros no son instanciados, se puede decir que son iguales.
+	if ((this == NULL) && (otraClave == NULL)){
+		return IGUAL;
+	}
+	// Si ambos objetos estan instanciados, se compara cada campo.
 	ResultadoComparacion resultado = IGUAL;
-	int i = 0;
-	while ((resultado == IGUAL) && (i < this->cantDimensiones)){
-		Campo *unCampo = this->listaCampos[i]; // Copio el campo correspondiente a la dimension i
-		Campo *otroCampo = otraClave.getCampo(i);
-		// Si ambos campos son no nulos, los comparo
-		if ((unCampo != NULL) && (otroCampo != NULL)){
-			ResultadoComparacion tmp = unCampo->comparar(otroCampo);
-			if (tmp != IGUAL){
-				resultado = COMPARACION_NO_VALIDA;
-			}
-		} else {
-			// Si ambos campos son nulos, se sigue cumpliendo la igualdad
-			if ((unCampo == NULL) && (otroCampo == NULL)){
-				resultado = IGUAL;
+	if ((this != NULL) && (otraClave != NULL)){
+		int i = 0;
+		while ((resultado == IGUAL) && (i < this->cantDimensiones)){
+			Campo *unCampo = this->listaCampos[i]; // Copio el campo correspondiente a la dimension i
+			Campo *otroCampo = otraClave->getCampo(i);
+			// Si ambos campos son no nulos, los comparo
+			if ((unCampo != NULL) && (otroCampo != NULL)){
+				ResultadoComparacion tmp = unCampo->comparar(otroCampo);
+				if (tmp != IGUAL){
+					resultado = COMPARACION_NO_VALIDA;
+				}
 			} else {
-				resultado = COMPARACION_NO_VALIDA;
+				// Si ambos campos son nulos, se sigue cumpliendo la igualdad
+				if ((unCampo == NULL) && (otroCampo == NULL)){
+					resultado = IGUAL;
+				} else {
+					resultado = COMPARACION_NO_VALIDA;
+				}
 			}
+			i++;	// Incremento el valor de i
 		}
+	} else {
+		/* Si llego hasta acá, significa que uno de los objetos está instanciado
+		 * y el otro no, por lo tanto la comparacion no es valida.
+		 */
+		resultado = COMPARACION_NO_VALIDA;
 	}
 	return resultado;
 }
@@ -135,8 +148,8 @@ ResultadoComparacion Clave::comparar(Clave otraClave){
  * devuelve 0 si son iguales, -1 si el campo es menor que el pasado por parametro y
  * 1 si el campo es mayor.
  */
-ResultadoComparacion Clave::comparar(Clave otraClave, int dimension){
-	ResultadoComparacion resultComparacion = this->listaCampos[dimension]->comparar(otraClave.listaCampos[dimension]);
+ResultadoComparacion Clave::comparar(Clave *otraClave, int dimension){
+	ResultadoComparacion resultComparacion = this->listaCampos[dimension]->comparar(otraClave->listaCampos[dimension]);
 	return resultComparacion;
 }
 
@@ -152,72 +165,75 @@ ResultadoComparacion Clave::comparar(Campo* otroCampo) {
 
 /*
  * Funcion que copia el contenido de la clave pasada por parametro a su clave.
+ * Si el puntero pasado es NULL, no se copia nada.
  */
-void Clave::copiar(Clave otraClave){
-	// Copio el campo Linea
-	if (otraClave.getCampo(0) == NULL){
-		this->listaCampos[0] = NULL;
-	} else {
-		// Verifico si es campo Linea con un casteo dinamico
-		Linea* unaLinea = dynamic_cast<Linea*>(otraClave.listaCampos[0]);
-		if (!unaLinea) {
-			// Si el casteo fallo, establezco como null el puntero de Linea
+void Clave::copiar(const Clave *otraClave){
+	if (otraClave != NULL){
+		// Copio el campo Linea
+		if (otraClave->getCampo(0) == NULL){
 			this->listaCampos[0] = NULL;
 		} else {
-			Linea* otraLinea = new Linea(unaLinea->getDescripcion());	// Creo el campo Linea
-			this->listaCampos[0] = otraLinea;	// Almaceno el campo en la clave
+			// Verifico si es campo Linea con un casteo dinamico
+			Linea* unaLinea = dynamic_cast<Linea*>(otraClave->listaCampos[0]);
+			if (!unaLinea) {
+				// Si el casteo fallo, establezco como null el puntero de Linea
+				this->listaCampos[0] = NULL;
+			} else {
+				Linea* otraLinea = new Linea(unaLinea->getDescripcion());	// Creo el campo Linea
+				this->listaCampos[0] = otraLinea;	// Almaceno el campo en la clave
+			}
 		}
-	}
-	// Copio el campo Formacion
-	if (otraClave.getCampo(1) == NULL){
-		this->listaCampos[1] = NULL;
-	} else {
-		// Verifico si es campo Formacion con un casteo dinamico
-		Formacion* unaFormacion = dynamic_cast<Formacion*>(otraClave.listaCampos[1]);
-		if (!unaFormacion) {
+		// Copio el campo Formacion
+		if (otraClave->getCampo(1) == NULL){
 			this->listaCampos[1] = NULL;
 		} else {
-			Formacion* otraFormacion = new Formacion(unaFormacion->getNumeroFormacion());	// Creo el campo Formacion
-			this->listaCampos[1] = otraFormacion;	// Almaceno el campo de la clave
+			// Verifico si es campo Formacion con un casteo dinamico
+			Formacion* unaFormacion = dynamic_cast<Formacion*>(otraClave->listaCampos[1]);
+			if (!unaFormacion) {
+				this->listaCampos[1] = NULL;
+			} else {
+				Formacion* otraFormacion = new Formacion(unaFormacion->getNumeroFormacion());	// Creo el campo Formacion
+				this->listaCampos[1] = otraFormacion;	// Almaceno el campo de la clave
+			}
 		}
-	}
-	// Copio el campo FranjaHoraria
-	if (otraClave.getCampo(2) == NULL){
-		this->listaCampos[2] = NULL;
-	} else {
-		// Verifico si es campo FranjaHoraria con un casteo dinamico
-		FranjaHoraria* unaFranjaHoraria = dynamic_cast<FranjaHoraria*>(otraClave.listaCampos[2]);
-		if (!unaFranjaHoraria) {
+		// Copio el campo FranjaHoraria
+		if (otraClave->getCampo(2) == NULL){
 			this->listaCampos[2] = NULL;
 		} else {
-			FranjaHoraria *otraFranjaHoraria = new FranjaHoraria(unaFranjaHoraria->getFecha(), unaFranjaHoraria->getHorario());	// Creo el campo FranjaHoraria
-			this->listaCampos[2] = otraFranjaHoraria;	// Almaceno el campo de la clave
+			// Verifico si es campo FranjaHoraria con un casteo dinamico
+			FranjaHoraria* unaFranjaHoraria = dynamic_cast<FranjaHoraria*>(otraClave->listaCampos[2]);
+			if (!unaFranjaHoraria) {
+				this->listaCampos[2] = NULL;
+			} else {
+				FranjaHoraria *otraFranjaHoraria = new FranjaHoraria(unaFranjaHoraria->getFecha(), unaFranjaHoraria->getHorario());	// Creo el campo FranjaHoraria
+				this->listaCampos[2] = otraFranjaHoraria;	// Almaceno el campo de la clave
+			}
 		}
-	}
-	// Copio el campo Falla
-	if (otraClave.getCampo(3) == NULL){
-		this->listaCampos[3] = NULL;
-	} else {
-		// Verifico si es campo FranjaHoraria con un casteo dinamico
-		Falla* unaFalla = dynamic_cast<Falla*>(otraClave.listaCampos[3]);
-		if (!unaFalla) {
+		// Copio el campo Falla
+		if (otraClave->getCampo(3) == NULL){
 			this->listaCampos[3] = NULL;
 		} else {
-			Falla *otraFalla = new Falla(unaFalla->getDescripcion());	// Creo el campo Falla
-			this->listaCampos[3] = otraFalla;	// Almaceno el campo de la clave
+			// Verifico si es campo FranjaHoraria con un casteo dinamico
+			Falla* unaFalla = dynamic_cast<Falla*>(otraClave->listaCampos[3]);
+			if (!unaFalla) {
+				this->listaCampos[3] = NULL;
+			} else {
+				Falla *otraFalla = new Falla(unaFalla->getDescripcion());	// Creo el campo Falla
+				this->listaCampos[3] = otraFalla;	// Almaceno el campo de la clave
+			}
 		}
-	}
-	// Copio el campo Accidente
-	if (otraClave.getCampo(4) == NULL){
-		this->listaCampos[4] = NULL;
-	} else {
-		// Verifico si es campo Accidente con un casteo dinamico
-		Accidente* unAccidente = dynamic_cast<Accidente*>(otraClave.listaCampos[4]);
-		if (!unAccidente) {
+		// Copio el campo Accidente
+		if (otraClave->getCampo(4) == NULL){
 			this->listaCampos[4] = NULL;
 		} else {
-			Accidente *otroAccidente = new Accidente(unAccidente->getDescripcion());	// Creo el campo Accidente
-			this->listaCampos[4] = otroAccidente;	// Almaceno el campo de la clave
+			// Verifico si es campo Accidente con un casteo dinamico
+			Accidente* unAccidente = dynamic_cast<Accidente*>(otraClave->listaCampos[4]);
+			if (!unAccidente) {
+				this->listaCampos[4] = NULL;
+			} else {
+				Accidente *otroAccidente = new Accidente(unAccidente->getDescripcion());	// Creo el campo Accidente
+				this->listaCampos[4] = otroAccidente;	// Almaceno el campo de la clave
+			}
 		}
 	}
 }

@@ -68,7 +68,7 @@ bool kdNodoHoja::contiene(Clave clave){
 	int i = 0;
 	while((!tieneClave) && (i < this->capacidadNodo)){
 		if (this->listaClaves[i] != NULL){
-			if (this->listaClaves[i]->comparar(clave) == IGUAL){
+			if (this->listaClaves[i]->comparar(&clave) == IGUAL){
 				tieneClave = true;
 			}
 		}
@@ -140,7 +140,7 @@ int kdNodoHoja::eliminar(Clave clave){
 		bool eliminoClave = false;
 		int i = 0;
 		while ((!eliminoClave) && (i < this->capacidadNodo)){
-			if (this->listaClaves[i]->comparar(clave) == IGUAL){	// Si las claves son iguales, debo eliminar la almacenada en el nodo.
+			if (this->listaClaves[i]->comparar(&clave) == IGUAL){	// Si las claves son iguales, debo eliminar la almacenada en el nodo.
 				delete this->listaClaves[i];	// Elimino la memoria reservada
 				this->listaClaves[i] = NULL;	// Establezco como NULL al puntero
 				this->cantClaves--; // Decremento el contador de cantidad de claves almacenadas
@@ -245,7 +245,7 @@ Clave* kdNodoHoja::getClave(Clave clave){
 	int i = 0;
 	Clave *unaClave = NULL;
 	while ((!encontroClave) && (i < this->capacidadNodo)){
-		if (this->listaClaves[i]->comparar(clave) == IGUAL){
+		if (this->listaClaves[i]->comparar(&clave) == IGUAL){
 			unaClave = this->listaClaves[i];
 			encontroClave = true;	// Establezco como verdadero que se encontro la clave
 		}
@@ -272,6 +272,7 @@ void kdNodoHoja::ordenarListaClaves(int dimension){
 		for (int j=1; j < (N-i); j++){
 			tmp1 = this->listaClaves[j]->getCampo(dimension);
 			tmp2 = this->listaClaves[j + 1]->getCampo(dimension);
+			// FIXME agregar validaciones para cuando los campos son nulos
 			ResultadoComparacion comparacion = tmp1->comparar(tmp2);
 			if (comparacion == MAYOR){
 				swap (j, j+1);

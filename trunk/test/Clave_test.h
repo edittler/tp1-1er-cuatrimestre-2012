@@ -13,12 +13,6 @@
 void ClaveTest() {
 	cout << "Prueba Unitaria: Clase Clave." << endl;
 
-//	// instancio campos de la clave.
-//	Linea* linea = new Linea("Tren Fantasma");
-//	Formacion* formacion = new Formacion(150);
-//	FranjaHoraria* franja = new FranjaHoraria(new Fecha(25, 5, 2012), new Horario(1700, 1800));
-//	Accidente* accidente = new Accidente("Delirio social.");
-
 	Clave* clave1 = new Clave("Tren al cielo", 666);
 
 	if (clave1->getCampo(0)->comparar(new Linea("Tren al cielo")) == IGUAL) {
@@ -38,14 +32,33 @@ void ClaveTest() {
 
 	Clave* clave2 =  new Clave ("Tren al cielo", 666);
 	Clave* clave3 = new Clave ("Tren al cielo", 666);
-	if (clave3->comparar(*clave2) == IGUAL) {
-		cout << "Ok.....comparar clave" << endl;
+	if (clave3->comparar(clave2) == IGUAL) {
+		cout << "Ok.....comparar clave igual" << endl;
 	} else {
-		cout << "Fail...comparar clave" << endl;
+		cout << "Fail...comparar clave igual" << endl;
+	}
+
+	delete clave1;
+	clave1 = NULL;
+
+	if (clave2->comparar(clave1) == COMPARACION_NO_VALIDA) {
+		cout << "Ok.....comparar con clave nula (comparacion no valida)" << endl;
+	} else {
+		cout << "Fail...comparar con clave nula (comparacion no valida)" << endl;
+	}
+
+	clave2->setFalla("Sin luces externas");
+	if (clave3->comparar(clave2) == COMPARACION_NO_VALIDA) {
+		cout << "Ok.....comparar clave casi igual (comparacion no valida)" << endl;
+	} else {
+		cout << "Fail...comparar clave casi igual (comparacion no valida)" << endl;
 	}
 
 	cout << endl;
-}
 
+	delete clave2;
+	delete clave3;
+	delete falla;
+}
 
 #endif /* CLAVE_TEST_H_ */

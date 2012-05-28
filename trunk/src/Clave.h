@@ -90,7 +90,7 @@ public:
 	 * Compara todos los campos y evuelve 0 si son iguales, o un valor distinto de 0 si
 	 * no son iguales
 	 */
-	virtual ResultadoComparacion comparar(Clave otraClave);
+	virtual ResultadoComparacion comparar(const Clave *otraClave);
 
 	/*
 	 * Funcion que evalúa solo la dimensión de esta clave con otra pasada por parámetro
@@ -98,7 +98,7 @@ public:
 	 * devuelve 0 si son iguales, -1 si el campo es menor que el pasado por parametro y
 	 * 1 si el campo es mayor.
 	 */
-	virtual ResultadoComparacion comparar(Clave otraClave, int dimension);
+	virtual ResultadoComparacion comparar(Clave *otraClave, int dimension);
 
 	/*
 	 * Funcion que evalúa el campo de la clave con el campo que recibe por parametro.
@@ -108,7 +108,7 @@ public:
 	/*
 	 * Funcion que copia el contenido de la clave pasada por parametro a su clave.
 	 */
-	void copiar(Clave otraClave);
+	void copiar(const Clave *otraClave);
 
 };
 
