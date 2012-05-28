@@ -106,6 +106,8 @@ private:
 	 */
 	void ordenarListaClaves(int dimension);
 
+	void swap (int i, int j);
+
 };
 
 #endif /* NODOHOJA_H_ */

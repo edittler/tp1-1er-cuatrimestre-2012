@@ -259,5 +259,30 @@ Clave* kdNodoHoja::getClave(Clave clave){
  * quiere ordenar.
  */
 void kdNodoHoja::ordenarListaClaves(int dimension){
-	// TODO Implementar un burbujeo, dado que no se ordenaran grandes cantidades de datos.
+	/* Implemento un bubble sort, dado que no se almacenarán mas de 5 o 6 claves por nodo,
+	 * y porque es un metodo sencillo de implementar.
+	 */
+
+	bool noIntercambio = false;	// Bandera que verifica si se realizo un intercambio en un ciclo
+	int N = this->capacidadNodo + 1;
+	int i = 1;
+	Campo *tmp1, *tmp2;
+	while ((!noIntercambio) && (i < N)){
+		noIntercambio = true;
+		for (int j=1; j < (N-i); j++){
+			tmp1 = this->listaClaves[j]->getCampo(dimension);
+			tmp2 = this->listaClaves[j + 1]->getCampo(dimension);
+			ResultadoComparacion comparacion = tmp1->comparar(tmp2);
+			if (comparacion == MAYOR){
+				swap (j, j+1);
+				noIntercambio = false;
+			}
+		}
+	}
+}
+
+void kdNodoHoja::swap (int i, int j){
+	Clave *tmp = this->listaClaves[i];
+	this->listaClaves[i] = this->listaClaves[j];
+	this->listaClaves[j] = tmp;
 }
