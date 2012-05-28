@@ -2,13 +2,145 @@
  * kdNodoHoja_test.h
  *
  *  Created on: 28/05/2012
- *      Author: dude
+ *      Author: Alejandro Daza
  */
 
 #ifndef KDNODOHOJA_TEST_H_
 #define KDNODOHOJA_TEST_H_
 
+#include "../src/kdNodoHoja.h"
+#include "../src/Clave.h"
+#include "../src/campo/FranjaHoraria.h"
+#include <iostream>
+using namespace std;
 
+void kdNodoHojaTest() {
+
+	kdNodoHoja p1nodo = kdNodoHoja();
+
+	// Prueba insertar
+
+	cout << "test insertar:" << endl;
+
+	Clave * p1clave1 = new Clave();
+	p1clave1->setLinea("Sarmiento");
+	Horario * p1horario1 = new Horario(0000, 0030);
+	Fecha * p1fecha1 = new Fecha(21, 2, 2012);
+	FranjaHoraria * p1franja1 = new FranjaHoraria(p1fecha1, p1horario1);
+	p1clave1->setFranjaHoraria(p1franja1);
+	p1clave1->setFalla("cierran 50%");
+	p1clave1->setAccidente("incendio");
+	p1clave1->setFormacion(256);
+
+	int p1insertar = p1nodo.insertar(*p1clave1);
+	if (p1insertar == 1) {
+		cout << "ok....insertar 1ra clave, actualizo 1" << endl;
+	}
+	else {
+		cout << "fallo....insertar 1ra clave, actualizo 1" << endl;
+	}
+
+	Clave * p1clave5 = new Clave();
+	p1clave5->setLinea("Sarmiento");
+	Horario * p1horario5 = new Horario(0000, 0030);
+	Fecha * p1fecha5 = new Fecha(21, 2, 2012);
+	FranjaHoraria * p1franja5 = new FranjaHoraria(p1fecha5, p1horario5);
+	p1clave5->setFranjaHoraria(p1franja5);
+	p1clave5->setFalla("cierran 50%");
+	p1clave5->setAccidente("incendio");
+	p1clave5->setFormacion(256);
+
+	p1insertar = p1nodo.insertar(*p1clave5);
+		if (p1insertar == 3) {
+			cout << "ok....insertar 2da clave, repeticion 3" << endl;
+		}
+		else {
+			cout << "fallo....insertar 2da clave, repeticion 3" << " devolvio: " << p1insertar << endl;
+		}
+
+
+	Clave * p1clave2 = new Clave();
+	p1clave2->setLinea("Roca");
+	Horario * p1horario2 = new Horario(1930, 2000);
+	Fecha * p1fecha2 = new Fecha(3, 4, 2012);
+	FranjaHoraria * p1franja2 = new FranjaHoraria(p1fecha2, p1horario2);
+	p1clave2->setFranjaHoraria(p1franja2);
+	p1clave2->setFalla("cierran 80%");
+	p1clave2->setAccidente("incendio");
+	p1clave2->setFormacion(256);
+
+	p1insertar = p1nodo.insertar(*p1clave2);
+		if (p1insertar == 1) {
+			cout << "ok....insertar 3ra clave, actualizo 1" << endl;
+		}
+		else {
+			cout << "fallo....insertar 3ra clave, actualizo 1" << endl;
+		}
+
+	Clave * p1clave3 = new Clave();
+	p1clave3->setLinea("Mitre");
+	Horario * p1horario3 = new Horario(1930, 2000);
+	Fecha * p1fecha3 = new Fecha(3, 8, 2012);
+	FranjaHoraria * p1franja3 = new FranjaHoraria(p1fecha3, p1horario3);
+	p1clave3->setFranjaHoraria(p1franja3);
+	p1clave3->setFalla("cierran 80%");
+	p1clave3->setAccidente("incendio");
+	p1clave3->setFormacion(256);
+
+	p1insertar = p1nodo.insertar(*p1clave3);
+		if (p1insertar == 2) {
+			cout << "ok....insertar 4ta clave, desborde 2" << endl;
+		}
+		else {
+			cout << "fallo....insertar 4ta clave, desborde 2" << endl;
+		}
+
+	Clave * p1clave4 = new Clave();
+	p1clave4->setLinea("Mitre");
+	Horario * p1horario4 = new Horario(1930, 2000);
+	Fecha * p1fecha4 = new Fecha(3, 9, 2012);
+	FranjaHoraria * p1franja4 = new FranjaHoraria(p1fecha4, p1horario4);
+	p1clave4->setFranjaHoraria(p1franja4);
+	p1clave4->setFalla("cierran 80%");
+	p1clave4->setAccidente("incendio");
+	p1clave4->setFormacion(256);
+
+	p1insertar = p1nodo.insertar(*p1clave4);
+		if (p1insertar == 0) {
+			cout << "ok....insertar 5ta clave, sobreflujo 0" << endl;
+		}
+		else {
+			cout << "fallo....insertar 5ta clave, sobreflujo 0" << endl;
+		}
+
+	// Prueba eliminar
+
+	cout << "test eliminar" << endl;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
 
 
 #endif /* KDNODOHOJA_TEST_H_ */
