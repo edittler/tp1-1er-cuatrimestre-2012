@@ -11,6 +11,7 @@
 #include "Horario_test.h"
 #include "Archivo_test.h"
 #include "Clave_test.h"
+#include "kdNodoHoja_test.h"
 
 int main() {
 
@@ -21,6 +22,7 @@ int main() {
 	HorarioTest();
 	ClaveTest();
 	ArchivoTest();
+	kdNodoHojaTest();
 
 	return 0;
 }
