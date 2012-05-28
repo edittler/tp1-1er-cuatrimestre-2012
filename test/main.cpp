@@ -19,8 +19,8 @@ int main() {
 	FranjaHorariaTest();
 	FechaTest();
 	HorarioTest();
-	ArchivoTest();
 	ClaveTest();
+	ArchivoTest();
 
 	return 0;
 }

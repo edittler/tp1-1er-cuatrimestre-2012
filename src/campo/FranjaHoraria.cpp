@@ -54,6 +54,9 @@ void FranjaHoraria::setHorario(Horario* horario) {
 }
 
 ResultadoComparacion FranjaHoraria::comparar(Campo* otroCampo){
+	if (otroCampo == NULL){
+		return MAYOR;
+	}
 
 	FranjaHoraria* otraFranjaHoraria = dynamic_cast<FranjaHoraria*>(otroCampo);
 

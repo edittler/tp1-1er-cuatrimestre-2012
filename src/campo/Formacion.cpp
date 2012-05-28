@@ -33,6 +33,9 @@ void Formacion::setNumeroFormacion(int numero) {
 }
 
 ResultadoComparacion Formacion::comparar(Campo* otroCampo) {
+	if (otroCampo == NULL){
+		return MAYOR;
+	}
 
 	Formacion* otraFormacion = dynamic_cast<Formacion*>(otroCampo);
 

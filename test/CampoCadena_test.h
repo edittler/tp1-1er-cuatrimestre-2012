@@ -15,23 +15,12 @@
 void CampoCadenaTest() {
 	std::cout << "Prueba Unitaria: Clase CampoCadena." << endl;
 
-	CampoCadena* campoCadena1 = NULL;
-	Campo* campoCadena2 = NULL;
+	/* FIXME Probar constructor copia de cada clase heredera de clase CampoCadena
+	 *
+	 */
 
-	if (campoCadena1->comparar(campoCadena2) == IGUAL) {
-		std::cout << "Ok.....comparacion nulos igual" << endl;
-	} else {
-		std::cout << "Fail...comparacion nulos igual" << endl;
-	}
-
-	if (campoCadena2->comparar(campoCadena1) == IGUAL) {
-		std::cout << "Ok.....comparacion nulos igual" << endl;
-	} else {
-		std::cout << "Fail...comparacion nulos igual" << endl;
-	}
-
-	campoCadena1 = new Falla("No cierran puertas.Cierra 50%.");
-	campoCadena2 = new Falla ("Cierra 50%.");
+	CampoCadena* campoCadena1 = new Falla("No cierran puertas.Cierra 50%.");
+	Campo* campoCadena2 = new Falla ("Cierra 50%.");
 
 	if (campoCadena1->comparar(campoCadena2) == MAYOR) {
 		std::cout << "Ok.....comparacion mayor" << endl;
@@ -52,12 +41,6 @@ void CampoCadenaTest() {
 		std::cout << "Ok.....comparacion mayor con null" << endl;
 	} else {
 		std::cout << "Fail...comparacion mayor con null" << endl;
-	}
-
-	if (campoCadena2->comparar(campoCadena1) == MENOR) {
-		std::cout << "Ok.....comparacion menor con null" << endl;
-	} else {
-		std::cout << "Fail...comparacion menor con null" << endl;
 	}
 
 	Accidente* campoCadena3 = new Accidente("Incendio.");
@@ -87,6 +70,3 @@ void CampoCadenaTest() {
 
 	cout << endl;
 }
-
-
-

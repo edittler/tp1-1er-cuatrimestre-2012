@@ -32,13 +32,9 @@ void CampoCadena::setDescripcion(string descripcion) {
 }
 
 ResultadoComparacion CampoCadena::comparar(Campo* otroCampo) {
-	if ((this == NULL) && (otroCampo == NULL)){
-		return IGUAL;
+	if (otroCampo == NULL){
+		return MAYOR;
 	}
-
-	/* FIXME corregir "this" para que tome que su mismo objeto es null y pueda comparar
-	 * con otro objeto null. Ver tests para ver como debería funcionar
-	 */
 
 	CampoCadena* otraCampoCadena = dynamic_cast<CampoCadena*>(otroCampo);
 
