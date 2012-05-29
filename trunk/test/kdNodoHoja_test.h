@@ -115,29 +115,41 @@ void kdNodoHojaTest() {
 
 	// Prueba eliminar
 
-	cout << "test eliminar" << endl;
+	cout << "test eliminar:" << endl;
 
+	Clave * p2clave1 = new Clave();
+	p2clave1->setLinea("Sarmientoo");
+	Horario * p2horario1 = new Horario(0000, 0030);
+	Fecha * p2fecha1 = new Fecha(21, 2, 2012);
+	FranjaHoraria * p2franja1 = new FranjaHoraria(p2fecha1, p2horario1);
+	p2clave1->setFranjaHoraria(p2franja1);
+	p2clave1->setFalla("cierran 50%");
+	p2clave1->setAccidente("incendio");
+	p2clave1->setFormacion(256);
 
+	int p2insertar = p1nodo.eliminar(*p2clave1);
+	if (p2insertar == 3) {
+		cout << "ok....eliminar 1ra clave, no existe" << endl;
+	}
+	else {
+		cout << "fallo....eliminar 1ra clave, no existe" << endl;
+	}
 
+	p2insertar = p1nodo.eliminar(*p1clave1);
+	if (p2insertar == 1) {
+		cout << "ok....eliminar 2da clave, exito" << endl;
+	}
+	else {
+		cout << "fallo....eliminar 2da clave, exito" << endl;
+	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	p2insertar = p1nodo.eliminar(*p1clave2);
+	if (p2insertar == 2) {
+		cout << "ok....eliminar 3ra clave, subflujo" << endl;
+	}
+	else {
+		cout << "fallo....eliminar 3ra clave, subflujo" << endl;
+	}
 
 
 }
