@@ -68,7 +68,7 @@ void kdNodoHojaTest() {
 	p1clave2->setFranjaHoraria(p1franja2);
 	p1clave2->setFalla("cierran 80%");
 	p1clave2->setAccidente("incendio");
-	p1clave2->setFormacion(256);
+	p1clave2->setFormacion(300);
 
 	p1insertar = p1nodo.insertar(*p1clave2);
 		if (p1insertar == 1) {
@@ -86,7 +86,7 @@ void kdNodoHojaTest() {
 	p1clave3->setFranjaHoraria(p1franja3);
 	p1clave3->setFalla("cierran 80%");
 	p1clave3->setAccidente("incendio");
-	p1clave3->setFormacion(256);
+	p1clave3->setFormacion(400);
 
 	p1insertar = p1nodo.insertar(*p1clave3);
 		if (p1insertar == 2) {
@@ -107,12 +107,23 @@ void kdNodoHojaTest() {
 	p1clave4->setFormacion(256);
 
 	p1insertar = p1nodo.insertar(*p1clave4);
-		if (p1insertar == 0) {
-			cout << "ok....insertar 5ta clave, sobreflujo 0" << endl;
-		}
-		else {
-			cout << "fallo....insertar 5ta clave, sobreflujo 0" << endl;
-		}
+	if (p1insertar == 0) {
+		cout << "ok....insertar 5ta clave, sobreflujo 0" << endl;
+	}
+	else {
+		cout << "fallo....insertar 5ta clave, sobreflujo 0" << endl;
+	}
+
+	// Prueba getValorMedio
+	cout << "test getValorMedio:" << endl;
+	Formacion * p3formacionmedio = dynamic_cast<Formacion *>(p1nodo.getValorMedio(1));
+	int p3medio = p3formacionmedio->getNumeroFormacion();
+	if (p3medio == 300) {
+		cout << "ok....getValorMedio" << endl;
+	}
+	else {
+		cout << "fallo....getValorMedio " << "devolvio: " << p3medio << " deberia devolver 300" << endl;
+	}
 
 	// Prueba eliminar
 
@@ -145,6 +156,7 @@ void kdNodoHojaTest() {
 	}
 
 	p2insertar = p1nodo.eliminar(*p1clave2);
+	cout << p2insertar;
 	if (p2insertar == 2) {
 		cout << "ok....eliminar 3ra clave, subflujo 2" << endl;
 	}
