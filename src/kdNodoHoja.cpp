@@ -18,7 +18,7 @@ kdNodoHoja::kdNodoHoja() {
 	 * Creo la lista de claves con capacidad para 1 clave más para poder ordenar las
 	 * claves cuando éste se desborda.
 	 */
-	for (int i=0; i < this->capacidadNodo; i++){
+	for (int i=0; i < (this->capacidadNodo + 1); i++){
 		this->listaClaves[i] = NULL;
 	}
 }
@@ -36,7 +36,7 @@ kdNodoHoja::kdNodoHoja(Clave clave){
 	this->cantClaves = 1; // Establesco que la cantidad de claves almacenadas es 1
 	Clave *unaClave = new Clave(clave);
 	this->listaClaves[0] = unaClave;
-		for (int i=1; i < this->capacidadNodo; i++){
+		for (int i=1; i < (this->capacidadNodo + 1); i++){
 			this->listaClaves[i] = NULL;
 		}
 }
@@ -66,7 +66,7 @@ bool kdNodoHoja::esHoja(){
 bool kdNodoHoja::contiene(Clave clave){
 	bool tieneClave = false;
 	int i = 0;
-	while((!tieneClave) && (i < this->capacidadNodo)){
+	while((!tieneClave) && (i <= this->capacidadNodo)){
 		if (this->listaClaves[i] != NULL){
 			if (this->listaClaves[i]->comparar(&clave) == IGUAL){
 				tieneClave = true;
@@ -106,7 +106,7 @@ int kdNodoHoja::insertar(Clave clave){
 	 */
 	Clave *unaClave = new Clave(clave);
 	if (this->cantClaves == this->capacidadNodo){
-		this->listaClaves[this->capacidadNodo + 1] = unaClave;
+		this->listaClaves[this->capacidadNodo] = unaClave;
 		this->cantClaves++;
 		valorRetorno = 2;
 	} else {
@@ -139,12 +139,15 @@ int kdNodoHoja::eliminar(Clave clave){
 	} else {
 		bool eliminoClave = false;
 		int i = 0;
-		while ((!eliminoClave) && (i < this->capacidadNodo)){
-			if (this->listaClaves[i]->comparar(&clave) == IGUAL){	// Si las claves son iguales, debo eliminar la almacenada en el nodo.
-				delete this->listaClaves[i];	// Elimino la memoria reservada
-				this->listaClaves[i] = NULL;	// Establezco como NULL al puntero
-				this->cantClaves--; // Decremento el contador de cantidad de claves almacenadas
-				eliminoClave = true;	// Establezco como verdadero que se eliminó la clave
+		while ((!eliminoClave) && (i <= this->capacidadNodo)){
+			if (this->listaClaves[i] != NULL){
+				if (this->listaClaves[i]->comparar(&clave) == IGUAL){	// Si las claves son iguales, debo eliminar la almacenada en el nodo.
+					delete this->listaClaves[i];	// Elimino la memoria reservada
+					this->listaClaves[i] = NULL;	// Establezco como NULL al puntero
+					this->cantClaves--; // Decremento el contador de cantidad de claves almacenadas
+					this->restablecerZonaDesborde(); // Si el nodo estuvo debordado, vacio la zona de desborde.
+					eliminoClave = true;	// Establezco como verdadero que se eliminó la clave
+				}
 			}
 			i++;	// Incremento i
 		}
@@ -191,7 +194,7 @@ bool kdNodoHoja::tieneSubflujo(){
  * una copia de su contenido para almacenarlo como atributo, para que sea persistente
  * en el tiempo el dato almacenado en el NodoInterno
  */
-Campo* kdNodoHoja::getValorMedio(int dimension) const{
+Campo* kdNodoHoja::getValorMedio(int dimension){
 	/* Verifico si el nodo tiene sobreflujo. Sino, no es necesario entregar el valor medio
 	 * el retorno NULL
 	 */
@@ -199,8 +202,10 @@ Campo* kdNodoHoja::getValorMedio(int dimension) const{
 		return NULL;
 	}
 
-	// TODO Previamente hay que ordenar el vector de claves por la dimension que recibe
-	// por parámetro.
+	/* Previamente hay que ordenar el vector de claves por la dimension que recibe
+	 * por parámetro.
+	 */
+	this->ordenarListaClaves(dimension);
 
 	/* En este problema, el valor "medio" es el que se usará como atributo indentificador
 	 * en el nodo interno.
@@ -212,10 +217,10 @@ Campo* kdNodoHoja::getValorMedio(int dimension) const{
 	int posicionMedio;
 	if ((this->capacidadNodo % 2) == 0){
 		// La capacidad del nodo es PAR
-		posicionMedio = ((this->capacidadNodo + 2)/2) + 1;
+		posicionMedio = ((this->capacidadNodo + 2)/2);
 	} else {
 		// La capacidad del nodo es IMPAR
-		posicionMedio = ((this->capacidadNodo + 1)/2) + 1;
+		posicionMedio = ((this->capacidadNodo + 1)/2);
 	}
 
 	/* FIXME Antes de retornar, se debe verificar que la clave de 1 posicion anterior a
@@ -262,22 +267,38 @@ void kdNodoHoja::ordenarListaClaves(int dimension){
 	/* Implemento un bubble sort, dado que no se almacenarán mas de 5 o 6 claves por nodo,
 	 * y porque es un metodo sencillo de implementar.
 	 */
-
 	bool noIntercambio = false;	// Bandera que verifica si se realizo un intercambio en un ciclo
 	int N = this->capacidadNodo + 1;
 	int i = 1;
 	Campo *tmp1, *tmp2;
 	while ((!noIntercambio) && (i < N)){
 		noIntercambio = true;
-		for (int j=1; j < (N-i); j++){
+		for (int j=0; j < (N-i); j++){
 			tmp1 = this->listaClaves[j]->getCampo(dimension);
 			tmp2 = this->listaClaves[j + 1]->getCampo(dimension);
-			// FIXME agregar validaciones para cuando los campos son nulos
-			ResultadoComparacion comparacion = tmp1->comparar(tmp2);
-			if (comparacion == MAYOR){
-				swap (j, j+1);
-				noIntercambio = false;
+			// Verifico si tmp1 no es nulo, para no tener error de manejo de objetos no instanciados
+			if (tmp1 != NULL){
+				ResultadoComparacion comparacion = tmp1->comparar(tmp2);
+				if (comparacion == MAYOR){
+					swap (j, j+1);
+					noIntercambio = false;
+				}
 			}
+		}
+	}
+}
+
+void kdNodoHoja::restablecerZonaDesborde(){
+	if ((this->cantClaves <= this->capacidadNodo) && (this->listaClaves[this->capacidadNodo] != NULL)){
+		bool restablecio = false;
+		int i=0;
+		while ((!restablecio) && (i < this->capacidadNodo)){
+			if (this->listaClaves[i] == NULL){
+				this->listaClaves[i] = this->listaClaves[this->capacidadNodo];
+				this->listaClaves[this->capacidadNodo] = NULL;
+				restablecio = true;
+			}
+			i++;
 		}
 	}
 }

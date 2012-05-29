@@ -118,11 +118,11 @@ void kdNodoHojaTest() {
 	cout << "test getValorMedio:" << endl;
 	Formacion * p3formacionmedio = dynamic_cast<Formacion *>(p1nodo.getValorMedio(1));
 	int p3medio = p3formacionmedio->getNumeroFormacion();
-	if (p3medio == 300) {
+	if (p3medio == 400) {
 		cout << "ok....getValorMedio" << endl;
 	}
 	else {
-		cout << "fallo....getValorMedio " << "devolvio: " << p3medio << " deberia devolver 300" << endl;
+		cout << "fallo....getValorMedio " << "devolvio: " << p3medio << " deberia devolver 400" << endl;
 	}
 
 	// Prueba eliminar
@@ -141,13 +141,21 @@ void kdNodoHojaTest() {
 
 	int p2insertar = p1nodo.eliminar(*p2clave1);
 	if (p2insertar == 3) {
-		cout << "ok....eliminar 1ra clave, no existe 3" << endl;
+		cout << "ok....eliminar clave, no existe 3" << endl;
 	}
 	else {
-		cout << "fallo....eliminar 1ra clave, no existe 3" << endl;
+		cout << "fallo....eliminar clave, no existe 3" << endl;
 	}
 
 	p2insertar = p1nodo.eliminar(*p1clave1);
+	if (p2insertar == 1) {
+		cout << "ok....eliminar 1ra clave, exito 1" << endl;
+	}
+	else {
+		cout << "fallo....eliminar 1ra clave, exito 1" << endl;
+	}
+
+	p2insertar = p1nodo.eliminar(*p1clave2);
 	if (p2insertar == 1) {
 		cout << "ok....eliminar 2da clave, exito 1" << endl;
 	}
@@ -155,7 +163,7 @@ void kdNodoHojaTest() {
 		cout << "fallo....eliminar 2da clave, exito 1" << endl;
 	}
 
-	p2insertar = p1nodo.eliminar(*p1clave2);
+	p2insertar = p1nodo.eliminar(*p1clave3);
 	cout << p2insertar;
 	if (p2insertar == 2) {
 		cout << "ok....eliminar 3ra clave, subflujo 2" << endl;

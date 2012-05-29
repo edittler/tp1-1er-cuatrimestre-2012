@@ -93,7 +93,7 @@ public:
 	 * una copia de su contenido para almacenarlo como atributo, para que sea persistente
 	 * en el tiempo el dato almacenado en el NodoInterno
 	 */
-	Campo* getValorMedio(int dimension) const;
+	Campo* getValorMedio(int dimension);
 
 	Clave* getClave(int i);
 
@@ -107,6 +107,8 @@ private:
 	void ordenarListaClaves(int dimension);
 
 	void swap (int i, int j);
+
+	void restablecerZonaDesborde();
 
 };
 

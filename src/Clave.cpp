@@ -106,38 +106,31 @@ Campo *Clave::getCampo(int dimension) const{
  * no son iguales
  */
 ResultadoComparacion Clave::comparar(const Clave *otraClave){
-	// Si ambos punteros no son instanciados, se puede decir que son iguales.
-	if ((this == NULL) && (otraClave == NULL)){
-		return IGUAL;
+	// Si el puntero recibido es NULL, no se puede comparar
+	if (otraClave == NULL){
+		return COMPARACION_NO_VALIDA;
 	}
-	// Si ambos objetos estan instanciados, se compara cada campo.
+	// Ahora se procede a comparar
 	ResultadoComparacion resultado = IGUAL;
-	if ((this != NULL) && (otraClave != NULL)){
-		int i = 0;
-		while ((resultado == IGUAL) && (i < this->cantDimensiones)){
-			Campo *unCampo = this->listaCampos[i]; // Copio el campo correspondiente a la dimension i
-			Campo *otroCampo = otraClave->getCampo(i);
-			// Si ambos campos son no nulos, los comparo
-			if ((unCampo != NULL) && (otroCampo != NULL)){
-				ResultadoComparacion tmp = unCampo->comparar(otroCampo);
-				if (tmp != IGUAL){
-					resultado = COMPARACION_NO_VALIDA;
-				}
-			} else {
-				// Si ambos campos son nulos, se sigue cumpliendo la igualdad
-				if ((unCampo == NULL) && (otroCampo == NULL)){
-					resultado = IGUAL;
-				} else {
-					resultado = COMPARACION_NO_VALIDA;
-				}
+	int i = 0;
+	while ((resultado == IGUAL) && (i < this->cantDimensiones)){
+		Campo *unCampo = this->listaCampos[i]; // Copio el campo correspondiente a la dimension i
+		Campo *otroCampo = otraClave->getCampo(i);
+		// Si ambos campos son no nulos, los comparo
+		if ((unCampo != NULL) && (otroCampo != NULL)){
+			ResultadoComparacion tmp = unCampo->comparar(otroCampo);
+			if (tmp != IGUAL){
+				resultado = COMPARACION_NO_VALIDA;
 			}
-			i++;	// Incremento el valor de i
+		} else {
+			// Si ambos campos son nulos, se sigue cumpliendo la igualdad
+			if ((unCampo == NULL) && (otroCampo == NULL)){
+				resultado = IGUAL;
+			} else {
+				resultado = COMPARACION_NO_VALIDA;
+			}
 		}
-	} else {
-		/* Si llego hasta acá, significa que uno de los objetos está instanciado
-		 * y el otro no, por lo tanto la comparacion no es valida.
-		 */
-		resultado = COMPARACION_NO_VALIDA;
+		i++;	// Incremento el valor de i
 	}
 	return resultado;
 }
