@@ -17,6 +17,7 @@ using namespace std;
 void kdNodoHojaTest() {
 
 	kdNodoHoja p1nodo = kdNodoHoja();
+	cout << "Prueba Unitaria: Clase kdNodoHoja" << endl;
 
 	// Prueba insertar
 
@@ -129,29 +130,27 @@ void kdNodoHojaTest() {
 
 	int p2insertar = p1nodo.eliminar(*p2clave1);
 	if (p2insertar == 3) {
-		cout << "ok....eliminar 1ra clave, no existe" << endl;
+		cout << "ok....eliminar 1ra clave, no existe 3" << endl;
 	}
 	else {
-		cout << "fallo....eliminar 1ra clave, no existe" << endl;
+		cout << "fallo....eliminar 1ra clave, no existe 3" << endl;
 	}
 
 	p2insertar = p1nodo.eliminar(*p1clave1);
 	if (p2insertar == 1) {
-		cout << "ok....eliminar 2da clave, exito" << endl;
+		cout << "ok....eliminar 2da clave, exito 1" << endl;
 	}
 	else {
-		cout << "fallo....eliminar 2da clave, exito" << endl;
+		cout << "fallo....eliminar 2da clave, exito 1" << endl;
 	}
 
 	p2insertar = p1nodo.eliminar(*p1clave2);
 	if (p2insertar == 2) {
-		cout << "ok....eliminar 3ra clave, subflujo" << endl;
+		cout << "ok....eliminar 3ra clave, subflujo 2" << endl;
 	}
 	else {
-		cout << "fallo....eliminar 3ra clave, subflujo" << endl;
+		cout << "fallo....eliminar 3ra clave, subflujo 2" << endl;
 	}
-
-
 }
 
 
