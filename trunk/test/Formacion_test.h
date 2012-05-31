@@ -16,8 +16,6 @@ void FormacionTest() {
 
 	std::cout << "Prueba Unitaria: Clase Formacion." << endl;
 
-	// FIXME Probar el constructor copia de la clase Formacion
-
 	Formacion* formacion1 = new Formacion(1000);
 	Formacion* formacion2 = new Formacion(9999);
 
@@ -33,11 +31,11 @@ void FormacionTest() {
 		std::cout << "Fail...comparacion mayor" << endl;
 	}
 
-	formacion2->setNumeroFormacion(1000);
-	if (formacion2->comparar(formacion1) == IGUAL) {
-		std::cout << "Ok.....comparacion igual" << endl;
+	Formacion* formacion3 = new Formacion(*formacion2);
+	if (formacion3->comparar(formacion2) == IGUAL) {
+		std::cout << "Ok.....comparacion igual y constructor copia" << endl;
 	} else {
-		std::cout << "Fail...comparacion igual" << endl;
+		std::cout << "Fail...comparacion igual y constructor copia" << endl;
 	}
 
 	delete formacion2;

@@ -31,7 +31,7 @@ void ClaveTest() {
 	}
 
 	Clave* clave2 =  new Clave ("Tren al cielo", 666);
-	Clave* clave3 = new Clave ("Tren al cielo", 666);
+	Clave* clave3 = new Clave (*clave2);
 	if (clave3->comparar(clave2) == IGUAL) {
 		cout << "Ok.....comparar clave igual" << endl;
 	} else {
