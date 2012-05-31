@@ -18,7 +18,7 @@ void ByteTest(){
 
 	cout << "Prueba Unitaria: Byte" << endl;
 
-	char *cadena1 = new char(20);
+	Byte *cadena1 = new Byte(20);
 	for(int i = 0; i < 20; i++){
 		if ((i % 2) == 0) cadena1[i] = 'a';
 		else cadena1[i] = 'b';
