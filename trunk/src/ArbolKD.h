@@ -41,9 +41,12 @@ public:
 		Clave* busquedaRecursiva(kdNodo* nodo, Clave* claveBuscada, int iteracion);
 
 		/*
-		 *
+		 * Actualiza nodo interno y ambos nodos hijos por desborde.
+		 * @return false si al actualizar algun nodo hijo sigue con desborde (caso particular si se utiliza un criterio de organizacion
+		 * 			     para el cual las claves del nodo desbordado son todas iguales)
+		 * @return true
 		 */
-		void actualizarPorDesborde(kdNodoInterno* nodoInterno, kdNodoHoja* hojaDesbordado, kdNodoHoja* nuevoHoja, int iteracion);
+		kdNodo* actualizarPorDesborde(kdNodoInterno* nodoInterno, kdNodoHoja* hojaDesbordado, kdNodoHoja* nuevoHoja, int iteracion);
 
 		/*
 		 * Devuelve dimension por la cual se ordeno a cierta iteracion de recorrido.
