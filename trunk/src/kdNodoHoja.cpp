@@ -231,6 +231,7 @@ Campo* kdNodoHoja::getValorMedio(int dimension){
 	 * con la siguiente dimension.
 	 */
 
+	//FIXME -URGENTE devuelve una referencia, deberia devolver una copia del campo.
 	return this->listaClaves[posicionMedio]->getCampo(dimension);
 }
 
