@@ -71,6 +71,9 @@ void Horario::setHorario(int comienzo, int fin) {
 }
 
 ResultadoComparacion Horario::comparar(Horario* otroHorario) {
+	if (otroHorario == NULL) {
+		return MAYOR;
+	}
 
 	if (this->horarioComienzo > otroHorario->horarioComienzo) {
 		return MAYOR;

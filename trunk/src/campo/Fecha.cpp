@@ -104,6 +104,9 @@ void Fecha::setFecha(int dia, int mes, int anio) {
 }
 
 ResultadoComparacion Fecha::comparar(Fecha* otraFecha) {
+	if (otraFecha== NULL){
+		return MAYOR;
+	}
 
 	int dia = this->fecha % 100;
 	int mes = this->fecha % 10000 / 100;
