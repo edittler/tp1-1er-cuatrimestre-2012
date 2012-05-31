@@ -11,11 +11,13 @@
  * el tamaño de la cadena de bytes a copiar
  */
 void obtenerPorcion(const Byte *origen, Byte *resultado, int inicio, int tam) {
-	resultado = new Byte[tam];
-	int posOrigen = inicio;
-	for (int i = 0; i < tam; i++) {
-		resultado[0] = origen[posOrigen];
-		posOrigen++;
+	if ((inicio >=0) && (tam > 0) && (origen != NULL)){
+		resultado = new Byte(tam);
+		int posOrigen = inicio;
+		for (int i = 0; i < tam; i++) {
+			resultado[i] = origen[posOrigen];
+			posOrigen++;
+		}
 	}
 }
 

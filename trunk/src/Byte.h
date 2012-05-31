@@ -6,6 +6,8 @@
 #ifndef BYTE_H_
 #define BYTE_H_
 
+#include <stdlib.h>
+
 typedef char Byte;
 
 /* Es una funcion que recibe la cadena origen de bytes a copiar, un puntero (que debe

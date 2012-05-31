@@ -18,8 +18,8 @@
 
 int main() {
 
-	ByteTest();
 	ArchivoTest();
+	ByteTest();
 	CampoCadenaTest();
 	FormacionTest();
 	FranjaHorariaTest();
