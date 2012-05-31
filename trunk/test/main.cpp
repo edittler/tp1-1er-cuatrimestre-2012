@@ -12,6 +12,7 @@
 #include "Archivo_test.h"
 #include "Clave_test.h"
 #include "kdNodoHoja_test.h"
+#include "ArbolKD_test.h"
 
 int main() {
 
@@ -23,6 +24,7 @@ int main() {
 	ClaveTest();
 	ArchivoTest();
 	kdNodoHojaTest();
+	ArbolKDTest();
 
 	return 0;
 }

@@ -2,7 +2,7 @@
  * ArbolKD.h
  *
  *  Created on: 19/05/2012
- *      Author: Alejandro Daza
+ *      Author: matias_2
  */
 
 #ifndef ARBOLKD_H_
@@ -10,6 +10,7 @@
 
 #include "kdNodoInterno.h"
 #include "kdNodoHoja.h"
+#include "kdNodo.h"
 
 using namespace std;
 
@@ -20,10 +21,34 @@ private:
 public:
 	ArbolKD();
 	virtual ~ArbolKD();
-	int insertar(Clave);
+	//	NodoInterno* getNodosPorNivel();
 
-private:
-	bool raizEsHoja();
+		int insertar(Clave*);
+	//	int eliminar(int modoInvocacion, Clave* clave);
+		Clave* busquedaPuntual(Clave* clave);
+
+		Falla* getFallas();
+		Formacion* getFormaciones();
+		Linea* getLineas();
+		Accidente* getAccidentes();
+
+		Campo* getCampoPorFecha(Fecha* comienzo, Fecha* fin);
+
+	private:
+		bool raizEsHoja();
+		int insertarRecursivo(kdNodo* nodo, Clave* clave, int iteracion);
+	//	int eliminarRecursivo(Nodo* nodo, Clave* claveVacia, Clave* claveAEliminar, int modoInvocacion);
+		Clave* busquedaRecursiva(kdNodo* nodo, Clave* claveBuscada, int iteracion);
+
+		/*
+		 *
+		 */
+		void actualizarPorDesborde(kdNodoInterno* nodoInterno, kdNodoHoja* hojaDesbordado, kdNodoHoja* nuevoHoja, int iteracion);
+
+		/*
+		 * Devuelve dimension por la cual se ordeno a cierta iteracion de recorrido.
+		 */
+		int roundRobin(int iteracion);
 
 };
 
