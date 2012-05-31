@@ -117,9 +117,9 @@ int ArbolKD::insertarRecursivo(kdNodo* nodo, Clave* clave, int iteracion) {
 
 			//si algun nodo hijo sigue con overflow
 			//TODO ver que se cumpla recursividad.
-//			if (!nodoSigueDesborde) {
+			if (!nodoSigueDesborde) {
 //				return this->insertarRecursivo(nodoSigueDesborde, clave, ++iteracion);
-//			}
+			}
 			return 1;
 		}
 		default:
