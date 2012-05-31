@@ -81,35 +81,35 @@ void kdNodoInterno::setAtributo(Campo* atributo){
 		 * realiza una copia del campo
 		 */
 		Linea *unaLinea = dynamic_cast<Linea*>(atributo);
-		if (!unaLinea) {
+		if (unaLinea != NULL) {
 			this->atributo = new Linea(unaLinea->getDescripcion());
 		} else {
 			/* Realiza un casteo dinamico de Formacion. Si resulta positivo el casteo,
 			 * realiza una copia del campo
 			 */
 			Formacion *unaFormacion = dynamic_cast<Formacion*>(atributo);
-			if (!unaFormacion) {
+			if (unaFormacion != NULL) {
 				this->atributo = new Formacion(unaFormacion->getNumeroFormacion());
 			} else {
 				/* Realiza un casteo dinamico de FranjaHoraria. Si resulta positivo el casteo,
 				 * realiza una copia del campo
 				 */
 				FranjaHoraria *unaFranja = dynamic_cast<FranjaHoraria*>(atributo);
-				if (!unaFranja) {
+				if (unaFranja != NULL) {
 					this->atributo = new FranjaHoraria(unaFranja->getFecha(), unaFranja->getHorario());
 				} else {
 					/* Realiza un casteo dinamico de Falla. Si resulta positivo el casteo,
 					 * realiza una copia del campo
 					 */
 					Falla *unaFalla = dynamic_cast<Falla*>(atributo);
-					if (!unaFalla) {
+					if (unaFalla != NULL) {
 						this->atributo = new Falla(unaFalla->getDescripcion());
 					} else {
 						/* Realiza un casteo dinamico de Accidente. Si resulta positivo el
 						 * casteo, realiza una copia del campo
 						 */
 						Accidente *unAccidente = dynamic_cast<Accidente*>(atributo);
-						if (!unAccidente) {
+						if (unAccidente != NULL) {
 							this->atributo = new Accidente(unAccidente->getDescripcion());
 						} // Fin if Accidente
 					} // Fin if Falla
