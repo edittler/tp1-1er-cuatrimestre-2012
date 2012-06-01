@@ -14,8 +14,6 @@ kdNodoInterno::kdNodoInterno() {
 	this->atributo = NULL;
 	this->hijoIzq = NULL;
 	this->hijoDer = NULL;
-	this->IDizq = -1;
-	this->IDder = -1;
 }
 
 /* Constructor de la clase NodoInterno
@@ -25,8 +23,6 @@ kdNodoInterno::kdNodoInterno(Campo* atributo){
 	this->setAtributo(atributo);
 	this->hijoIzq = NULL;
 	this->hijoDer = NULL;
-	this->IDizq = -1;
-	this->IDder = -1;
 }
 
 /* Constructor de la clase NodoInterno
@@ -125,23 +121,12 @@ kdNodo* kdNodoInterno::getHijoIzq() const{
 	return this->hijoIzq;
 }
 
-/* Retorna el identificador del nodo hijo izquierdo
- */
-int kdNodoInterno::getIDHijoIzq(){
-	return this->IDizq;
-}
-
 /* Edita el hijo izquierdo.
  * Si previamente el nodo interno ya tenia hijo izquierdo, se reemplaza la referencia de
  * memoria, pero no libera la memoria del hijo almacenado previamente.
  */
 void kdNodoInterno::setHijoIzq(kdNodo* hijoIzquierdo){
 	this->hijoIzq = hijoIzquierdo;
-	if (this->hijoIzq != NULL){
-		this->IDizq = this->hijoIzq->getId();
-	} else {
-		this->IDizq = -1;
-	}
 }
 
 /* Retorna la direccion de memoria del hijo derecho
@@ -150,21 +135,19 @@ kdNodo* kdNodoInterno::getHijoDer() const{
 	return this->hijoDer;
 }
 
-/* Retorna el identificador del nodo hijo derecho
- */
-int kdNodoInterno::getIDHijoDer(){
-	return this->IDder;
-}
-
 /* Edita el hijo derecho.
  * Si previamente el nodo interno ya tenia hijo derecho, se reemplaza la referencia de
  * memoria, pero no libera la memoria del hijo almacenado previamente.
  */
 void kdNodoInterno::setHijoDer(kdNodo* hijoDerecho){
 	this->hijoDer = hijoDerecho;
-	if (this->hijoDer != NULL){
-		this->IDder = this->hijoDer->getId();
-	} else {
-		this->IDder = -1;
-	}
+}
+
+/* Funcion que genera la cadena de bytes para almacenar la clase. Debe recibir por
+ * referencia un int que pueda almacenar el tamaño de la cadena, para su guardado
+ * posterior en el archivo.
+ */
+Byte * kdNodoInterno::obtenerRegistro (int *tam){
+	// TODO Hacer
+	return NULL;
 }

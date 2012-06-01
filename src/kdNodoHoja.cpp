@@ -295,6 +295,15 @@ Clave* kdNodoHoja::getClave(Clave clave){
 	return unaClave;
 }
 
+/* Funcion que genera la cadena de bytes para almacenar la clase. Debe recibir por
+ * referencia un int que pueda almacenar el tamaño de la cadena, para su guardado
+ * posterior en el archivo.
+ */
+Byte * kdNodoHoja::obtenerRegistro (int *tam){
+	// TODO Hacer
+	return NULL;
+}
+
 /*
  * Metodo privado que ordena las claves del Nodo según la dimension con la que se
  * quiere ordenar.

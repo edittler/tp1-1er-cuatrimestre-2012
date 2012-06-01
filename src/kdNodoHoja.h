@@ -18,23 +18,21 @@ class kdNodoHoja: public kdNodo {
 private:
 	/* El atributo estatico especifica cuantas claves se pueden almacenar dentro
 	 * del NodoHoja.
-	 * Se usará el valor 2 para probar el funcionamiento del arbol.
-	 * Luego especificamos un valor correcto.
 	 */
 	int cantClaves;	// Almacena la cantidad de claves que contiene el nodo
 	Clave** listaClaves; // Contenedor de las claves
 
 public:
-	const static int capacidadNodo = 2; // Define el tamaño del nodo
+	const static int capacidadNodo = 4; // Define el tamaño del nodo
 	/*
 	 * Constructor de la clase NodoHoja
-	 * Inicializa la lista con capacidad para 2 claves, pero la deja vacía.
+	 * Inicializa la lista con capacidad para 4 claves, pero la deja vacía.
 	 */
 	kdNodoHoja();
 
 	/*
 	 * Constructor de la clase NodoHoja
-	 * Inicializa la lista con capacidad para 2 claves y almacena la que recibe por parametro.
+	 * Inicializa la lista con capacidad para 4 claves y almacena la que recibe por parametro.
 	 */
 	kdNodoHoja(Clave clave);
 
@@ -98,6 +96,12 @@ public:
 	Clave* getClave(int i);
 
 	Clave* getClave(Clave clave);
+
+	/* Funcion que genera la cadena de bytes para almacenar la clase. Debe recibir por
+	 * referencia un int que pueda almacenar el tamaño de la cadena, para su guardado
+	 * posterior en el archivo.
+	 */
+	virtual Byte * obtenerRegistro (int *tam);
 
 private:
 	/*

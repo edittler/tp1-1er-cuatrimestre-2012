@@ -8,9 +8,9 @@
 #ifndef NODO_H_
 #define NODO_H_
 
+#include "Byte.h"
+
 class kdNodo {
-private:
-	int id;
 
 public:
 
@@ -18,11 +18,6 @@ public:
 	 * Contructor por defecto.
 	 */
 	kdNodo();
-
-	/*
-	 * Constructor de la clase Nodo, que debe inicializarse con el ID correspondiente
-	 */
-	kdNodo(int ID);
 
 	/*
 	 * Destructor de la clase Nodo
@@ -34,6 +29,12 @@ public:
 	void setId(int id);
 
 	virtual bool esHoja() = 0;
+
+	/* Funcion que genera la cadena de bytes para almacenar la clase. Debe recibir por
+	 * referencia un int que pueda almacenar el tamaño de la cadena, para su guardado
+	 * posterior en el archivo.
+	 */
+	virtual Byte * obtenerRegistro (int *tam) = 0;
 
 };
 
