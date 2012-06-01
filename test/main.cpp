@@ -15,19 +15,21 @@
 #include "Clave_test.h"
 #include "kdNodoHoja_test.h"
 #include "ArbolKD_test.h"
+#include "GeneracionClaves_test.h"
 
 int main() {
 
-	ArchivoTest();
-	ByteTest();
-	CampoCadenaTest();
-	FormacionTest();
-	FranjaHorariaTest();
-	FechaTest();
-	HorarioTest();
-	ClaveTest();
-	kdNodoHojaTest();
-	ArbolKDTest();
+//	ArchivoTest();
+//	ByteTest();
+//	CampoCadenaTest();
+//	FormacionTest();
+//	FranjaHorariaTest();
+//	FechaTest();
+//	HorarioTest();
+//	ClaveTest();
+//	kdNodoHojaTest();
+//	ArbolKDTest();
+	GeneracionClavesTest();
 
 
 	return 0;
