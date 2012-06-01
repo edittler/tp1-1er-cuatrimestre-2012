@@ -58,3 +58,8 @@ Byte * Formacion::obtenerRegistro (int *tam){
 	*tam = sizeof(int);
 	return registro;
 }
+
+void Formacion::inicializarConRegistro(Byte * registro) {
+	// Al estar compuesta solo de un numero la asignacion es directa
+	numero = *registro;
+}

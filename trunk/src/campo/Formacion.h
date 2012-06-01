@@ -51,6 +51,8 @@ public:
 	 * posterior en el archivo.
 	 */
 	Byte * obtenerRegistro (int *tam);
+
+	void inicializarConRegistro(Byte *);
 };
 
 #endif /* FORMACION_H_ */
