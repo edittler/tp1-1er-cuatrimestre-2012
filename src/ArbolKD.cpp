@@ -239,7 +239,6 @@ void ArbolKD::getCampoPorFechaRecursivo(kdNodo* nodo, int campoBuscado, Campo* c
 				//comparo segun el campo referente que estoy buscando.
 				if (clave->comparar(campoReferente) == IGUAL) {
 					//comparo fechas para ver si esta en el rango.
-					//TODO probar que pasa si las fechas son NULL
 					ResultadoComparacion comienzo = clave->getCampo(2)->comparar(new FranjaHoraria(fechaComienzo, NULL));
 					ResultadoComparacion fin = clave->getCampo(2)->comparar(new FranjaHoraria(fechaFin, NULL));
 					if (fechaFin == NULL || ((comienzo == IGUAL || comienzo == MAYOR) && (fin == IGUAL || fin == MENOR))) {

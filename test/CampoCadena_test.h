@@ -16,10 +16,6 @@
 void CampoCadenaTest() {
 	std::cout << "Prueba Unitaria: Clase CampoCadena." << endl;
 
-	/* FIXME Probar constructor copia de cada clase heredera de clase CampoCadena
-	 *
-	 */
-
 	CampoCadena* campoCadena1 = new Falla("No cierran puertas.Cierra 50%.");
 	Campo* campoCadena2 = new Falla ("Cierra 50%.");
 
