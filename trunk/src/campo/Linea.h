@@ -30,8 +30,6 @@ public:
 	 * Destructor de la clase Linea
 	 */
 	virtual ~Linea();
-
-	void inicializarConRegistro(Byte *);
 };
 
 #endif /* LINEA_H_ */

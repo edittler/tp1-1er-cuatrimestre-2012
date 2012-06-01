@@ -23,3 +23,7 @@ Falla::Falla(string tipoFalla) : CampoCadena(tipoFalla) {
 Falla::~Falla() {
 
 }
+
+Falla::inicializarConRegistro(Byte * registro) : CampoCadena(registro) {
+
+}

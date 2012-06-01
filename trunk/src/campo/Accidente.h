@@ -32,7 +32,6 @@ public:
 	 */
 	virtual ~Accidente();
 
-	void inicializarConRegistro(Byte *);
 };
 
 #endif /* ACCIDENTE_H_ */
