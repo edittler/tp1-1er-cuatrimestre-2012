@@ -11,7 +11,7 @@ Archivo::Archivo(string nombreArchivoNuevo)
 //	nombreArchivoEspaciosLibres.append(nombreArchivoNuevo);
 	nombreArchivo = convertirAByte(nombreArchivoNuevo);
 	string temp;
-	temp.append("ELibre");
+	temp.append("EspaciosLibre");
 	temp.append(nombreArchivoNuevo);
 	nombreArchivoEspaciosLibres = convertirAByte(temp);
 	tamBloque = 512*4; // tama�o en bytes de un bloque 
