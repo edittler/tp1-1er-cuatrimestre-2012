@@ -110,6 +110,12 @@ public:
 	 */
 	void copiar(const Clave *otraClave);
 
+	/* Funcion que genera la cadena de bytes para almacenar la clase. Debe recibir por
+	 * referencia un int que pueda almacenar el tamaño de la cadena, para su guardado
+	 * posterior en el archivo.
+	 */
+	Byte * obtenerRegistro (int *tam);
+
 };
 
 #endif /* CLAVE_H_ */

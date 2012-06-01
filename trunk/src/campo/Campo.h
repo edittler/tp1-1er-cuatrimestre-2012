@@ -34,6 +34,13 @@ public:
 	 * y 1 si el campo es mayor que el pasado por parámetro
 	 */
 	virtual ResultadoComparacion comparar(Campo* otroCampo) = 0;
+
+	/* Funcion que genera la cadena de bytes para almacenar la clase. Debe recibir por
+	 * referencia un int que pueda almacenar el tamaño de la cadena, para su guardado
+	 * posterior en el archivo.
+	 */
+	virtual Byte * obtenerRegistro (int *tam) = 0;
+
 	virtual void inicializarConRegistro(Byte *) = 0;
 };
 
