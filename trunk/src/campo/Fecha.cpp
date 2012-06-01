@@ -9,7 +9,7 @@
 #include "Fecha.h"
 
 Fecha::Fecha() {
-	this->fecha = 0;
+	this->fecha = 20120101;
 }
 
 Fecha::Fecha(Fecha &fecha) {

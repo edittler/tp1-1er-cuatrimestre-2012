@@ -32,6 +32,8 @@ public:
 	 */
 	virtual ~Accidente();
 
+	ResultadoComparacion comparar(Campo* otroCampo);
+
 };
 
 #endif /* ACCIDENTE_H_ */

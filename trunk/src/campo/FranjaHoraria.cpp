@@ -24,13 +24,13 @@ FranjaHoraria::FranjaHoraria(Fecha* fecha, Horario* horario) {
 	if (fecha != NULL) {
 		this->fecha = new Fecha(*fecha);
 	} else {
-		this->fecha = new Fecha();
+		this->fecha = NULL;
 	}
 
 	if (horario != NULL) {
 		this->horario = new Horario(*horario);
 	} else {
-		this->horario = new Horario();
+		this->horario = NULL;
 	}
 }
 

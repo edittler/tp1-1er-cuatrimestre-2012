@@ -35,6 +35,7 @@ public:
 	 */
 	virtual ~Falla();
 
+	ResultadoComparacion comparar(Campo* otroCampo);
 
 };
 

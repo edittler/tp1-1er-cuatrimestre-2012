@@ -150,7 +150,9 @@ ResultadoComparacion Clave::comparar(Campo* otroCampo) {
 	ResultadoComparacion resultado = COMPARACION_NO_VALIDA;
 	int i = 0;
 	while ((resultado == COMPARACION_NO_VALIDA) && (i < this->cantDimensiones)){
-		resultado = this->listaCampos[i]->comparar(otroCampo);
+		if (this->listaCampos[i] != NULL) {
+			resultado = this->listaCampos[i]->comparar(otroCampo);
+		}
 		i++;
 	}
 	return resultado;

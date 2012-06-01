@@ -31,26 +31,6 @@ void CampoCadena::setDescripcion(string descripcion) {
 	this->descripcion = descripcion;
 }
 
-ResultadoComparacion CampoCadena::comparar(Campo* otroCampo) {
-	if (otroCampo == NULL){
-		return MAYOR;
-	}
-
-	CampoCadena* otraCampoCadena = dynamic_cast<CampoCadena*>(otroCampo);
-
-	if (!otraCampoCadena) {
-		return COMPARACION_NO_VALIDA;
-	}
-
-	if (otraCampoCadena->getDescripcion() < this->getDescripcion()) {
-		return MAYOR;
-	} else if (otraCampoCadena->getDescripcion() > this->getDescripcion()) {
-		return MENOR;
-	} else {
-		return IGUAL;
-	}
-}
-
 /* Funcion que genera la cadena de bytes para almacenar la Formacion. Debe recibir por
  * referencia un int que pueda almacenar el tamaño de la cadena, para su guardado
  * posterior en el archivo.
