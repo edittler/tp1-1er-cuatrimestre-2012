@@ -35,6 +35,8 @@ public:
 	 */
 	virtual ~Falla();
 
+	void inicializarConRegistro(Byte *);
+
 };
 
 #endif /* FALLA_H_ */
