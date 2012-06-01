@@ -54,6 +54,17 @@ void ClaveTest() {
 		cout << "Fail...comparar clave casi igual (comparacion no valida)" << endl;
 	}
 
+	Clave* clave4 = new Clave("Linea1", 300);
+	int* tam = new int();
+	Byte* registro = clave4->obtenerRegistro(tam);
+	clave4->setLinea("Linea99");
+	clave4->inicializarConRegistro(registro);
+	if (dynamic_cast<Linea*>(clave4->getCampo(0))->getDescripcion() == "Linea1") {
+		cout << "Ok.....obtener - inicializar registro" << endl;
+	} else {
+		cout << "Fail...obtener - inicializar registro" << endl;
+	}
+
 	cout << endl;
 
 	delete clave2;

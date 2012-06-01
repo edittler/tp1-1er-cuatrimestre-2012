@@ -60,6 +60,17 @@ void FranjaHorariaTest() {
 	}
 
 
+	int* tam = new int();
+	Byte* registro = franja3->obtenerRegistro(tam);
+	franja3->setFecha(new Fecha(30, 5, 2015));
+	franja3->inicializarConRegistro(registro);
+	if (franja3->getFecha()->comparar(fecha1) == IGUAL) {
+		cout << "Ok.....obtener - inicializar registro" << endl;
+	} else {
+		cout << "Fail...obtener - inicializar registro" << endl;
+	}
+
+
 	delete falla;
 	delete franja1;
 

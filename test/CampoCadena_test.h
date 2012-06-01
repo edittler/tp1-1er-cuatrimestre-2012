@@ -83,6 +83,16 @@ void CampoCadenaTest() {
 		cout << "fallo...inicializarConRegistro" << " devolvio: " << otraLinea << " en vez de: " << unaLinea << endl;
 	}
 
+	int* tam = new int();
+	Byte* registro = campoCadena4->obtenerRegistro(tam);
+	campoCadena4->setDescripcion("maaama");
+	campoCadena4->inicializarConRegistro(registro);
+	if (campoCadena4->getDescripcion() == "Incendio.") {
+		cout << "Ok.....obtener - inicializar registro" << endl;
+	} else {
+		cout << "Fail...obtener - inicializar registro" << endl;
+	}
+
 	delete campoCadena1;
 	delete campoCadena2;
 	delete campoCadena3;

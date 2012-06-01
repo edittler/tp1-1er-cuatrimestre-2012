@@ -171,6 +171,18 @@ void kdNodoHojaTest() {
 	else {
 		cout << "fallo....eliminar 3ra clave, subflujo 2" << endl;
 	}
+
+	Clave* clave = new Clave("Linea1", 1000);
+	kdNodoHoja* nodoHoja = new kdNodoHoja(*clave);
+	int* tam = new int();
+	Byte* registro = nodoHoja->obtenerRegistro(tam);
+	clave->setLinea("linea3");
+	clave->inicializarConRegistro(registro);
+	if (dynamic_cast<Linea*>(clave->getCampo(0))->getDescripcion() == "linea3") {
+		cout << "Ok.....obtener - inicializar registro" << endl;
+	} else {
+		cout << "Fail...obtener - inicializar registro" << endl;
+	}
 }
 
 
