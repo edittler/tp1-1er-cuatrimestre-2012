@@ -56,21 +56,29 @@ ResultadoComparacion CampoCadena::comparar(Campo* otroCampo) {
  * posterior en el archivo.
  */
 Byte * CampoCadena::obtenerRegistro(int *tam){
-	Byte *sizeString = new Byte[sizeof(int)];
+	//Obtengo el tamaño de la cadena y lo serializo
 	int tamDescripcion = this->descripcion.size();
+	Byte *sizeString = new Byte[sizeof(int)];
 	*sizeString =  tamDescripcion;
+	// Serializo la descripcion
 	Byte *string = convertirAByte(this->descripcion);
-	int tamRegistro = 2*sizeof(int) + tamDescripcion;
+	// Defino el tamaño de 'sizeString'+'string' y lo serializo
+	int *tamRegistro = sizeof(int) + tamDescripcion;
 	Byte *sizeRegistro = new Byte[sizeof(int)];
-	*sizeRegistro = 4;
+	*sizeRegistro =  tamRegistro;
+	// Defino el tamaño total que va a tener la serializacion
+	*tam = sizeof(int)*3 + tamDescripcion;
+	// concateno los integer
 	Byte *tmp;
 	concatenar(&tmp, sizeRegistro, 4, sizeString, 4);
-	Byte *registro = new Byte[tamRegistro];
+	// concateno el tmp con la descripcion
+	Byte *registro;
 	concatenar(&registro, tmp, 8, string, tamDescripcion);
-	*tam = sizeof(int);
+	// elimino los punteros internos
 	delete sizeString;
 	delete string;
 	delete tmp;
+	//retorno
 	return registro;
 }
 

@@ -7,7 +7,9 @@
 
 #ifndef FECHA_H_
 #define FECHA_H_
-#include "iostream"
+
+#include <iostream>
+#include "../Byte.h"
 #include "ResultadoComparacion.h"
 
 using namespace std;
@@ -43,6 +45,12 @@ public:
 	 * Compara dos fechas devolviendo MENOR, IGUAL,
 	 */
 	ResultadoComparacion comparar(Fecha* otraFecha);
+
+	/* Funcion que genera la cadena de bytes para almacenar la Formacion. Debe recibir por
+	 * referencia un int que pueda almacenar el tamaño de la cadena, para su guardado
+	 * posterior en el archivo.
+	 */
+	Byte * obtenerRegistro (int *tam);
 
 };
 

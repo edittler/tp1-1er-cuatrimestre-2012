@@ -132,3 +132,20 @@ ResultadoComparacion Fecha::comparar(Fecha* otraFecha) {
 		return IGUAL;
 	}
 }
+
+Byte * Fecha::obtenerRegistro (int *tam){
+	/* Genero espacio para 2 integer. El primero almacena la longitud del registro que
+	 * contendrá la clase Formación y el segundo es el que almacenará el campo propiamente
+	 * dicho (el integer).
+	 */
+	Byte *size = new Byte[sizeof(int)];
+	*size = 4;
+	Byte *integer = new Byte[sizeof(int)];
+	*integer = this->fecha;
+	*tam = sizeof(int)*2; // tamaño total del registro a devolver
+	Byte *registro;
+	concatenar(&registro, size, 4, integer, 4);
+	delete size;
+	delete integer;
+	return registro;
+}
