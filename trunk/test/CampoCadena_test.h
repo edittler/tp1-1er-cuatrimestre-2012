@@ -75,7 +75,7 @@ void CampoCadenaTest() {
 		regDescripcion[i] = unaLinea[i];
 	}
 	Byte * regFormacion;
-	obtenerSuma(&regFormacion, regTamDescripcion, sizeof(int), regDescripcion, tamLinea);
+	concatenar(&regFormacion, regTamDescripcion, sizeof(int), regDescripcion, tamLinea);
 	// creo una linea vacia
 	Linea * linea = new Linea();
 	linea->inicializarConRegistro(regFormacion);
