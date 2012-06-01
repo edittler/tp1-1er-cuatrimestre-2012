@@ -2,6 +2,7 @@
 
 #include <fstream> // header para el manejo de archivos en c++
 #include <string>
+#include "Byte.h"
 
 using namespace std;
 
