@@ -51,6 +51,16 @@ void HorarioTest() {
 		cout << "Fail...comparacion igual" <<endl;
 	}
 
+	int* tam = new int();
+	Byte* registro = horario1->obtenerRegistro(tam);
+	horario1->setHorario(1330, 1500);
+	horario1->inicializarConRegistro(registro);
+	if (horario1->getIntervaloString() == "20:30 - 21:30") {
+		cout << "Ok.....obtener - inicializar registro" << endl;
+	} else {
+		cout << "Fail...obtener - inicializar registro" << endl;
+	}
+
 	delete horario1;
 	delete horario2;
 
