@@ -231,16 +231,41 @@ Campo* kdNodoHoja::getValorMedio(int dimension){
 	 * con la siguiente dimension.
 	 */
 	switch (dimension) {
-		case 0:
-			return new Linea(*dynamic_cast<Linea*>(this->listaClaves[posicionMedio]->getCampo(dimension)));
-		case 1:
-			return new Formacion(*dynamic_cast<Formacion*>(this->listaClaves[posicionMedio]->getCampo(dimension)));
-		case 2:
-			return new FranjaHoraria(*dynamic_cast<FranjaHoraria*>(this->listaClaves[posicionMedio]->getCampo(dimension)));
-		case 3:
-			return new Falla(*dynamic_cast<Falla*>(this->listaClaves[posicionMedio]->getCampo(dimension)));
-		case 4:
-			return new Accidente(*dynamic_cast<Accidente*>(this->listaClaves[posicionMedio]->getCampo(dimension)));
+		case 0: {
+			Linea* linea = dynamic_cast<Linea*>(this->listaClaves[posicionMedio]->getCampo(dimension));
+			if (!linea) {
+				break;
+			}
+			return new Linea(*linea);
+		}
+		case 1: {
+			Formacion* formacion = dynamic_cast<Formacion*>(this->listaClaves[posicionMedio]->getCampo(dimension));
+			if (!formacion) {
+				break;
+			}
+			return new Formacion(*formacion);
+		}
+		case 2: {
+			FranjaHoraria* franja = dynamic_cast<FranjaHoraria*>(this->listaClaves[posicionMedio]->getCampo(dimension));
+			if (!franja) {
+				break;
+			}
+			return new FranjaHoraria(*franja);
+		}
+		case 3: {
+			Falla* falla = dynamic_cast<Falla*>(this->listaClaves[posicionMedio]->getCampo(dimension));
+			if (!falla) {
+				break;
+			}
+			return new Falla(*falla);
+		}
+		case 4: {
+			Accidente* accidente = dynamic_cast<Accidente*>(this->listaClaves[posicionMedio]->getCampo(dimension));
+			if (!accidente) {
+				break;
+			}
+			return new Accidente(*accidente);
+		}
 	}
 	return NULL;
 }
