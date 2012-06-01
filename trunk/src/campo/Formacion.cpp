@@ -57,12 +57,14 @@ Byte * Formacion::obtenerRegistro (int *tam){
 	 * contendrá la clase Formación y el segundo es el que almacenará el campo propiamente
 	 * dicho (el integer).
 	 */
-	Byte *size = new Byte[sizeof(int)];
-	*size = 4;
+	// serializo el numero de formacion
 	Byte *integer = new Byte[sizeof(int)];
 	*integer = this->numero;
+	// serializo la cantidad de bytes que compone el campo.
+	Byte *size = new Byte[sizeof(int)];
+	*size = 4;
 	*tam = sizeof(int)*2; // tamaño total del registro a devolver
-	Byte *registro = new Byte[*tam];
+	Byte *registro;
 	concatenar(&registro, size, 4, integer, 4);
 	delete size;
 	delete integer;

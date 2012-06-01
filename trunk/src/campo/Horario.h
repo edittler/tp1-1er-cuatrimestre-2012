@@ -8,8 +8,9 @@
 #ifndef HORARIO_H_
 #define HORARIO_H_
 
+#include <iostream>
+#include "../Byte.h"
 #include "ResultadoComparacion.h"
-#include "iostream"
 
 using namespace std;
 using namespace comparacion;
@@ -35,6 +36,12 @@ public:
 	void setHorario(int comienzo, int fin);
 
 	ResultadoComparacion comparar(Horario* otroHorario);
+
+	/* Funcion que genera la cadena de bytes para almacenar la Formacion. Debe recibir por
+	 * referencia un int que pueda almacenar el tamaño de la cadena, para su guardado
+	 * posterior en el archivo.
+	 */
+	Byte * obtenerRegistro (int *tam);
 
 };
 
