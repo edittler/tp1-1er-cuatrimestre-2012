@@ -149,3 +149,8 @@ Byte * Fecha::obtenerRegistro (int *tam){
 	delete integer;
 	return registro;
 }
+
+void Fecha::inicializarConRegistro(Byte * registro) {
+	// dado que fecha es un numero, la asignacion es directa
+	fecha = *registro;
+}

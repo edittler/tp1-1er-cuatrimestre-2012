@@ -112,3 +112,17 @@ Byte * Horario::obtenerRegistro (int *tam){
 	delete tmp;
 	return registro;
 }
+
+void Horario::inicializarConRegistro(Byte * registro) {
+	//obtengo la hora comienzo
+	Byte * regHoraComienzo;
+	int inicio = 0;
+	int tamReg = sizeof(int);
+	obtenerPorcion(registro, &regHoraComienzo, inicio, tamReg);
+	horarioComienzo = *regHoraComienzo;
+	//obtengo la hora final
+	inicio += tamReg;
+	Byte * regHoraFinal;
+	obtenerPorcion(registro, &regHoraFinal, inicio, tamReg);
+	horarioFin = *regHoraFinal;
+}
