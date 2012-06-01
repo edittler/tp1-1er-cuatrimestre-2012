@@ -61,10 +61,18 @@ void FranjaHorariaTest() {
 
 
 	int* tam = new int();
+	franja3->setFecha(new Fecha(11, 11, 2012));
 	Byte* registro = franja3->obtenerRegistro(tam);
 	franja3->setFecha(new Fecha(30, 5, 2015));
-	franja3->inicializarConRegistro(registro);
-	if (franja3->getFecha()->comparar(fecha1) == IGUAL) {
+	//ignoro primer 4 bytes.
+	Byte * regTamano;
+	Byte * regTemp;
+	obtenerPorcion(registro, &regTamano, 0, sizeof(int));
+	int tamRegTamano = *regTamano;
+	obtenerPorcion(registro, &regTemp, sizeof(int), tamRegTamano);
+	//recupero registro ignorando primeros 4 bytes.
+	franja3->inicializarConRegistro(regTemp);
+	if (franja3->getFecha()->comparar(new Fecha(11, 11, 2012)) == IGUAL) {
 		cout << "Ok.....obtener - inicializar registro" << endl;
 	} else {
 		cout << "Fail...obtener - inicializar registro" << endl;

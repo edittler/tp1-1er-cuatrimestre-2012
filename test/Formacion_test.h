@@ -58,8 +58,15 @@ void FormacionTest() {
 	Formacion* formacion4 = new Formacion(10);
 	Byte* registro = formacion4->obtenerRegistro(tam);
 	formacion4->setNumeroFormacion(3);
-	formacion4->inicializarConRegistro(registro);
-	if ((registro[0] == 0) && (registro[1] == 0) && (registro[2] == 0) && (registro[3] == 4)) {
+	//ignoro primer 4 bytes.
+	Byte * regTamano;
+	Byte * regTemp;
+	obtenerPorcion(registro, &regTamano, 0, sizeof(int));
+	int tamRegTamano = *regTamano;
+	obtenerPorcion(registro, &regTemp, sizeof(int), tamRegTamano);
+	//recupero registro ignorando primeros 4 bytes.
+	formacion4->inicializarConRegistro(regTemp);
+	if (formacion4->getNumeroFormacion() == 10) {
 		cout << "Ok.....obtener - inicializar registro" << endl;
 	} else {
 		cout << "Fail...obtener - inicializar registro" << endl;
