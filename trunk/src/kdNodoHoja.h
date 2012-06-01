@@ -23,7 +23,7 @@ private:
 	Clave** listaClaves; // Contenedor de las claves
 
 public:
-	const static int capacidadNodo = 4; // Define el tamaño del nodo
+	const static int capacidadNodo = 2; //TODO cambiar a 2// Define el tamaño del nodo
 	/*
 	 * Constructor de la clase NodoHoja
 	 * Inicializa la lista con capacidad para 4 claves, pero la deja vacía.
