@@ -190,3 +190,40 @@ Byte * kdNodoInterno::obtenerRegistro (int *tam){
 	}
 	return registro;
 }
+
+void kdNodoInterno::inicializarConRegistro(Byte * registro) {
+	int inicio = 0;
+	int tamReg = sizeof(bool);
+	Byte * regIzqEsHoja;
+	// obtengo si el hijo izq es hoja
+	obtenerPorcion(registro, &regIzqEsHoja, inicio, tamReg);
+	inicio += tamReg;
+	hijoIzqEsHoja = *regIzqEsHoja;
+	// obtengo la posicion del hijo izq
+	tamReg = sizeof(int);
+	Byte *regPosHijoIzq;
+	obtenerPorcion(resultado, &regPosHijoIzq, inicio, tamReg);
+	inicio += tamReg;
+	posBloqueIzq = *regPosHijoIzq;
+	// obtengo si el hijo der es hoja
+	tamReg = sizeof(bool);
+	Byte * regDerEsHoja;
+	obtenerPorcion(resultado, &regDerEsHoja, inicio, tamReg);
+	inicio += tamReg;
+	hijoDerEsHoja = *regDerEsHoja;
+	// obtengo la posicion del hijo der
+	tamReg = sizeof(int);
+	Byte * regPosHijoDer;
+	obtenerPorcion(resultado, &regPosHijoDer, inicio, tamReg);
+	inicio += tamReg;
+	posBloqueDer = *regPosHijoDer;
+	// obtengo el tam del campo
+	Byte * regTamCampo;
+	obtenerPorcion(resultado, &regTamCampo, inicio, tamReg);
+	inicio += tamReg;
+	int tamCampo = *regTamCampo;
+	// obtengo el campo
+	Byte * regCampo;
+	obtenerPorcion(resultado, &regCampo, inicio, tamCampo);
+
+}

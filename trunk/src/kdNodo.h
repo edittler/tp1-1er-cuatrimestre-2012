@@ -36,6 +36,8 @@ public:
 	 */
 	virtual Byte * obtenerRegistro (int *tam) = 0;
 
+	virtual void inicializarConRegistro(Byte * registro) = 0;
+
 };
 
 #endif /* NODO_H_ */
