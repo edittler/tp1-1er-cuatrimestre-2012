@@ -15,7 +15,6 @@
 #include "Clave_test.h"
 #include "kdNodoHoja_test.h"
 #include "ArbolKD_test.h"
-#include "aleprueba.h"
 
 int main() {
 

@@ -9,6 +9,7 @@
 #define FORMACION_H_
 
 #include "Campo.h"
+#include "../Byte.h"
 
 class Formacion: public Campo {
 private:
@@ -44,6 +45,12 @@ public:
 	 * y 1 si el campo es mayor que el pasado por parámetro
 	 */
 	ResultadoComparacion comparar(Campo* otroCampo);
+
+	/* Funcion que genera la cadena de bytes para almacenar la Formacion. Debe recibir por
+	 * referencia un int que pueda almacenar el tamaño de la cadena, para su guardado
+	 * posterior en el archivo.
+	 */
+	Byte * obtenerRegistro (int *tam);
 };
 
 #endif /* FORMACION_H_ */
