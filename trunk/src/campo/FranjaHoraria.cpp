@@ -85,6 +85,37 @@ ResultadoComparacion FranjaHoraria::comparar(Campo* otroCampo){
 	}
 }
 
+/* Funcion que genera la cadena de bytes para almacenar la FranjaHoraria. Debe recibir por
+ * referencia un int que pueda almacenar el tamaño de la cadena, para su guardado
+ * posterior en el archivo.
+ */
+Byte * FranjaHoraria::obtenerRegistro (int *tam){
+	// Obtengo la serializacion de la fecha y su tamaño
+	int tamFecha;
+	Byte *regFecha = this->fecha->obtenerRegistro(&tamFecha);
+	// Obtengo la serialización de la hora y su tamaño
+	int tamHora;
+	Byte *regHora = this->horario->obtenerRegistro(&tamHora);
+	// Obtengo el tamaño de ambos campos y los concateno
+	int tamReg = tamFecha + tamHora;
+	Byte *tmp;
+	concatenar(&tmp, regFecha, tamFecha, regHora, tamHora);
+	delete regFecha;
+	delete regHora;
+
+	// Calculo el tamaño total de la serializacion, y concateno junto con el tamaño de los campos
+	Byte *tamRegistro = new Byte[sizeof(int)];
+	*tamRegistro = tamReg;
+	*tam = tamReg + sizeof(int);
+	Byte *registro;
+	concatenar(&registro, tamRegistro, sizeof(int), tmp, tamReg);
+	delete tmp;
+	delete tamRegistro;
+	return registro;
+
+	return NULL;
+}
+
 void FranjaHoraria::inicializarConRegistro(Byte *) {
 	//TODO implementar
 }

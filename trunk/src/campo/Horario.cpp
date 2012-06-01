@@ -104,7 +104,7 @@ Byte * Horario::obtenerRegistro (int *tam){
 	 * concatenacion.
 	 */
 	Byte *size = new Byte[sizeof(int)];
-	*size = sizeof(int)*2;
+	*size = sizeof(int)*2; // tamaño que tiene solo el campo Horario
 	*tam = sizeof(int)*3; // Almaceno el tamaño total para que lo utilize la clase externa.
 	Byte *registro = new Byte[*tam];
 	concatenar(&registro, size, sizeof(int), tmp, sizeof(int)*2);

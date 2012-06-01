@@ -9,8 +9,8 @@
 #ifndef FRANJAHORARIA_H_
 #define FRANJAHORARIA_H_
 
+#include <iostream>
 #include "Campo.h"
-#include "iostream"
 #include "Fecha.h"
 #include "Horario.h"
 
@@ -53,6 +53,12 @@ public:
 	 * y 1 si el campo es mayor que el pasado por parámetro
 	 */
 	ResultadoComparacion comparar(Campo* otroCampo);
+
+	/* Funcion que genera la cadena de bytes para almacenar la FranjaHoraria. Debe recibir por
+	 * referencia un int que pueda almacenar el tamaño de la cadena, para su guardado
+	 * posterior en el archivo.
+	 */
+	Byte * obtenerRegistro (int *tam);
 
 	void inicializarConRegistro(Byte *);
 };
