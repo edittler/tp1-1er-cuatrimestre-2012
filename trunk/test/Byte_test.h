@@ -13,30 +13,25 @@
 #include "../src/Byte.h"
 
 using namespace std;
-/*
+
 void ByteTest(){
 
 	cout << "Prueba Unitaria: Byte" << endl;
 
-	Byte *cadena1 = new Byte(20);
-	for(int i = 0; i < 20; i++){
-		if ((i % 2) == 0) cadena1[i] = 'a';
-		else cadena1[i] = 'b';
-	}
-	Byte *cadena2 = NULL; //puntero donde se almacenará el resultado
-	obtenerPorcion(cadena1, cadena2, 0, 10);
-	bool esIgual = true;
-	int i=0;
-	while (esIgual && (i < 10)){
-		if (cadena1[i] != cadena2[i])
-			esIgual = false;
-	}
+	Byte a[] = "pajaro";
+	Byte b[] = "pepe";
+	Byte *c;
+	obtenerSuma(&c, a, 6, b, 5);
+	cout << a << endl;
+	cout << b << endl;
+	cout << c << endl;
 
-	if (esIgual) {
-		cout << "Ok.....obtener porcion" << endl;
-	} else {
-		cout << "Fail...obtener porcion" << endl;
-	}
+	Byte *d;
+	obtenerPorcion(c, &d, 5, 3);
+	cout << d << endl;
+
+	delete c;
+	delete d;
 }
-*/
+
 #endif /* BYTE_TEST_H_ */
