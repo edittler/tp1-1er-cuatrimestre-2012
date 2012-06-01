@@ -103,6 +103,8 @@ public:
 	 */
 	virtual Byte * obtenerRegistro (int *tam);
 
+	void inicializarConRegistro(Byte * registro);
+
 private:
 	/*
 	 * Metodo privado que ordena las claves del Nodo según la dimension con la que se

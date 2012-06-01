@@ -332,6 +332,36 @@ Byte * kdNodoHoja::obtenerRegistro (int *tam){
 	return registro;
 }
 
+void kdNodoHoja::inicializarConRegistro(Byte * registro) {
+	int tamReg = sizeof(int);
+	int inicio = 0;
+	Byte * regCantClaves;
+	int cantClavesLeidas;
+	Byte * regTamClave;
+	int tamClave;
+	Byte *regClave;
+	//obtengo la cantidad de claves
+	obtenerPorcion(registro, &regCantClaves, inicio, tamReg);
+	inicio += tamReg;
+	cantClavesLeidas = *regCantClaves;
+	int i;
+	for (i=0; i<cantClavesLeidas; i++) {
+		tamReg = sizeof(int);
+		// obtengo el tam de la clave
+		obtenerPorcion(registro, &regTamClave, inicio, tamReg);
+		inicio += tamReg;
+		tamClave = *regTamClave;
+		tamReg = tamClave;
+		// obtengo el registro clave
+		obtenerPorcion(registro, &regClave, inicio, tamReg);
+		inicio += tamReg;
+		Clave * clave = new Clave();
+		clave->inicializarConRegistro(regClave);
+		this->listaClaves[i] = clave;
+		this->cantClaves++;
+	}
+}
+
 /*
  * Metodo privado que ordena las claves del Nodo según la dimension con la que se
  * quiere ordenar.
