@@ -11,6 +11,7 @@
 #include "../src/campo/Accidente.h"
 #include "../src/campo/Linea.h"
 #include "../src/campo/Falla.h"
+#include "../src/Byte.h"
 
 void CampoCadenaTest() {
 	std::cout << "Prueba Unitaria: Clase CampoCadena." << endl;
@@ -59,6 +60,31 @@ void CampoCadenaTest() {
 		std::cout << "Ok.....comparacion no valida" << endl;
 	} else {
 		std::cout << "Fail...comparacion no valida" << endl;
+	}
+
+	cout << "inicializarConRegistro" << endl;
+	// seteo un registro de bytes que la clase linea deberia poder decodificar
+	string unaLinea = "Sarmiento";
+	int tamLinea = unaLinea.size();
+	Byte * regTamDescripcion = new Byte[sizeof(int)];
+	// guardo en bytes el tam del string
+	*regTamDescripcion = tamLinea;
+	Byte * regDescripcion = new Byte[tamLinea];
+	int i;
+	for (i=0; i<tamLinea; i++) {
+		regDescripcion[i] = unaLinea[i];
+	}
+	Byte * regFormacion;
+	obtenerSuma(&regFormacion, regTamDescripcion, sizeof(int), regDescripcion, tamLinea);
+	// creo una linea vacia
+	Linea * linea = new Linea();
+	linea->inicializarConRegistro(regFormacion);
+	string otraLinea = linea->getDescripcion();
+	if (unaLinea == otraLinea) {
+		cout << "ok...inicializarConRegistro" << endl;
+	}
+	else {
+		cout << "fallo...inicializarConRegistro" << " devolvio: " << otraLinea << " en vez de: " << unaLinea << endl;
 	}
 
 	delete campoCadena1;
