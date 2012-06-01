@@ -265,11 +265,11 @@ Byte * Clave::obtenerRegistro (int *tam){
 			Byte *temp;
 			concatenar(&temp, tmp, tamClave, regCampo, tamCampo);
 			tamClave += tamCampo;
-			tmp=temp;
-			delete temp;
+			delete tmp; // Elimino temporal viejo
+			tmp = temp; // asigno el nuevo
+			// Luego de la concatenacion y antes de finalizar la iteracion, elimino regCampo.
+			delete regCampo;
 		}
-		// Luego de la concatenacion y antes de finalizar la iteracion, elimino regCampo.
-		delete regCampo;
 	}
 	//Luego de finalizado el for, debo serializar el tamaño de la clave
 	Byte * size = new Byte[sizeof(int)];
