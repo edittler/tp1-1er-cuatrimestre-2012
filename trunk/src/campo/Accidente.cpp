@@ -24,6 +24,3 @@ Accidente::~Accidente() {
 
 }
 
-Accidente::inicializarConRegistro(Byte * registro) : CampoCadena(registro) {
-
-}

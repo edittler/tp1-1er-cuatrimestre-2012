@@ -10,7 +10,7 @@
 
 #include "iostream"
 #include "ResultadoComparacion.h"
-#include "Byte.h"
+#include "../Byte.h"
 
 using namespace comparacion;
 

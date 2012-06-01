@@ -24,6 +24,4 @@ Falla::~Falla() {
 
 }
 
-Falla::inicializarConRegistro(Byte * registro) : CampoCadena(registro) {
 
-}

@@ -23,6 +23,4 @@ Linea::~Linea() {
 
 }
 
-Linea::inicializarConRegistro(Byte * registro) : CampoCadena(registro) {
 
-}
