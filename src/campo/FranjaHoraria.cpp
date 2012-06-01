@@ -21,8 +21,17 @@ FranjaHoraria::FranjaHoraria(FranjaHoraria& franja) {
 }
 
 FranjaHoraria::FranjaHoraria(Fecha* fecha, Horario* horario) {
-	this->fecha = new Fecha(*fecha);
-	this->horario = new Horario(*horario);
+	if (fecha != NULL) {
+		this->fecha = new Fecha(*fecha);
+	} else {
+		this->fecha = new Fecha();
+	}
+
+	if (horario != NULL) {
+		this->horario = new Horario(*horario);
+	} else {
+		this->horario = new Horario();
+	}
 }
 
 FranjaHoraria::~FranjaHoraria() {
