@@ -52,6 +52,8 @@ public:
 	 */
 	Byte * obtenerRegistro (int *tam);
 
+	void inicializarConRegistro(Byte *);
+
 };
 
 #endif /* FECHA_H_ */

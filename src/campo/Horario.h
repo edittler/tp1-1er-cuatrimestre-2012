@@ -43,6 +43,8 @@ public:
 	 */
 	Byte * obtenerRegistro (int *tam);
 
+	void inicializarConRegistro(Byte *);
+
 };
 
 #endif /* HORARIO_H_ */
