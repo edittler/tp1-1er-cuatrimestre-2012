@@ -25,11 +25,9 @@ int ArbolKD::insertar(Clave* nuevaClave) {
 
 		switch (resultado) {
 			case 2: {
-				kdNodoHoja* nuevoHoja = new kdNodoHoja();
 				kdNodoInterno* nuevoInterno = new kdNodoInterno();
-				this->actualizarPorDesborde(nuevoInterno, nodoRaiz, nuevoHoja, 1);
+				this->actualizarPorDesborde(nuevoInterno, nodoRaiz, 1);
 				this->raiz = nuevoInterno;
-				//TODO Grabar nodoRaiz, this->raiz == nuevoInterno, nuevoHoja.
 				return 1;
 			}
 			case 1:
@@ -38,17 +36,6 @@ int ArbolKD::insertar(Clave* nuevaClave) {
 			default:
 				return resultado;
 		}
-
-//		if (resultado == 2) { //nodo raiz desbordado
-//			kdNodoHoja* nuevoHoja = new kdNodoHoja();
-//			kdNodoInterno* nuevoInterno = new kdNodoInterno();
-//			this->actualizarPorDesborde(nuevoInterno, nodoRaiz, nuevoHoja, 1);
-//			this->raiz = nuevoInterno;
-//			//TODO Grabar nodoRaiz, this->raiz == nuevoInterno, nuevoHoja.
-//			return 1;
-//		}
-//		return resultado;
-
 	} else {
 		resultado = this->insertarRecursivo(this->raiz, nuevaClave, 1);
 		if (resultado == 1) {
@@ -80,13 +67,13 @@ int ArbolKD::insertarRecursivo(kdNodo* nodo, Clave* clave, int iteracion) {
 		case MAYOR:
 			//TODO Aca deberia cargar nodo hijo derecho y pasarlo como parametro
 			nodoHijo = nodoInterno->getHijoDer();
-			resultado = this->insertarRecursivo(nodoHijo, clave, ++iteracion);
+			resultado = this->insertarRecursivo(nodoHijo, clave, iteracion + 1);
 			porDerecha = true;
 			break;
 		case MENOR:
 			//TODO Aca deberia cargar nodo hijo Izquierdo y pasarlo como parametro
 			nodoHijo = nodoInterno->getHijoIzq();
-			resultado = this->insertarRecursivo(nodoHijo, clave, ++iteracion);
+			resultado = this->insertarRecursivo(nodoHijo, clave, iteracion + 1);
 			porDerecha = false;
 			break;
 		case COMPARACION_NO_VALIDA:
@@ -99,28 +86,20 @@ int ArbolKD::insertarRecursivo(kdNodo* nodo, Clave* clave, int iteracion) {
 		case 2: {//el nodo se desbordo
 
 			kdNodoHoja* nodoHojaDesbordado = dynamic_cast<kdNodoHoja*>(nodoHijo);
-
-			//creo nuevo nodo hoja. TODO pregunta: Aca se asignaria el nuevo ID???
-			kdNodoHoja* nuevoNodoHojaDerecha = new kdNodoHoja();
 			kdNodoInterno* nuevoInterno = new kdNodoInterno();
 
-			kdNodo* nodoSigueDesborde = this->actualizarPorDesborde(nuevoInterno, nuevoNodoHojaDerecha, nodoHojaDesbordado, iteracion);
+			this->actualizarPorDesborde(nuevoInterno, nodoHojaDesbordado, iteracion);
 
 			//Actualiza referencia a nuevo nodo interno del padre.
-			//TODO set ID/Ref_a_bloque
 			if (porDerecha) {
+				//TODO set ID-Ref_a_bloque
 				nodoInterno->setHijoDer(nuevoInterno);
 			} else {
+				//TODO set ID-Ref_a_bloque
 				nodoInterno->setHijoIzq(nuevoInterno);
 			}
+			//TODO grabar nodoInterno.
 
-			//TODO fin de insercion, grabar nuevoNodoHojaDerecha, nodoHojaDesbordado.
-
-			//si algun nodo hijo sigue con overflow
-			//TODO ver que se cumpla recursividad.
-			if (!nodoSigueDesborde) {
-//				return this->insertarRecursivo(nodoSigueDesborde, clave, ++iteracion);
-			}
 			return 1;
 		}
 		default:
@@ -132,7 +111,9 @@ int ArbolKD::insertarRecursivo(kdNodo* nodo, Clave* clave, int iteracion) {
 	}
 }
 
-kdNodo* ArbolKD::actualizarPorDesborde(kdNodoInterno* nuevoInterno, kdNodoHoja* hojaDesbordado, kdNodoHoja* nuevoHojaDerecha, int iteracion) {
+void ArbolKD::actualizarPorDesborde(kdNodoInterno* nuevoInterno, kdNodoHoja* hojaDesbordado, int iteracion) {
+
+	kdNodoHoja* nuevoHojaDerecha = new kdNodoHoja();
 
 	//obtengo la dimension del campo por la cual se debe ordenar.
 	int dimensionReferencia = this->roundRobin(iteracion);
@@ -156,9 +137,6 @@ kdNodo* ArbolKD::actualizarPorDesborde(kdNodoInterno* nuevoInterno, kdNodoHoja* 
 		}
 	}
 
-	cout << " ---------- debug" << endl;
-	cout << "valorMedio: " << valorMedio << endl;
-
 	//Creo nuevo nodo Interno, seteo sus nodo hijos.
 	nuevoInterno->setAtributo(valorMedio);
 	//TODO set ID/Ref_a_bloque
@@ -166,12 +144,20 @@ kdNodo* ArbolKD::actualizarPorDesborde(kdNodoInterno* nuevoInterno, kdNodoHoja* 
 	nuevoInterno->setHijoIzq(hojaDesbordado);
 
 	//valida si algun hijo sigue desborado
+	kdNodoInterno* nuevoNodoInterno = new kdNodoInterno();
 	if (hojaDesbordado->tieneSobreflujo()) {
-		return hojaDesbordado;
+		this->actualizarPorDesborde(nuevoNodoInterno, hojaDesbordado, iteracion + 1);
+		//TODO set ID-Ref_a_bloque
+		nuevoInterno->setHijoIzq(nuevoNodoInterno);
+		//TODO grabar nuevoInterno, nuevoHojaDerecha
 	} else if (nuevoHojaDerecha->tieneSobreflujo()) {
-		return nuevoHojaDerecha;
+		this->actualizarPorDesborde(nuevoNodoInterno, nuevoHojaDerecha, iteracion + 1);
+		//TODO set ID-Ref_a_bloque
+		nuevoInterno->setHijoDer(nuevoNodoInterno);
+		//TODO grabar nuevoInterno, hojaDesbordado
+	} else {
+	//TODO grabar hojaDesbordado, nuevoInterno, nuevoHojaDerecha
 	}
-	return NULL;
 }
 
 Clave* ArbolKD::busquedaPuntual(Clave* clave) {
