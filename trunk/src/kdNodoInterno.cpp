@@ -185,8 +185,37 @@ Byte * kdNodoInterno::obtenerRegistro (int *tam){
 		concatenar(&tmpFinal, campo, tamCampo, tmpHijos, tamDataHijo*2);
 		delete campo;
 		delete tmpHijos;
-		*tam = tamCampo + tamDataHijo*2; // tamaño completo del registro
-		registro = tmpFinal;
+		/* Ahora debo almacenar metadata que especifique que tipo de campo es en un
+		 * integer. Si es linea 1, formacion 2, franjahoraria 3, falla 4, accidente 5.
+		 */
+		Byte *tipoCampo = new Byte [sizeof(int)];
+		Campo* unCampo = dynamic_cast<Linea*>(this->atributo);
+		if (unCampo!=NULL) {
+			*tipoCampo = 1;
+		} else {
+			unCampo = dynamic_cast<Formacion*>(this->atributo);
+			if (unCampo!=NULL){
+				*tipoCampo = 2;
+			} else {
+				unCampo = dynamic_cast<FranjaHoraria*>(this->atributo);
+				if (unCampo!=NULL){
+					*tipoCampo = 3;
+				} else {
+					unCampo = dynamic_cast<Falla*>(this->atributo);
+					if (unCampo!= NULL){
+						*tipoCampo = 4;
+					} else {
+						*tipoCampo = 5;
+					}
+				}
+			}
+		}
+		//Ahora concateno el tipo de campo con lo demas
+		int tamRegParcial = tamCampo + tamDataHijo*2;
+		concatenar(&registro, tipoCampo, sizeof(int), tmpFinal, tamRegParcial);
+		// actualizo el tamaño del registro
+		*tam = tamRegParcial + sizeof(int);
+		delete tmpFinal;
 	}
 	return registro;
 }
