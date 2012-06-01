@@ -281,3 +281,53 @@ Byte * Clave::obtenerRegistro (int *tam){
 	delete tmp;
 	return registro;
 }
+
+void Clave::inicializarConRegistro(Byte * registro) {
+	int inicio = 0;
+	int tamReg;
+	int tamRegCampo;
+	Byte * regTamCampo;
+	Byte * regCampo;
+	int i;
+	for (i=0; i<cantDimensiones; i++) {
+		tamReg = sizeof(int);
+		// obtengo el tamanio del registro del campo
+		obtenerPorcion(registro, &regTamCampo, inicio, tamReg);
+		tamRegCampo = *regTamCampo;
+		inicio += tamReg;
+		// el campo es nulo
+		if (tamRegCampo == 0) {
+			listaCampos[i] = NULL;
+		}
+		// el campo no es nulo lo instancio
+		else {
+			obtenerPorcion(registro, &regCampo, inicio, tamRegCampo);
+			inicio += tamRegCampo;
+			if (i==0) {
+				Linea * linea = new Linea();
+				linea->inicializarConRegistro(regCampo);
+				listaCampos[i] = linea;
+			}
+			if (i==1) {
+				Formacion * formacion = new Formacion();
+				formacion->inicializarConRegistro(regCampo);
+				listaCampos[i] = formacion;
+			}
+			if (i==2) {
+				FranjaHoraria * franja = new FranjaHoraria();
+				franja->inicializarConRegistro(regCampo);
+				listaCampos[i] = franja;
+			}
+			if (i==3) {
+				Falla * falla = new Falla();
+				falla->inicializarConRegistro(regCampo);
+				listaCampos[i] = falla;
+			}
+			if (i==4) {
+				Accidente * accidente = new Accidente();
+				accidente->inicializarConRegistro(regCampo);
+				listaCampos[i] = accidente;
+			}
+		}
+	}
+}
