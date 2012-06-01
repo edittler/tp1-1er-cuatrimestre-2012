@@ -154,6 +154,18 @@ void ArbolKD::actualizarPorDesborde(kdNodoInterno* nuevoInterno, kdNodoHoja* hoj
 		//TODO grabar nuevoInterno, hojaDesbordado
 	} else {
 	//TODO grabar hojaDesbordado, nuevoInterno, nuevoHojaDerecha
+	//ESTA SECCION DE ACA ES FUNDAMENTAL!!!!!
+	// CUANDO LOS DEMAS METODOS VUELVAN DEL DESBORDE YA CONOCEN SUS POSICIONES DE ESCRITURA POR ESTA SECCION
+	//int tamReg;
+	//Byte * regHojaDesbordado = hojaDesbordado->obtenerRegistro(&tamReg);
+	//PosBloque posHojaDesbordado = this->archivoNodosHoja.escribir(regHojaDesbordado, tamReg);
+	//Byte * regNuevoHojaDerecha = nuevoHojaDerecha->obtenerRegistro(&tamReg);
+	//PosBloque posNuevoHojaDerecha = this->archivoNodosHoja.escribir(regNuevoHojaDerecha, tamReg);
+	//nuevoInterno->setHijoIzqEsHoja(true);
+	//nuevoInterno->setPosHijoIzq(posHojaDesbordado);
+	//nuevoInterno->setHijoDerEsHoja(true);
+	//nuevoInterno->setPosHijoDer(posNuevoHojaDerecha);
+	//nuevoInterno NO SE ESCRIBE LO TIENE QUE HACER EL INVOCADOR, PARA QUE LUEGO ALMACENA LA REF DE ESCRITURA
 	}
 }
 
