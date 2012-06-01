@@ -13,7 +13,7 @@
 #include "../src/Byte.h"
 
 using namespace std;
-
+/*
 void ByteTest(){
 
 	cout << "Prueba Unitaria: Byte" << endl;
@@ -38,5 +38,5 @@ void ByteTest(){
 		cout << "Fail...obtener porcion" << endl;
 	}
 }
-
+*/
 #endif /* BYTE_TEST_H_ */
