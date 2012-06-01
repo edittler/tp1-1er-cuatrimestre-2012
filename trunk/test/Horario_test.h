@@ -1,4 +1,5 @@
 #include "../src/campo/Horario.h"
+#include "../src/Byte.h"
 
 void HorarioTest() {
 	cout << "Prueba unitaria: Clase Horario" <<endl;
@@ -53,8 +54,15 @@ void HorarioTest() {
 
 	int* tam = new int();
 	Byte* registro = horario1->obtenerRegistro(tam);
+	// correcion
+	Byte * regTamReg;
+	obtenerPorcion(registro, &regTamReg, 0, 4);
+	int tamReg = *regTamReg;
+	Byte * regHorario;
+	obtenerPorcion(registro, &regHorario, 4, tamReg);
+
 	horario1->setHorario(1330, 1500);
-	horario1->inicializarConRegistro(registro);
+	horario1->inicializarConRegistro(regHorario);
 	if (horario1->getIntervaloString() == "20:30 - 21:30") {
 		cout << "Ok.....obtener - inicializar registro" << endl;
 	} else {
