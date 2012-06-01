@@ -37,10 +37,11 @@ void concatenar(Byte ** resultado, Byte * registro1, int tam1, Byte* registro2, 
 
 Byte * convertirAByte(string unString){
 	int tam = unString.size();
-	Byte * bytes = new Byte[tam];
+	Byte * bytes = new Byte[tam+1];
 	int i;
 	for (i=0; i<tam; i++) {
 		bytes[i] = unString[i];
 	}
+	bytes[tam] = '\0';
 	return bytes;
 }

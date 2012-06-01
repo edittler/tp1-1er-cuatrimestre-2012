@@ -61,15 +61,17 @@ void CampoCadenaTest() {
 	cout << "inicializarConRegistro" << endl;
 	// seteo un registro de bytes que la clase linea deberia poder decodificar
 	string unaLinea = "Sarmiento";
-	int tamLinea = unaLinea.size();
+	int tamLinea = unaLinea.size()+1;
 	Byte * regTamDescripcion = new Byte[sizeof(int)];
 	// guardo en bytes el tam del string
 	*regTamDescripcion = tamLinea;
-	Byte * regDescripcion = new Byte[tamLinea];
-	int i;
-	for (i=0; i<tamLinea; i++) {
-		regDescripcion[i] = unaLinea[i];
-	}
+	Byte * regDescripcion = convertirAByte(unaLinea);
+//	Byte * regDescripcion = new Byte[tamLinea];
+//	int i;
+//	for (i=0; i<tamLinea; i++) {
+//		regDescripcion[i] = unaLinea[i];
+//	}
+	//regDescripcion[tamLinea] = '\0';
 	Byte * regFormacion;
 	concatenar(&regFormacion, regTamDescripcion, sizeof(int), regDescripcion, tamLinea);
 	// creo una linea vacia
@@ -86,7 +88,12 @@ void CampoCadenaTest() {
 	int* tam = new int();
 	Byte* registro = campoCadena4->obtenerRegistro(tam);
 	campoCadena4->setDescripcion("maaama");
-	campoCadena4->inicializarConRegistro(registro);
+	Byte * regTamCampCad4;
+	Byte * regCampCad4;
+	obtenerPorcion(registro, &regTamCampCad4, 0, sizeof(int));
+	int tamCampCad4 = *regTamCampCad4;
+	obtenerPorcion(registro, &regCampCad4, sizeof(int), tamCampCad4);
+	campoCadena4->inicializarConRegistro(regCampCad4);
 	if (campoCadena4->getDescripcion() == "Incendio.") {
 		cout << "Ok.....obtener - inicializar registro" << endl;
 	} else {

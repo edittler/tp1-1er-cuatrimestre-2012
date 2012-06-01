@@ -37,7 +37,7 @@ void CampoCadena::setDescripcion(string descripcion) {
  */
 Byte * CampoCadena::obtenerRegistro(int *tam){
 	//Obtengo el tamaño de la cadena y lo serializo
-	int tamDescripcion = this->descripcion.size();
+	int tamDescripcion = this->descripcion.size()+1; //agrego 1 para incluir el caracter nulo
 	Byte *sizeString = new Byte[sizeof(int)];
 	*sizeString =  tamDescripcion;
 	// Serializo la descripcion
