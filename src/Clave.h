@@ -116,6 +116,8 @@ public:
 	 */
 	Byte * obtenerRegistro (int *tam);
 
+	void inicializarConRegistro(Byte * registro);
+
 };
 
 #endif /* CLAVE_H_ */
