@@ -301,11 +301,10 @@ Clave* kdNodoHoja::getClave(Clave clave){
  */
 Byte * kdNodoHoja::obtenerRegistro (int *tam){
 	// serializo la cantidad de claves que contiene el nodo
-	Byte *numClaves = new Byte[sizeof(int)];
-	*numClaves = this->cantClaves;
+	Byte *tmp = new Byte[sizeof(int)];
+	*tmp = this->cantClaves;
 	// serializo cada clave y las voy concatenando
-	int tamNodo = 0;
-	Byte *tmp;
+	int tamNodo = sizeof(int); // comienzo con el tamaño que ya uso para almacenar la cantidad de claves
 	for (int i=0; i <= this->capacidadNodo; i++){
 		/* Si la clave es nula, simplemente omito su serializacion, dado que al inicio
 		 * se almacenará la cantidad que posee el nodo
@@ -313,18 +312,11 @@ Byte * kdNodoHoja::obtenerRegistro (int *tam){
 		if (this->listaClaves[i] != NULL){
 			int tamClave;
 			Byte *regClave = this->listaClaves[i]->obtenerRegistro(&tamClave);
-
-			/* Si no se serializo una clave previamente, no se debe concatenar nada */
-			if (tamNodo == 0){
-				tamNodo = tamClave;
-				tmp = regClave;
-			} else {
-				Byte *temp;
-				concatenar(&temp, tmp, tamNodo, regClave, tamClave);
-				tamNodo += tamClave;
-				tmp = temp;
-				delete temp;
-			}
+			Byte *temp;
+			concatenar(&temp, tmp, tamNodo, regClave, tamClave);
+			tamNodo += tamClave;
+			tmp = temp;
+			delete temp;
 			// Luego de concatenar y antes de repetir el ciclo, elimino regClave
 			delete regClave;
 		}
