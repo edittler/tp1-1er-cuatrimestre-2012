@@ -46,6 +46,16 @@ void FechaTest() {
 		cout << "Fail...comparacion igual" <<endl;
 	}
 
+	int* tam = new int();
+	Byte* registro = fecha1->obtenerRegistro(tam);
+	fecha1->setFecha(4, 4, 2010);
+	fecha1->inicializarConRegistro(registro);
+	if (fecha1->getFechaInt() == 20100404) {
+		cout << "Ok.....obtener - inicializar registro" << endl;
+	} else {
+		cout << "Fail...obtener - inicializar registro" << endl;
+	}
+
 	delete fecha1;
 	delete fecha2;
 

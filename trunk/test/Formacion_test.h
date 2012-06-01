@@ -54,6 +54,17 @@ void FormacionTest() {
 		std::cout << "Fail...comparacion no valida" << endl;
 	}
 
+	int* tam = new int();
+	Formacion* formacion4 = new Formacion(10);
+	Byte* registro = formacion4->obtenerRegistro(tam);
+	formacion4->setNumeroFormacion(3);
+	formacion4->inicializarConRegistro(registro);
+	if ((registro[0] == 0) && (registro[1] == 0) && (registro[2] == 0) && (registro[3] == 4)) {
+		cout << "Ok.....obtener - inicializar registro" << endl;
+	} else {
+		cout << "Fail...obtener - inicializar registro" << endl;
+	}
+
 	delete falla;
 	delete formacion1;
 
