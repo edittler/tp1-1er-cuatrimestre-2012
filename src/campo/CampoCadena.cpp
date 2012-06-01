@@ -47,7 +47,7 @@ Byte * CampoCadena::obtenerRegistro(int *tam){
 	Byte *sizeRegistro = new Byte[sizeof(int)];
 	*sizeRegistro =  tamRegistro;
 	// Defino el tamaño total que va a tener la serializacion
-	*tam = sizeof(int)*3 + tamDescripcion;
+	*tam = sizeof(int)*2 + tamDescripcion;
 	// concateno los integer
 	Byte *tmp;
 	concatenar(&tmp, sizeRegistro, 4, sizeString, 4);
