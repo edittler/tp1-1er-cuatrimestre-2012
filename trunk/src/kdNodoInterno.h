@@ -19,8 +19,10 @@ private:
 	Campo* atributo;
 	kdNodo* hijoIzq;
 	kdNodo* hijoDer;
-	int IDizq;
-	int IDder;
+	int posBloqueIzq;
+	int posBloqueDer;
+	bool hijoIzqEsHoja;
+	bool hijoDerEsHoja;
 
 public:
 	/* Constructor de la clase NodoInterno
@@ -63,10 +65,6 @@ public:
 	 */
 	kdNodo* getHijoIzq() const;
 
-	/* Retorna el identificador del nodo hijo izquierdo
-	 */
-	int getIDHijoIzq();
-
 	/* Edita el hijo izquierdo.
 	 * Si previamente el nodo interno ya tenia hijo izquierdo, se reemplaza la referencia de
 	 * memoria, pero no libera la memoria del hijo almacenado previamente.
@@ -77,15 +75,17 @@ public:
 	 */
 	kdNodo* getHijoDer() const;
 
-	/* Retorna el identificador del nodo hijo derecho
-	 */
-	int getIDHijoDer();
-
 	/* Edita el hijo derecho.
 	 * Si previamente el nodo interno ya tenia hijo derecho, se reemplaza la referencia de
 	 * memoria, pero no libera la memoria del hijo almacenado previamente.
 	 */
 	void setHijoDer(kdNodo* hijoDerecho);
+
+	/* Funcion que genera la cadena de bytes para almacenar la clase. Debe recibir por
+	 * referencia un int que pueda almacenar el tamaño de la cadena, para su guardado
+	 * posterior en el archivo.
+	 */
+	virtual Byte * obtenerRegistro (int *tam);
 
 };
 
