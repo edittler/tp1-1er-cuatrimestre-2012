@@ -87,6 +87,8 @@ public:
 	 */
 	virtual Byte * obtenerRegistro (int *tam);
 
+	void inicializarConRegistro(Byte * registro);
+
 };
 
 #endif /* NODOINTERNO_H_ */
