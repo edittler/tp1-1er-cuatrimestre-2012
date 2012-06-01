@@ -19,17 +19,17 @@
 
 int main() {
 
-//	ArchivoTest();
-//	ByteTest();
-//	CampoCadenaTest();
-//	FormacionTest();
-//	FranjaHorariaTest();
-//	FechaTest();
-//	HorarioTest();
-//	ClaveTest();
-//	kdNodoHojaTest();
+	ArchivoTest();
+	ByteTest();
+	CampoCadenaTest();
+	FormacionTest();
+	FranjaHorariaTest();
+	FechaTest();
+	HorarioTest();
+	ClaveTest();
+	kdNodoHojaTest();
 //	ArbolKDTest();
-	aletest();
+
 
 	return 0;
 }
