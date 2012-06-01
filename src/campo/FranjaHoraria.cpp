@@ -75,3 +75,7 @@ ResultadoComparacion FranjaHoraria::comparar(Campo* otroCampo){
 	return IGUAL;
 	}
 }
+
+void FranjaHoraria::inicializarConRegistro(Byte *) {
+	//TODO implementar
+}
