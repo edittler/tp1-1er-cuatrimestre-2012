@@ -148,6 +148,45 @@ void kdNodoInterno::setHijoDer(kdNodo* hijoDerecho){
  * posterior en el archivo.
  */
 Byte * kdNodoInterno::obtenerRegistro (int *tam){
-	// TODO Hacer
-	return NULL;
+	Byte *registro = NULL;
+	/* Si el atributo del campo esta en NULL, significa que el nodo interno no es
+	 * valido, por lo que en su serializacion se debueve NULL
+	 */
+	if (this->atributo != NULL){
+		// serializo la posicione de bloque del hijo izquierdo y el booleano si es hoja
+		Byte* esHojaIzq = new Byte[sizeof(bool)];
+		*esHojaIzq = (char) this->hijoIzqEsHoja;
+		Byte* posIzq = new Byte[sizeof(int)];
+		*posIzq = this->posBloqueIzq;
+		Byte* tmpIzq;
+		concatenar(&tmpIzq, esHojaIzq, sizeof(bool), posIzq, sizeof(int));
+		delete esHojaIzq;
+		delete posIzq;
+		// serializo la posicione de bloque del hijo derecho y el booleano si es hoja
+		Byte* esHojaDer = new Byte[sizeof(bool)];
+		*esHojaDer = (char) this->hijoDerEsHoja;
+		Byte* posDer = new Byte[sizeof(int)];
+		*posDer = this->posBloqueDer;
+		Byte* tmpDer;
+		concatenar(&tmpDer, esHojaDer, sizeof(bool), posDer, sizeof(int));
+		delete esHojaDer;
+		delete posDer;
+		// concateno la informacion sobre los hijos del nodo
+		int tamDataHijo = sizeof(bool) + sizeof(int);
+		Byte *tmpHijos;
+		concatenar(&tmpHijos, tmpIzq, tamDataHijo, tmpDer, tamDataHijo);
+		delete tmpIzq;
+		delete tmpDer;
+		// serializo el campo
+		int tamCampo;
+		Byte *campo = this->atributo->obtenerRegistro(&tamCampo);
+		// concateno el nodo interno completo
+		Byte *tmpFinal;
+		concatenar(&tmpFinal, campo, tamCampo, tmpHijos, tamDataHijo*2);
+		delete campo;
+		delete tmpHijos;
+		*tam = tamCampo + tamDataHijo*2; // tamaño completo del registro
+		registro = tmpFinal;
+	}
+	return registro;
 }
