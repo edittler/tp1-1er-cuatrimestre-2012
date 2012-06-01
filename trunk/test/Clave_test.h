@@ -58,7 +58,14 @@ void ClaveTest() {
 	int* tam = new int();
 	Byte* registro = clave4->obtenerRegistro(tam);
 	clave4->setLinea("Linea99");
-	clave4->inicializarConRegistro(registro);
+	//ignoro primer 4 bytes.
+	Byte * regTamano;
+	Byte * regTemp;
+	obtenerPorcion(registro, &regTamano, 0, sizeof(int));
+	int tamRegTamano = *regTamano;
+	obtenerPorcion(registro, &regTemp, sizeof(int), tamRegTamano);
+	//recupero registro ignorando primeros 4 bytes.
+	clave4->inicializarConRegistro(regTemp);
 	if (dynamic_cast<Linea*>(clave4->getCampo(0))->getDescripcion() == "Linea1") {
 		cout << "Ok.....obtener - inicializar registro" << endl;
 	} else {

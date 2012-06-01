@@ -177,7 +177,14 @@ void kdNodoHojaTest() {
 	int* tam = new int();
 	Byte* registro = nodoHoja->obtenerRegistro(tam);
 	clave->setLinea("linea3");
-	clave->inicializarConRegistro(registro);
+	//ignoro primer 4 bytes.
+	Byte * regTamano;
+	Byte * regTemp;
+	obtenerPorcion(registro, &regTamano, 0, sizeof(int));
+	int tamRegTamano = *regTamano;
+	obtenerPorcion(registro, &regTemp, sizeof(int), tamRegTamano);
+	//recupero registro ignorando primeros 4 bytes.
+	clave->inicializarConRegistro(regTemp);
 	if (dynamic_cast<Linea*>(clave->getCampo(0))->getDescripcion() == "linea3") {
 		cout << "Ok.....obtener - inicializar registro" << endl;
 	} else {

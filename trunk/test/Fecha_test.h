@@ -47,10 +47,18 @@ void FechaTest() {
 	}
 
 	int* tam = new int();
+	fecha1->setFecha(1, 6, 2012);
 	Byte* registro = fecha1->obtenerRegistro(tam);
 	fecha1->setFecha(4, 4, 2010);
-	fecha1->inicializarConRegistro(registro);
-	if (fecha1->getFechaInt() == 20100404) {
+	//ignoro primer 4 bytes.
+	Byte * regTamano;
+	Byte * regTemp;
+	obtenerPorcion(registro, &regTamano, 0, sizeof(int));
+	int tamRegTamano = *regTamano;
+	obtenerPorcion(registro, &regTemp, sizeof(int), tamRegTamano);
+	//recupero registro ignorando primeros 4 bytes.
+	fecha1->inicializarConRegistro(regTemp);
+	if (fecha1->getFechaInt() == 20120601) {
 		cout << "Ok.....obtener - inicializar registro" << endl;
 	} else {
 		cout << "Fail...obtener - inicializar registro" << endl;
