@@ -230,9 +230,19 @@ Campo* kdNodoHoja::getValorMedio(int dimension){
 	 * En caso de que no sea posible obtener un valor "medio" se debe optar por ordenar
 	 * con la siguiente dimension.
 	 */
-
-	//FIXME -URGENTE devuelve una referencia, deberia devolver una copia del campo.
-	return this->listaClaves[posicionMedio]->getCampo(dimension);
+	switch (dimension) {
+		case 0:
+			return new Linea(*dynamic_cast<Linea*>(this->listaClaves[posicionMedio]->getCampo(dimension)));
+		case 1:
+			return new Formacion(*dynamic_cast<Formacion*>(this->listaClaves[posicionMedio]->getCampo(dimension)));
+		case 2:
+			return new FranjaHoraria(*dynamic_cast<FranjaHoraria*>(this->listaClaves[posicionMedio]->getCampo(dimension)));
+		case 3:
+			return new Falla(*dynamic_cast<Falla*>(this->listaClaves[posicionMedio]->getCampo(dimension)));
+		case 4:
+			return new Accidente(*dynamic_cast<Accidente*>(this->listaClaves[posicionMedio]->getCampo(dimension)));
+	}
+	return NULL;
 }
 
 Clave* kdNodoHoja::getClave(int i) {

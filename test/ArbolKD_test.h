@@ -19,9 +19,7 @@ void ArbolKDTest() {
 	Clave* clave1 = new Clave("Linea1", 1000);
 	Clave* clave2 = new Clave("Linea2", 2000);
 	Clave* clave3 = new Clave("Linea3", 3000);
-//	Clave* clave4 = new Clave();
-//	Clave* clave5 = new Clave();
-//	Clave* clave6 = new Clave();
+	Clave* clave4 = new Clave("Linea1", 4000);
 
 
 
@@ -34,20 +32,22 @@ void ArbolKDTest() {
 	}
 
 	arbol->insertar(clave2);
-	arbol->insertar(clave3);
-
-	if (arbol->busquedaPuntual(clave3)->comparar(clave3) == IGUAL) {
+	if (arbol->busquedaPuntual(clave2)->comparar(clave2) == IGUAL) {
 		cout << "Ok.....Insercion 2do nivel." << endl;
 	} else {
 		cout << "Fail.....Insercion 2do nivel." << endl;
 	}
 
-	Linea* l = dynamic_cast<Linea*>(arbol->busquedaPuntual(clave1)->getCampo(0));
-	Formacion* f = dynamic_cast<Formacion*>(arbol->busquedaPuntual(clave1)->getCampo(1));
-	cout << "Linea: " << l->getDescripcion() << endl;
-	cout << "Formacion: " <<  f->getNumeroFormacion() << endl;
+	arbol->insertar(clave3);
+	arbol->insertar(clave4);
 
-	cout << "** End ARbolKDTest **" << endl;
+	if (arbol->busquedaPuntual(clave4)->comparar(clave4) == IGUAL) {
+		cout << "Ok.....Insercion 3er nivel." << endl;
+	} else {
+		cout << "Fail.....Insercion 3er nivel." << endl;
+	}
+
+	cout << "** End ArbolKDTest **" << endl;
 }
 
 

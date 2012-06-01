@@ -24,7 +24,6 @@ public:
 	//	NodoInterno* getNodosPorNivel();
 
 		int insertar(Clave*);
-	//	int eliminar(int modoInvocacion, Clave* clave);
 		Clave* busquedaPuntual(Clave* clave);
 
 		Falla* getFallas();
@@ -32,26 +31,38 @@ public:
 		Linea* getLineas();
 		Accidente* getAccidentes();
 
-		Campo* getCampoPorFecha(Fecha* comienzo, Fecha* fin);
+		void getTrenesConFalla(Falla* falla, Fecha* inicio, Fecha* fin, Campo** listaResultado);
+		void getTrenesConAccidente(Accidente* accidente, Fecha* comienzo, Fecha* fin, Campo** listaResultado);
+		void getFallasDeFormacion(Formacion* formacion, Fecha* comienzo, Fecha* fin, Campo** listaResultado);
+		void getAccidenteDeFormacion(Formacion* formacion, Fecha* comienzo, Fecha* fin, Campo** listaResultado);
 
-	private:
-		bool raizEsHoja();
-		int insertarRecursivo(kdNodo* nodo, Clave* clave, int iteracion);
-	//	int eliminarRecursivo(Nodo* nodo, Clave* claveVacia, Clave* claveAEliminar, int modoInvocacion);
-		Clave* busquedaRecursiva(kdNodo* nodo, Clave* claveBuscada, int iteracion);
+private:
+	bool raizEsHoja();
+	int insertarRecursivo(kdNodo* nodo, Clave* clave, int iteracion);
+//	int eliminarRecursivo(Nodo* nodo, Clave* claveVacia, Clave* claveAEliminar, int modoInvocacion);
+	Clave* busquedaRecursiva(kdNodo* nodo, Clave* claveBuscada, int iteracion);
 
-		/*
-		 * Actualiza nodo interno y ambos nodos hijos por desborde.
-		 * @return false si al actualizar algun nodo hijo sigue con desborde (caso particular si se utiliza un criterio de organizacion
-		 * 			     para el cual las claves del nodo desbordado son todas iguales)
-		 * @return true
-		 */
-		kdNodo* actualizarPorDesborde(kdNodoInterno* nodoInterno, kdNodoHoja* hojaDesbordado, kdNodoHoja* nuevoHoja, int iteracion);
+	/*
+	 * Actualiza nodo interno y ambos nodos hijos por desborde.
+	 * @return false si al actualizar algun nodo hijo sigue con desborde (caso particular si se utiliza un criterio de organizacion
+	 * 			     para el cual las claves del nodo desbordado son todas iguales)
+	 * @return true
+	 */
+	kdNodo* actualizarPorDesborde(kdNodoInterno* nodoInterno, kdNodoHoja* hojaDesbordado, kdNodoHoja* nuevoHoja, int iteracion);
 
-		/*
-		 * Devuelve dimension por la cual se ordeno a cierta iteracion de recorrido.
-		 */
-		int roundRobin(int iteracion);
+	/*
+	 * @listaResultado: lista donde se guardaran los resultados
+	 * @nodo: necesario para el metodo recursivo.
+	 * @campoBuscado: campo segun el que se quiere buscar (Ej: Falla, Formacion)
+	 * @campoReferente: indice del campo del cual se quiere buscar la informacion.
+	 * @fechaComienzo - fechaFin: rango de fechas. Si no se requieren pueden dejarse en NULL.
+	 */
+	void getCampoPorFechaRecursivo(Campo** listaResultado, kdNodo* nodo, int campoBuscado, Campo* campoReferente, Fecha* fechaComienzo, Fecha* fechaFin);
+
+	/*
+	 * Devuelve dimension por la cual se ordeno a cierta iteracion de recorrido.
+	 */
+	int roundRobin(int iteracion);
 
 };
 

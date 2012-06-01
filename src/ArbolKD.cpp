@@ -107,6 +107,7 @@ int ArbolKD::insertarRecursivo(kdNodo* nodo, Clave* clave, int iteracion) {
 			kdNodo* nodoSigueDesborde = this->actualizarPorDesborde(nuevoInterno, nuevoNodoHojaDerecha, nodoHojaDesbordado, iteracion);
 
 			//Actualiza referencia a nuevo nodo interno del padre.
+			//TODO set ID/Ref_a_bloque
 			if (porDerecha) {
 				nodoInterno->setHijoDer(nuevoInterno);
 			} else {
@@ -141,7 +142,6 @@ kdNodo* ArbolKD::actualizarPorDesborde(kdNodoInterno* nuevoInterno, kdNodoHoja* 
 
 	cout << " ---------- debug" << endl;
 	cout << "valorMedio: " << valorMedio << endl;
-	cout << "Casteo linea: "<< dynamic_cast<Linea*>(valorMedio)->getDescripcion() << endl;
 
 	//divido nodo hoja segun valor medio.
 	for (int j = 0; j < (kdNodoHoja::capacidadNodo + 1); j++) {
@@ -158,7 +158,6 @@ kdNodo* ArbolKD::actualizarPorDesborde(kdNodoInterno* nuevoInterno, kdNodoHoja* 
 
 	cout << " ---------- debug" << endl;
 	cout << "valorMedio: " << valorMedio << endl;
-	cout << "Casteo linea: "<< dynamic_cast<Linea*>(valorMedio)->getDescripcion() << endl;
 
 	//Creo nuevo nodo Interno, seteo sus nodo hijos.
 	nuevoInterno->setAtributo(valorMedio);
@@ -229,9 +228,68 @@ Accidente* ArbolKD::getAccidentes() {
 	return NULL;
 }
 
-Campo* ArbolKD::getCampoPorFecha(Fecha* comienzo, Fecha* fin) {
+void ArbolKD::getTrenesConFalla(Falla* falla, Fecha* comienzo, Fecha* fin, Campo** listaResultado) {
+	this->getCampoPorFechaRecursivo(listaResultado, this->raiz, 0, falla, comienzo, fin);
+}
+
+void ArbolKD::getTrenesConAccidente(Accidente* accidente, Fecha* comienzo, Fecha* fin, Campo** listaResultado) {
+	this->getCampoPorFechaRecursivo(listaResultado, this->raiz, 0, accidente, comienzo, fin);
+}
+
+void ArbolKD::getFallasDeFormacion(Formacion* formacion, Fecha* comienzo, Fecha* fin, Campo** listaResultado) {
+	this->getCampoPorFechaRecursivo(listaResultado, this->raiz, 3, formacion, comienzo, fin);
+}
+
+void ArbolKD::getAccidenteDeFormacion(Formacion* formacion, Fecha* comienzo, Fecha* fin, Campo** listaResultado) {
+	this->getCampoPorFechaRecursivo(listaResultado, this->raiz, 4, formacion, comienzo, fin);
+}
+
+void ArbolKD::getCampoPorFechaRecursivo(Campo** listaResultado, kdNodo* nodo, int campoBuscado, Campo* campoReferente, Fecha* fechaComienzo, Fecha* fechaFin) {
 	//TODO implementar
-	return NULL;
+
+	//control de corte para la recursividad
+	if (nodo->esHoja()) {
+		kdNodoHoja* nodoHoja = dynamic_cast<kdNodoHoja*>(nodo);
+		for (int i = 0; i < kdNodoHoja::capacidadNodo; ++i) {
+			Clave* clave = nodoHoja->getClave(i);
+			if (clave != NULL) {
+				//comparo segun el campo referente que estoy buscando.
+				if (campoReferente->comparar(clave->getCampo(campoBuscado)) == IGUAL) {
+					//comparo fechas para ver si esta en el rango.
+					//TODO probar que pasa si las fechas son NULL
+					ResultadoComparacion comienzo = clave->getCampo(2)->comparar(new FranjaHoraria(fechaComienzo, NULL));
+					ResultadoComparacion fin = clave->getCampo(2)->comparar(new FranjaHoraria(fechaFin, NULL));
+					if ((comienzo == IGUAL || comienzo == MAYOR) && (fin == IGUAL || fin == MENOR)) {
+						//add to listaResultado
+					}
+				}
+			}
+		}
+	}
+
+	kdNodoInterno* nodoInterno = dynamic_cast<kdNodoInterno*>(nodo);
+	ResultadoComparacion resultado = campoReferente->comparar(nodoInterno->getAtributo());
+
+	switch (resultado) {
+		case MENOR:
+			//TODO cargar nodo Izquierdo y pasarlo por parametro
+			getCampoPorFechaRecursivo(listaResultado, nodoInterno->getHijoIzq(), campoBuscado, campoReferente, fechaComienzo, fechaFin);
+			break;
+		case IGUAL:
+		case MAYOR:
+			//TODO cargar nodo Derecho y pasarlo por parametro
+			getCampoPorFechaRecursivo(listaResultado, nodoInterno->getHijoDer(), campoBuscado, campoReferente, fechaComienzo, fechaFin);
+			break;
+		case COMPARACION_NO_VALIDA:
+			//TODO cargar nodo Izquierdo y pasarlo por parametro
+			getCampoPorFechaRecursivo(listaResultado, nodoInterno->getHijoIzq(), campoBuscado, campoReferente, fechaComienzo, fechaFin);
+			//TODO cargar nodo Derecho y pasarlo por parametro
+			getCampoPorFechaRecursivo(listaResultado, nodoInterno->getHijoDer(), campoBuscado, campoReferente, fechaComienzo, fechaFin);
+			break;
+		default:
+			break;
+	}
+
 }
 
 bool ArbolKD::raizEsHoja(){
