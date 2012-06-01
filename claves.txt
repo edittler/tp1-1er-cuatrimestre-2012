@@ -1,0 +1,3 @@
+Mitre;21/02/2012,0030-0130;Puertas;Choque;500
+Roca;25/05/2012,1400-1500;Puertas;Choque;001
+Roca;25/05/2012,1400-1500;Puertas;Choque;001
