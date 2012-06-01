@@ -232,3 +232,52 @@ void Clave::copiar(const Clave *otraClave){
 		}
 	}
 }
+
+/* Funcion que genera la cadena de bytes para almacenar la clase. Debe recibir por
+ * referencia un int que pueda almacenar el tamaño de la cadena, para su guardado
+ * posterior en el archivo.
+ */
+Byte * Clave::obtenerRegistro (int *tam){
+	// Inicializo el contador de bytes de la serializacion.
+	int tamClave = 0;
+	Byte *tmp = NULL;
+	for (int i=0; i < this->cantDimensiones; i++){
+		int tamCampo;
+		Byte * regCampo;
+		/* Analizo si el campo es nulo. si no lo es, serializo normalmente.
+		 * Si el campo es nulo, genero 4 bytes con 0.
+		 */
+		if (this->listaCampos[i] != NULL){
+			regCampo = this->listaCampos[i]->obtenerRegistro(&tamCampo);
+		} else {
+			// Si el campo es nulo, genero 4 bytes con 0
+			tamCampo = sizeof(int);
+			regCampo = new Byte[sizeof(int)];
+			*regCampo = 0;
+		}
+		/* Si es la primer iteracion, no necesito concatenar con un campo previo,
+		 * por lo que asigno los resultados a tamClave y tmp.
+		 */
+		if (i == 0){
+			tmp = regCampo;
+			tamClave = tamCampo;
+		} else {
+			Byte *temp;
+			concatenar(&temp, tmp, tamClave, regCampo, tamCampo);
+			tamClave += tamCampo;
+			tmp=temp;
+			delete temp;
+		}
+		// Luego de la concatenacion y antes de finalizar la iteracion, elimino regCampo.
+		delete regCampo;
+	}
+	//Luego de finalizado el for, debo serializar el tamaño de la clave
+	Byte * size = new Byte[sizeof(int)];
+	*size = tamClave;
+	*tam = tamClave + sizeof(int); // tamaño total para devolver a la clase externa
+	Byte * registro;
+	concatenar(&registro, size, sizeof(int), tmp, tamClave);
+	delete size;
+	delete tmp;
+	return registro;
+}
