@@ -9,7 +9,6 @@
 #define FORMACION_H_
 
 #include "Campo.h"
-#include "../Byte.h"
 
 class Formacion: public Campo {
 private:
@@ -50,9 +49,9 @@ public:
 	 * referencia un int que pueda almacenar el tamaño de la cadena, para su guardado
 	 * posterior en el archivo.
 	 */
-	Byte * obtenerRegistro (int *tam);
+	virtual Byte * obtenerRegistro (int *tam);
 
-	void inicializarConRegistro(Byte *);
+	virtual void inicializarConRegistro(Byte *);
 };
 
 #endif /* FORMACION_H_ */
