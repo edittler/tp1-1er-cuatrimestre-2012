@@ -27,6 +27,8 @@ public:
 	void setDescripcion(string descripcion);
 
 	ResultadoComparacion comparar(Campo* otroCampo);
+
+	void inicializarConRegistro(Byte *);
 };
 
 #endif /* CAMPOCADENA_H_ */

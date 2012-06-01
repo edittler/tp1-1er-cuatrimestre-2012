@@ -23,3 +23,7 @@ Accidente::Accidente(string tipoAccidente) : CampoCadena(tipoAccidente){
 Accidente::~Accidente() {
 
 }
+
+Accidente::inicializarConRegistro(Byte * registro) : CampoCadena(registro) {
+
+}
