@@ -116,6 +116,29 @@ Byte * FranjaHoraria::obtenerRegistro (int *tam){
 	return NULL;
 }
 
-void FranjaHoraria::inicializarConRegistro(Byte *) {
-	//TODO implementar
+void FranjaHoraria::inicializarConRegistro(Byte * registro) {
+	// obtengo el tamanio del registro fecha
+	Byte * tamRegFecha;
+	int inicio = 0;
+	int tamReg = sizeof(int);
+	obtenerPorcion(registro, &tamRegFecha, inicio, tamReg);
+	inicio += tamReg;
+	tamReg = *tamRegFecha;
+	//obtengo el registro fecha
+	Byte * regFecha;
+	obtenerPorcion(registro, &regFecha, inicio, tamReg);
+	inicio += tamReg;
+	tamReg = sizeof(int);
+	//inicializo la fecha
+	fecha->inicializarConRegistro(regFecha);
+	//obtengo el tam del registro horario
+	Byte * tamRegHorario;
+	obtenerPorcion(registro, &tamRegHorario, inicio, tamReg);
+	inicio += tamReg;
+	tamReg = *tamRegHorario;
+	//obtengo el registro hora
+	Byte * regHorario;
+	obtenerPorcion(registro, &regHorario, inicio, tamReg);
+	//inicializo el horario
+	horario->inicializarConRegistro(regHorario);
 }
