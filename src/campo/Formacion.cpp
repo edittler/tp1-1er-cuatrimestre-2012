@@ -51,3 +51,10 @@ ResultadoComparacion Formacion::comparar(Campo* otroCampo) {
 		return IGUAL;
 	}
 }
+
+Byte * Formacion::obtenerRegistro (int *tam){
+	Byte *registro = new Byte[sizeof(int)];
+	*registro = this->numero;
+	*tam = sizeof(int);
+	return registro;
+}
