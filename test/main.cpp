@@ -27,7 +27,7 @@ int main() {
 	HorarioTest();
 	ClaveTest();
 	kdNodoHojaTest();
-//	ArbolKDTest();
+	ArbolKDTest();
 
 
 	return 0;
