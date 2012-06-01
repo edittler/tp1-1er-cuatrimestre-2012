@@ -25,7 +25,7 @@ public:
 	string getDescripcion();
 	void setDescripcion(string descripcion);
 
-	ResultadoComparacion comparar(Campo* otroCampo);
+	virtual ResultadoComparacion comparar(Campo* otroCampo) = 0;
 
 	/* Funcion que genera la cadena de bytes para almacenar la Formacion.
 	 * Los 4 primeros bytes almacenan la cantidad de bytes posteriores que debe

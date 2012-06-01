@@ -30,6 +30,8 @@ public:
 	 * Destructor de la clase Linea
 	 */
 	virtual ~Linea();
+
+	ResultadoComparacion comparar(Campo* otroCampo);
 };
 
 #endif /* LINEA_H_ */

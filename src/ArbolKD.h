@@ -31,10 +31,10 @@ public:
 		Linea* getLineas();
 		Accidente* getAccidentes();
 
-		void getTrenesConFalla(Falla* falla, Fecha* inicio, Fecha* fin, Campo** listaResultado);
-		void getTrenesConAccidente(Accidente* accidente, Fecha* comienzo, Fecha* fin, Campo** listaResultado);
-		void getFallasDeFormacion(Formacion* formacion, Fecha* comienzo, Fecha* fin, Campo** listaResultado);
-		void getAccidenteDeFormacion(Formacion* formacion, Fecha* comienzo, Fecha* fin, Campo** listaResultado);
+		void getTrenesConFalla(Falla* falla, Fecha* inicio, Fecha* fin);
+		void getTrenesConAccidente(Accidente* accidente, Fecha* comienzo, Fecha* fin);
+		void getFallasDeFormacion(Formacion* formacion, Fecha* comienzo, Fecha* fin);
+		void getAccidenteDeFormacion(Formacion* formacion, Fecha* comienzo, Fecha* fin);
 
 private:
 	bool raizEsHoja();
@@ -54,7 +54,7 @@ private:
 	 * @campoReferente: indice del campo del cual se quiere buscar la informacion.
 	 * @fechaComienzo - fechaFin: rango de fechas. Si no se requieren pueden dejarse en NULL.
 	 */
-	void getCampoPorFechaRecursivo(Campo** listaResultado, kdNodo* nodo, int campoBuscado, Campo* campoReferente, Fecha* fechaComienzo, Fecha* fechaFin);
+	void getCampoPorFechaRecursivo(kdNodo* nodo, int campoBuscado, Campo* campoReferente, Fecha* fechaComienzo, Fecha* fechaFin);
 
 	/*
 	 * Devuelve dimension por la cual se ordeno a cierta iteracion de recorrido.

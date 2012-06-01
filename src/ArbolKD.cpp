@@ -121,9 +121,6 @@ void ArbolKD::actualizarPorDesborde(kdNodoInterno* nuevoInterno, kdNodoHoja* hoj
 	//get valor medio de nodo hijo desbordado segun el campo a ordenar.
 	Campo* valorMedio = hojaDesbordado->getValorMedio(dimensionReferencia);
 
-	cout << " ---------- debug" << endl;
-	cout << "valorMedio: " << valorMedio << endl;
-
 	//divido nodo hoja segun valor medio.
 	for (int j = 0; j < (kdNodoHoja::capacidadNodo + 1); j++) {
 		Clave* clave =hojaDesbordado->getClave(j);
@@ -214,23 +211,23 @@ Accidente* ArbolKD::getAccidentes() {
 	return NULL;
 }
 
-void ArbolKD::getTrenesConFalla(Falla* falla, Fecha* comienzo, Fecha* fin, Campo** listaResultado) {
-	this->getCampoPorFechaRecursivo(listaResultado, this->raiz, 0, falla, comienzo, fin);
+void ArbolKD::getTrenesConFalla(Falla* falla, Fecha* comienzo, Fecha* fin) {
+	this->getCampoPorFechaRecursivo(this->raiz, 0, falla, comienzo, fin);
 }
 
-void ArbolKD::getTrenesConAccidente(Accidente* accidente, Fecha* comienzo, Fecha* fin, Campo** listaResultado) {
-	this->getCampoPorFechaRecursivo(listaResultado, this->raiz, 0, accidente, comienzo, fin);
+void ArbolKD::getTrenesConAccidente(Accidente* accidente, Fecha* comienzo, Fecha* fin) {
+	this->getCampoPorFechaRecursivo(this->raiz, 0, accidente, comienzo, fin);
 }
 
-void ArbolKD::getFallasDeFormacion(Formacion* formacion, Fecha* comienzo, Fecha* fin, Campo** listaResultado) {
-	this->getCampoPorFechaRecursivo(listaResultado, this->raiz, 3, formacion, comienzo, fin);
+void ArbolKD::getFallasDeFormacion(Formacion* formacion, Fecha* comienzo, Fecha* fin) {
+	this->getCampoPorFechaRecursivo(this->raiz, 3, formacion, comienzo, fin);
 }
 
-void ArbolKD::getAccidenteDeFormacion(Formacion* formacion, Fecha* comienzo, Fecha* fin, Campo** listaResultado) {
-	this->getCampoPorFechaRecursivo(listaResultado, this->raiz, 4, formacion, comienzo, fin);
+void ArbolKD::getAccidenteDeFormacion(Formacion* formacion, Fecha* comienzo, Fecha* fin) {
+	this->getCampoPorFechaRecursivo(this->raiz, 4, formacion, comienzo, fin);
 }
 
-void ArbolKD::getCampoPorFechaRecursivo(Campo** listaResultado, kdNodo* nodo, int campoBuscado, Campo* campoReferente, Fecha* fechaComienzo, Fecha* fechaFin) {
+void ArbolKD::getCampoPorFechaRecursivo(kdNodo* nodo, int campoBuscado, Campo* campoReferente, Fecha* fechaComienzo, Fecha* fechaFin) {
 	//TODO implementar
 
 	//control de corte para la recursividad
@@ -240,17 +237,31 @@ void ArbolKD::getCampoPorFechaRecursivo(Campo** listaResultado, kdNodo* nodo, in
 			Clave* clave = nodoHoja->getClave(i);
 			if (clave != NULL) {
 				//comparo segun el campo referente que estoy buscando.
-				if (campoReferente->comparar(clave->getCampo(campoBuscado)) == IGUAL) {
+				if (clave->comparar(campoReferente) == IGUAL) {
 					//comparo fechas para ver si esta en el rango.
 					//TODO probar que pasa si las fechas son NULL
 					ResultadoComparacion comienzo = clave->getCampo(2)->comparar(new FranjaHoraria(fechaComienzo, NULL));
 					ResultadoComparacion fin = clave->getCampo(2)->comparar(new FranjaHoraria(fechaFin, NULL));
-					if ((comienzo == IGUAL || comienzo == MAYOR) && (fin == IGUAL || fin == MENOR)) {
-						//add to listaResultado
+					if (fechaFin == NULL || ((comienzo == IGUAL || comienzo == MAYOR) && (fin == IGUAL || fin == MENOR))) {
+						switch (campoBuscado) {
+							case 0: //Linea
+								cout << "Linea: " << dynamic_cast<CampoCadena*>(clave->getCampo(campoBuscado))->getDescripcion() << endl;
+								break;
+							case 3: //Falla
+								cout << "Falla: " << dynamic_cast<CampoCadena*>(clave->getCampo(campoBuscado))->getDescripcion() << endl;
+								break;
+							case 4: //Accidente
+								cout << "Accidente: " << dynamic_cast<CampoCadena*>(clave->getCampo(campoBuscado))->getDescripcion() << endl;
+								break;
+							default:
+								cout << "" << endl;
+								break;
+						}
 					}
 				}
 			}
 		}
+		return;
 	}
 
 	kdNodoInterno* nodoInterno = dynamic_cast<kdNodoInterno*>(nodo);
@@ -259,18 +270,18 @@ void ArbolKD::getCampoPorFechaRecursivo(Campo** listaResultado, kdNodo* nodo, in
 	switch (resultado) {
 		case MENOR:
 			//TODO cargar nodo Izquierdo y pasarlo por parametro
-			getCampoPorFechaRecursivo(listaResultado, nodoInterno->getHijoIzq(), campoBuscado, campoReferente, fechaComienzo, fechaFin);
+			getCampoPorFechaRecursivo(nodoInterno->getHijoIzq(), campoBuscado, campoReferente, fechaComienzo, fechaFin);
 			break;
 		case IGUAL:
 		case MAYOR:
 			//TODO cargar nodo Derecho y pasarlo por parametro
-			getCampoPorFechaRecursivo(listaResultado, nodoInterno->getHijoDer(), campoBuscado, campoReferente, fechaComienzo, fechaFin);
+			getCampoPorFechaRecursivo(nodoInterno->getHijoDer(), campoBuscado, campoReferente, fechaComienzo, fechaFin);
 			break;
 		case COMPARACION_NO_VALIDA:
 			//TODO cargar nodo Izquierdo y pasarlo por parametro
-			getCampoPorFechaRecursivo(listaResultado, nodoInterno->getHijoIzq(), campoBuscado, campoReferente, fechaComienzo, fechaFin);
+			getCampoPorFechaRecursivo(nodoInterno->getHijoIzq(), campoBuscado, campoReferente, fechaComienzo, fechaFin);
 			//TODO cargar nodo Derecho y pasarlo por parametro
-			getCampoPorFechaRecursivo(listaResultado, nodoInterno->getHijoDer(), campoBuscado, campoReferente, fechaComienzo, fechaFin);
+			getCampoPorFechaRecursivo(nodoInterno->getHijoDer(), campoBuscado, campoReferente, fechaComienzo, fechaFin);
 			break;
 		default:
 			break;
