@@ -15,12 +15,12 @@ typedef char Byte;
  *  almacenará el resultado, el inicio a partir del cual se empezará a copiar y
  * el tamaño de la cadena de bytes a copiar
  */
-void obtenerPorcion(const Byte *origen, Byte *resultado, int inicio, int tam);
+void obtenerPorcion(Byte *, Byte **, int, int);
 
 /* Función que concatena dos cadenas de bytes y almacena la cadena del resultado
  * en un puntero que se recibe por parametro (que debe ser NULL, caso contrario se
  * perderá la informacion sin liberar la memoria).
  */
-void concatenar(Byte *resultado, Byte *registro1, int tam1, Byte *registro2, int);
+void obtenerSuma(Byte **, Byte *, int, Byte*, int);
 
 #endif /* BYTE_H_ */
