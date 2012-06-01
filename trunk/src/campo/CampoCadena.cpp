@@ -63,7 +63,7 @@ Byte * CampoCadena::obtenerRegistro(int *tam){
 	// Serializo la descripcion
 	Byte *string = convertirAByte(this->descripcion);
 	// Defino el tamaño de 'sizeString'+'string' y lo serializo
-	int *tamRegistro = sizeof(int) + tamDescripcion;
+	int tamRegistro = (int)sizeof(int) + tamDescripcion;
 	Byte *sizeRegistro = new Byte[sizeof(int)];
 	*sizeRegistro =  tamRegistro;
 	// Defino el tamaño total que va a tener la serializacion
