@@ -315,8 +315,10 @@ Byte * kdNodoHoja::obtenerRegistro (int *tam){
 			Byte *temp;
 			concatenar(&temp, tmp, tamNodo, regClave, tamClave);
 			tamNodo += tamClave;
+			// elimino la cadena almancenada antes
+			delete tmp;
+			// Asigno la nueva cadena
 			tmp = temp;
-			delete temp;
 			// Luego de concatenar y antes de repetir el ciclo, elimino regClave
 			delete regClave;
 		}
