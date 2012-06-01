@@ -21,7 +21,7 @@ void ByteTest(){
 	Byte a[] = "pajaro";
 	Byte b[] = "pepe";
 	Byte *c;
-	obtenerSuma(&c, a, 6, b, 5);
+	concatenar(&c, a, 6, b, 5);
 	cout << a << endl;
 	cout << b << endl;
 	cout << c << endl;

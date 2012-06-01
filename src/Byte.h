@@ -7,6 +7,9 @@
 #define BYTE_H_
 
 #include <stdlib.h>
+#include <iostream>
+
+using namespace std;
 
 typedef char Byte;
 
@@ -21,6 +24,8 @@ void obtenerPorcion(Byte *, Byte **, int, int);
  * en un puntero que se recibe por parametro (que debe ser NULL, caso contrario se
  * perderá la informacion sin liberar la memoria).
  */
-void obtenerSuma(Byte **, Byte *, int, Byte*, int);
+void concatenar(Byte **, Byte *, int, Byte*, int);
+
+Byte * convertirAByte(string unString);
 
 #endif /* BYTE_H_ */

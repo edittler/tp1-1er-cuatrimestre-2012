@@ -9,7 +9,7 @@
 #define CAMPOCADENA_H_
 
 #include "Campo.h"
-#include "iostream"
+#include "../Byte.h"
 
 using namespace std;
 
@@ -27,6 +27,12 @@ public:
 	void setDescripcion(string descripcion);
 
 	ResultadoComparacion comparar(Campo* otroCampo);
+
+	/* Funcion que genera la cadena de bytes para almacenar la Formacion.
+	 * Los 4 primeros bytes almacenan la cantidad de bytes posteriores que debe
+	 * deserializar posteriormente.
+	 */
+	Byte * obtenerRegistro(int *tam);
 
 	void inicializarConRegistro(Byte *);
 };

@@ -51,6 +51,29 @@ ResultadoComparacion CampoCadena::comparar(Campo* otroCampo) {
 	}
 }
 
+/* Funcion que genera la cadena de bytes para almacenar la Formacion. Debe recibir por
+ * referencia un int que pueda almacenar el tamaño de la cadena, para su guardado
+ * posterior en el archivo.
+ */
+Byte * CampoCadena::obtenerRegistro(int *tam){
+	Byte *sizeString = new Byte[sizeof(int)];
+	int tamDescripcion = this->descripcion.size();
+	*sizeString =  tamDescripcion;
+	Byte *string = convertirAByte(this->descripcion);
+	int tamRegistro = 2*sizeof(int) + tamDescripcion;
+	Byte *sizeRegistro = new Byte[sizeof(int)];
+	*sizeRegistro = 4;
+	Byte *tmp;
+	concatenar(&tmp, sizeRegistro, 4, sizeString, 4);
+	Byte *registro = new Byte[tamRegistro];
+	concatenar(&registro, tmp, 8, string, tamDescripcion);
+	*tam = sizeof(int);
+	delete sizeString;
+	delete string;
+	delete tmp;
+	return registro;
+}
+
 void CampoCadena::inicializarConRegistro(Byte * registro) {
 	// los primeros 4 bytes corresponden a la longitud del string
 	Byte * regTamDescripcion;

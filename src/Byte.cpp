@@ -24,7 +24,7 @@ void obtenerPorcion(Byte * origen, Byte ** resultado, int inicio, int tam) {
  * en un puntero que se recibe por parametro (que debe ser NULL, caso contrario se
  * perderá la informacion sin liberar la memoria).
  */
-void obtenerSuma(Byte ** resultado, Byte * registro1, int tam1, Byte* registro2, int tam2) {
+void concatenar(Byte ** resultado, Byte * registro1, int tam1, Byte* registro2, int tam2) {
 	*resultado = new Byte[tam1+tam2];
 	int i;
 	for (i = 0; i < tam1; i++) {
@@ -33,4 +33,14 @@ void obtenerSuma(Byte ** resultado, Byte * registro1, int tam1, Byte* registro2,
 	for (i = 0; i < tam2; i++) {
 		(*resultado)[i+tam1] = registro2[i];
 	}
+}
+
+Byte * convertirAByte(string unString){
+	int tam = unString.size();
+	Byte * bytes = new Byte[tam];
+	int i;
+	for (i=0; i<tam; i++) {
+		bytes[i] = unString[i];
+	}
+	return bytes;
 }
