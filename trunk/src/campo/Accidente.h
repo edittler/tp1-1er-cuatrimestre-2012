@@ -31,6 +31,8 @@ public:
 	 * Destructor de la clase Accidente
 	 */
 	virtual ~Accidente();
+
+	void inicializarConRegistro(Byte *);
 };
 
 #endif /* ACCIDENTE_H_ */

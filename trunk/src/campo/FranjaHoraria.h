@@ -53,6 +53,8 @@ public:
 	 * y 1 si el campo es mayor que el pasado por parámetro
 	 */
 	ResultadoComparacion comparar(Campo* otroCampo);
+
+	void inicializarConRegistro(Byte *);
 };
 
 #endif /* FRANJAHORARIA_H_ */
