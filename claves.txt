@@ -1,3 +1,5 @@
 Mitre;21/02/2012,0030-0130;Puertas;Choque;500
+Roca;25/05/2012,1400-1500;Electricidad;Estallido;001
 Roca;25/05/2012,1400-1500;Puertas;Choque;001
-Roca;25/05/2012,1400-1500;Puertas;Choque;001
+Sarmiento;01/01/2012,1400-1500;Electricidad;Choque;090
+Sarmiento;01/02/2012,1200-1500;Puertas;Descarrlamiento;006
