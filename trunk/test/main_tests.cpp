@@ -18,7 +18,7 @@
 #include "GeneracionClaves_test.h"
 #include "kdNodoInterno_test.h"
 
-int main() {
+int main_tests() {
 
 	ArchivoTest();
 	ByteTest();

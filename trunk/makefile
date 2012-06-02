@@ -9,15 +9,18 @@ SRC = src
 CAM = src/campo
 OBJ = obj
 
+#Nombres de los ejecutables
+PROG0 = arbolkd
+
 # Flags
 CFLAGS = -Wall -g -c
 GFLAGS = -Wall -g
 
 all: campos.o arbol.o kdarbol
-	@echo El TP0 ya a sido compilado!
+	@echo El Arbol kD ya a sido compilado!
 
 kdarbol:
-	@$(GPP) *.o -o main
+	@$(GPP) *.o -o $(PROG0)
 
 arbol.o:
 	$(GPP) $(CFLAGS) $(SRC)/*.cpp 
@@ -26,7 +29,5 @@ campos.o:
 	$(GPP) $(CFLAGS) $(CAM)/*.cpp
 
 clean:
-	rm -rf *.o *.bin
-
-	
+	rm -rf *.o *.bin $(PROG0)
 	
