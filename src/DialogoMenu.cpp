@@ -22,8 +22,9 @@ void DialogoMenu::iniciarDialogo() {
 				cout << "Ingrese la falla" << endl;
 				cin >> consultaFalla;
 				dialogoRangoDeFechas(fechaInicial, fechaFinal);
-				//arbolKD->getTrenesConFalla(new Falla(consultaFalla), fechaInicial, fechaFinal);
+				arbolKD->getTrenesConFalla(new Falla(consultaFalla), fechaInicial, fechaFinal);
 				limpiarFechas();
+				cin >> opcion;
 				break;
 			}
 			case '2': {
@@ -31,8 +32,9 @@ void DialogoMenu::iniciarDialogo() {
 				cout << "Ingrese el accidente" << endl;
 				cin >> consultaAccidente;
 				dialogoRangoDeFechas(fechaInicial, fechaFinal);
-				//arbolKD->getTrenesConAccidente(new Accidente(consultaAccidente), fechaInicial, fechaFinal);
+				arbolKD->getTrenesConAccidente(new Accidente(consultaAccidente), fechaInicial, fechaFinal);
 				limpiarFechas();
+				cin >> opcion;
 				break;
 			}
 			case '3': {
@@ -40,8 +42,9 @@ void DialogoMenu::iniciarDialogo() {
 				cout << "Ingrese el la formacion" << endl;
 				cin >> consultaFormacion;
 				dialogoRangoDeFechas(fechaInicial, fechaFinal);
-				//arbolKD->getFallasDeFormacion(new Formacion(consultaFormacion), fechaInicial, fechaFinal);
+				arbolKD->getFallasDeFormacion(new Formacion(consultaFormacion), fechaInicial, fechaFinal);
 				limpiarFechas();
+				cin >> opcion;
 				break;
 			}
 			case '4': {
@@ -49,8 +52,9 @@ void DialogoMenu::iniciarDialogo() {
 				cout << "Ingrese el la formacion" << endl;
 				cin >> consultaFormacion;
 				dialogoRangoDeFechas(fechaInicial, fechaFinal);
-				//arbolKD->getAccidenteDeFormacion(new Formacion(consultaFormacion), fechaInicial, fechaFinal);
+				arbolKD->getAccidenteDeFormacion(new Formacion(consultaFormacion), fechaInicial, fechaFinal);
 				limpiarFechas();
+				cin >> opcion;
 				break;
 			}
 			case '5': {
@@ -87,7 +91,7 @@ void DialogoMenu::iniciarDialogo() {
 }
 
 void DialogoMenu::dibujarMenu(char *opcion) {
-	limpiarPantalla();
+	//limpiarPantalla();
 	cout << "Elija una opcion" << endl;
 	cout << "[1]Consultar todos los trenes que tienen cierta falla" << endl;
 	cout << "[2]Consultar todos los trenes con cierto accidente" << endl;
@@ -131,6 +135,7 @@ void DialogoMenu::dialogoRangoDeFechas(Fecha *fechaInicial, Fecha *fechaFinal) {
 void DialogoMenu::dialogoIngresarFechas(Fecha *fechaInicial, Fecha *fechaFinal) {
 	int dia,mes,anio;
 
+	cout << endl;
 	cout << "Ingresando la fecha inicial:" << endl;
 	leerFecha(dia, mes, anio);
 	fechaInicial->setFecha(dia, mes, anio);
@@ -138,19 +143,20 @@ void DialogoMenu::dialogoIngresarFechas(Fecha *fechaInicial, Fecha *fechaFinal) 
 	cout << "Ingresando la fecha final" << endl;
 	leerFecha(dia, mes, anio);
 	fechaFinal->setFecha(dia, mes, anio);
+	cout << endl;
 }
 
 void DialogoMenu::leerFecha(int &dia, int &mes, int &anio) {
+	cout << endl;
 	cout << "Ingrese el dia: ";
 	cin >> dia;
-	cout << " -- ";
 	cout << "Ingrese el mes: ";
 	cin >> mes;
-	cout << " -- ";
 	cout << "Ingrese el año: ";
 	cin >> anio;
 	cout << endl;
 	cout << "Fecha Ingresada: " << dia << "/" << mes << "/" << anio << endl;
+	cout << endl;
 }
 
 void DialogoMenu::limpiarFechas() {
