@@ -4,7 +4,14 @@ GeneradorDeClaves::GeneradorDeClaves()
 {
 
 }
-
+/**
+ * Asume la lista trae los campos en el siguiente orden:
+ * 1- Linea
+ * 2- Franja Horaria
+ * 3- Falla
+ * 4- Accidente
+ * 5- Formaicion
+ */
 void GeneradorDeClaves::generarClave(list<string> campos, Clave *clave) {
 
 	it = campos.begin();

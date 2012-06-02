@@ -1,12 +1,17 @@
 #include "DialogoMenu.h"
 #include <iostream>
 #include <stdlib.h>
+#include <ctype.h>
 
-DialogoMenu::DialogoMenu()
-{
+DialogoMenu::DialogoMenu(ArbolKD *arbol) {
+	this->arbolKD = arbol;
+	fechaInicial = NULL;
+	fechaFinal = NULL;
 }
 
 void DialogoMenu::iniciarDialogo() {
+
+
 
 	do {
 
@@ -16,38 +21,39 @@ void DialogoMenu::iniciarDialogo() {
 				string consultaFalla;
 				cout << "Ingrese la falla" << endl;
 				cin >> consultaFalla;
-				//TODO armar el la clave y devolverla junto con el tipo de consulta
+				dialogoRangoDeFechas(fechaInicial, fechaFinal);
+				//arbolKD->getTrenesConFalla(new Falla(consultaFalla), fechaInicial, fechaFinal);
+				limpiarFechas();
 				break;
 			}
 			case '2': {
 				string consultaAccidente;
 				cout << "Ingrese el accidente" << endl;
 				cin >> consultaAccidente;
-				//TODO armar el la clave y devolverla junto con el tipo de consulta
+				dialogoRangoDeFechas(fechaInicial, fechaFinal);
+				//arbolKD->getTrenesConAccidente(new Accidente(consultaAccidente), fechaInicial, fechaFinal);
+				limpiarFechas();
 				break;
 			}
 			case '3': {
-				string consultaFalla;
-				cout << "Ingrese el la falla" << endl;
-				cin >> consultaFalla;
-				string consultaFormacion;
+				int consultaFormacion;
 				cout << "Ingrese el la formacion" << endl;
 				cin >> consultaFormacion;
-				//TODO armar el la clave y devolverla junto con el tipo de consulta
+				dialogoRangoDeFechas(fechaInicial, fechaFinal);
+				//arbolKD->getFallasDeFormacion(new Formacion(consultaFormacion), fechaInicial, fechaFinal);
+				limpiarFechas();
 				break;
 			}
 			case '4': {
-				string consultaAccidente;
-				cout << "Ingrese el accidente" << endl;
-				cin >> consultaAccidente;
-				string consultaFormacion;
+				int consultaFormacion;
 				cout << "Ingrese el la formacion" << endl;
 				cin >> consultaFormacion;
-				//TODO armar el la clave y devolverla junto con el tipo de consulta
+				dialogoRangoDeFechas(fechaInicial, fechaFinal);
+				//arbolKD->getAccidenteDeFormacion(new Formacion(consultaFormacion), fechaInicial, fechaFinal);
+				limpiarFechas();
 				break;
 			}
 			case '5': {
-				cout << "Las siguientes son todas las fallas reportadas:" << endl;
 				//TODO llamar al metodo del KD que muestra esto
 				break;
 			}
@@ -93,6 +99,65 @@ void DialogoMenu::dibujarMenu(char *opcion) {
 	cout << "[8]Consultar todos los accidentes" << endl;
 	cout << "[9]Salir" << endl;
 	cin >> *opcion;
+}
+
+void DialogoMenu::dialogoRangoDeFechas(Fecha *fechaInicial, Fecha *fechaFinal) {
+	char opcion;
+	bool continuar = true;
+	while(continuar) {
+		cout << "¿Desea ingresar un rango de fechas? (s/n)" << endl;
+		cin >> opcion;
+		switch(toupper(opcion)) {
+			case 'S': {
+				fechaInicial = new Fecha();
+				fechaFinal = new Fecha();
+				dialogoIngresarFechas(fechaInicial, fechaFinal);
+				continuar = false;
+				break;
+			}
+			case 'N': {
+				limpiarFechas();
+				continuar = false;
+				break;
+			}
+			default : {
+				cout << "Opcion no valida. Debe ingresar 's' o 'n'" << endl;
+				break;
+			}
+		}
+	}
+}
+
+void DialogoMenu::dialogoIngresarFechas(Fecha *fechaInicial, Fecha *fechaFinal) {
+	int dia,mes,anio;
+
+	cout << "Ingresando la fecha inicial:" << endl;
+	leerFecha(dia, mes, anio);
+	fechaInicial->setFecha(dia, mes, anio);
+
+	cout << "Ingresando la fecha final" << endl;
+	leerFecha(dia, mes, anio);
+	fechaFinal->setFecha(dia, mes, anio);
+}
+
+void DialogoMenu::leerFecha(int &dia, int &mes, int &anio) {
+	cout << "Ingrese el dia: ";
+	cin >> dia;
+	cout << " -- ";
+	cout << "Ingrese el mes: ";
+	cin >> mes;
+	cout << " -- ";
+	cout << "Ingrese el año: ";
+	cin >> anio;
+	cout << endl;
+	cout << "Fecha Ingresada: " << dia << "/" << mes << "/" << anio << endl;
+}
+
+void DialogoMenu::limpiarFechas() {
+	if(fechaInicial != NULL)
+		delete fechaInicial;
+	if(fechaFinal != NULL)
+		delete fechaFinal;
 }
 
 DialogoMenu::~DialogoMenu()
