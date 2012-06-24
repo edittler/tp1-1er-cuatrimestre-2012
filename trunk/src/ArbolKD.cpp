@@ -254,6 +254,8 @@ void ArbolKD::getCampoPorFechaRecursivo(kdNodo* nodo, int campoBuscado, Campo* c
 					ResultadoComparacion comienzo = clave->getCampo(2)->comparar(new FranjaHoraria(fechaComienzo, NULL));
 					ResultadoComparacion fin = clave->getCampo(2)->comparar(new FranjaHoraria(fechaFin, NULL));
 					if (fechaFin == NULL || ((comienzo == IGUAL || comienzo == MAYOR) && (fin == IGUAL || fin == MENOR))) {
+
+						//FIXME en lugar de imprimir por pantalla deberia agregarse a una lista y devolverla.
 						switch (campoBuscado) {
 							case 0: //Linea
 								cout << "Linea: " << dynamic_cast<CampoCadena*>(clave->getCampo(campoBuscado))->getDescripcion() << endl;

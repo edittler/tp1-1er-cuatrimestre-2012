@@ -10,6 +10,8 @@ using namespace std;
 
 void GeneracionClavesTest() {
 
+	cout << "Pruebas Unitarias: Generacion Claves"<< endl;
+
 	ArchivoCSV *archivo = new ArchivoCSV();
 	Parser *parser = new Parser();
 	char cadena[100];
@@ -62,5 +64,7 @@ void GeneracionClavesTest() {
 	delete clave2;
 	delete clave3;
 	delete generador;
+
+	cout << endl;
 
 }

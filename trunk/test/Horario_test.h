@@ -63,6 +63,7 @@ void HorarioTest() {
 	obtenerPorcion(registro, &regTemp, sizeof(int), tamRegTamano);
 	//recupero registro ignorando primeros 4 bytes.
 	horario1->inicializarConRegistro(regTemp);
+	cout << "intervalo: " << horario1->getIntervaloString() << endl;
 	if (horario1->getIntervaloString() == "20:30 - 21:30") {
 		cout << "Ok.....obtener - inicializar registro" << endl;
 	} else {

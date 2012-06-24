@@ -20,6 +20,7 @@ kdNodoInterno::kdNodoInterno() {
  * Inicializa con el atributo que recibe por parámetro y los los demas en NULL
  */
 kdNodoInterno::kdNodoInterno(Campo* atributo){
+	this->atributo = NULL;
 	this->setAtributo(atributo);
 	this->hijoIzq = NULL;
 	this->hijoDer = NULL;
@@ -29,6 +30,7 @@ kdNodoInterno::kdNodoInterno(Campo* atributo){
  * Inicializa todos sus atributos con los argumentos recibidos por parámtetros.
  */
 kdNodoInterno::kdNodoInterno(Campo* atributo, kdNodo* hijoIzq, kdNodo* hijoDer){
+	this->atributo = NULL;
 	this->setAtributo(atributo);
 	this->setHijoIzq(hijoIzq);
 	this->setHijoDer(hijoDer);

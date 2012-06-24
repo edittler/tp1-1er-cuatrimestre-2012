@@ -12,6 +12,8 @@
 
 void kdNodoInternoTest() {
 
+	cout << "Prueba Unitaria: Clase kdNodoInterno" << endl;
+
 	kdNodoInterno* nodoInterno = new kdNodoInterno(new Linea("Linea1"));
 
 	int* tam = new int();
@@ -30,6 +32,8 @@ void kdNodoInternoTest() {
 	} else {
 		cout << "Fail...obtener - inicializar registro" << endl;
 	}
+
+	cout << endl;
 }
 
 
