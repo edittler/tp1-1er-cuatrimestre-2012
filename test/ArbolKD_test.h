@@ -93,13 +93,20 @@ void ArbolKDTest() {
 	c4->setAccidente("Accidente nro2");
 	arbol2->insertar(c4);
 
-	cout << "Busqueda por rangos. Trenes con falla particular" << endl;
+	cout << "Busquedas: validar que sean las mismas salidas que los comentarios del codigo." << endl;
+	cout << "Busqueda trenes(lineas) con falla:" << endl;
 	arbol2->getTrenesConFalla(new Falla("Puertas rotas"), new Fecha(1,1,2012), new Fecha(5,1,2012)); //Linea1
+	cout << "Busqueda trenes(lineas) con accidentes:" << endl;
 	arbol2->getTrenesConAccidente(new Accidente("Accidente nro9"), new Fecha(1,1,2012), new Fecha(5,1,2012)); //Linea2
+	cout << "Busqueda Fallas de formacion:" << endl;
 	arbol2->getFallasDeFormacion(new Formacion(2), NULL, NULL); // Ventanas Rotas, Nuevamente Ventanas Rotas
+	cout << "Busqueda accidedentes de formacion:" << endl;
 	arbol2->getAccidenteDeFormacion(new Formacion(2), NULL, NULL); // Accidente nro9, Accidente nro2
-
+	cout << "Busqueda accidentes de formacion con fecha inicio pero fecha fin = NULL:" << endl;
+	arbol2->getAccidenteDeFormacion(new Formacion(2), new Fecha(1,1,2000), NULL); // Accidente nro9, Accidente nro2
+	cout << endl;
 	cout << "** End ArbolKDTest **" << endl;
+	cout << endl;
 }
 
 
