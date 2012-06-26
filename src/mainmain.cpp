@@ -10,7 +10,7 @@ using namespace std;
 
 void limpiarLinea(char *linea);
 
-int main() {
+int mainmain() {
 	ArbolKD *arbol = new ArbolKD();
 	Pantalla *pantalla = new Pantalla;
 	ArchivoCSV *archivoCSV = new ArchivoCSV();

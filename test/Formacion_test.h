@@ -74,8 +74,14 @@ void FormacionTest() {
 
 	delete falla;
 	delete formacion1;
+	delete formacion2;
+	delete formacion3;
+	delete formacion4;
+	delete tam;
+	delete registro;
+	delete regTamano;
+	delete regTemp;
 
-	cout << endl;
 }
 
 

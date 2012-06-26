@@ -64,19 +64,13 @@ void CampoCadenaTest() {
 	int tamLinea = unaLinea.size()+1;
 	Byte * regTamDescripcion = new Byte[sizeof(int)];
 	// guardo en bytes el tam del string
-	*regTamDescripcion = tamLinea;
+	*regTamDescripcion = (char) tamLinea;
 	Byte * regDescripcion = convertirAByte(unaLinea);
-//	Byte * regDescripcion = new Byte[tamLinea];
-//	int i;
-//	for (i=0; i<tamLinea; i++) {
-//		regDescripcion[i] = unaLinea[i];
-//	}
-	//regDescripcion[tamLinea] = '\0';
-	Byte * regFormacion;
-	concatenar(&regFormacion, regTamDescripcion, sizeof(int), regDescripcion, tamLinea);
+	Byte * regLinea;
+	concatenar(&regLinea, regTamDescripcion, sizeof(int), regDescripcion, tamLinea);
 	// creo una linea vacia
 	Linea * linea = new Linea();
-	linea->inicializarConRegistro(regFormacion);
+	linea->inicializarConRegistro(regLinea);
 	string otraLinea = linea->getDescripcion();
 	if (unaLinea == otraLinea) {
 		cout << "ok...inicializarConRegistro" << endl;
@@ -84,6 +78,10 @@ void CampoCadenaTest() {
 	else {
 		cout << "fallo...inicializarConRegistro" << " devolvio: " << otraLinea << " en vez de: " << unaLinea << endl;
 	}
+
+	delete regTamDescripcion;
+	delete regDescripcion;
+	delete regLinea;
 
 	int* tam = new int();
 	Byte* registro = campoCadena4->obtenerRegistro(tam);
@@ -106,6 +104,9 @@ void CampoCadenaTest() {
 	delete campoCadena4;
 	delete campoCadena5;
 	delete otraFormacion;
+	delete tam;
+	delete registro;
+	delete regTamCampCad4;
+	delete regCampCad4;
 
-	cout << endl;
 }
