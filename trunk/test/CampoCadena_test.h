@@ -62,9 +62,8 @@ void CampoCadenaTest() {
 	// seteo un registro de bytes que la clase linea deberia poder decodificar
 	string unaLinea = "Sarmiento";
 	int tamLinea = unaLinea.size()+1;
-	Byte * regTamDescripcion = new Byte[sizeof(int)];
 	// guardo en bytes el tam del string
-	*regTamDescripcion = (char) tamLinea;
+	Byte * regTamDescripcion = intToBytes(tamLinea);
 	Byte * regDescripcion = convertirAByte(unaLinea);
 	Byte * regLinea;
 	concatenar(&regLinea, regTamDescripcion, sizeof(int), regDescripcion, tamLinea);

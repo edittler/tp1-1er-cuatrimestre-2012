@@ -58,9 +58,9 @@ Byte * Formacion::obtenerRegistro (int *tam){
 	 * dicho (el integer).
 	 */
 	// serializo el numero de formacion
-	Byte *integer = intToBytesPointer(this->numero);
+	Byte *integer = intToBytes(this->numero);
 	// serializo la cantidad de bytes que compone el campo.
-	Byte *size = intToBytesPointer(4);
+	Byte *size = intToBytes(4);
 	*tam = sizeof(int)*2; // tamaño total del registro a devolver
 	Byte *registro;
 	concatenar(&registro, size, 4, integer, 4);
