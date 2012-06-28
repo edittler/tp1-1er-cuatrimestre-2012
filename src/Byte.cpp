@@ -27,11 +27,17 @@ void obtenerPorcion(Byte * origen, Byte ** resultado, int inicio, int tam) {
 void concatenar(Byte ** resultado, Byte * registro1, int tam1, Byte* registro2, int tam2) {
 	*resultado = new Byte[tam1+tam2];
 	int i;
+//	cout << "tam1: " << tam1 << ", tam2: " << tam2 << endl;
 	for (i = 0; i < tam1; i++) {
 		(*resultado)[i] = registro1[i];
+//		cout << "registro1|" << i << ": "<<registro1[i] << endl;
+//		cout << "*(resultado)" << i << ": " << (*resultado)[i] << endl;
 	}
+//	cout << "pasado a 2do registro" << endl;
 	for (i = 0; i < tam2; i++) {
 		(*resultado)[i+tam1] = registro2[i];
+//		cout << "registro2|" << i << ": "<<registro2[i] << endl;
+//		cout << "*(resultado)" << i <<"+" << tam1 << ": " << (*resultado)[i+tam1] << endl;
 	}
 }
 
@@ -44,4 +50,14 @@ Byte * convertirAByte(string unString){
 	}
 	bytes[tam] = '\0';
 	return bytes;
+}
+
+Byte* intToBytesPointer(int paramInt)
+{
+	Byte* byte =  new Byte[sizeof(int)];
+	byte[0] =  paramInt & 0x000000ff;
+	byte[1] = (paramInt & 0x0000ff00) >> 8;
+	byte[2] = (paramInt & 0x00ff0000) >> 16;
+	byte[3] = (paramInt & 0xff000000) >> 24;
+	return byte;
 }
