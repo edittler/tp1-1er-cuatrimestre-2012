@@ -59,7 +59,7 @@ Byte* intToBytesPointer(int paramInt)
 
 int bytesToInt(Byte* bytes) {
 	int entero = 0;
-	unsigned int temp;
+	unsigned char temp;
 	for(int i=0; i<4; i++){
 		temp = bytes[i];
 		entero = entero + (temp << (8*i));
