@@ -138,15 +138,18 @@ Byte * Fecha::obtenerRegistro (int *tam){
 	 * contendrá la clase Formación y el segundo es el que almacenará el campo propiamente
 	 * dicho (el integer).
 	 */
-	Byte *size = new Byte[sizeof(int)];
-	*size = 4;
-	Byte *integer = new Byte[sizeof(int)];
-	*integer = this->fecha;
+	Byte *size = intToBytesPointer(4);
+	Byte* integer = intToBytesPointer(this->fecha);
+
+//	cout << "size[]: " << size[0] << size[1] << size[2] << size[3] << endl;
+//	cout << "integer[]: " << integer[0] << integer[1] << integer[2] << integer[3] << endl;
+
 	*tam = sizeof(int)*2; // tamaño total del registro a devolver
 	Byte *registro;
 	concatenar(&registro, size, 4, integer, 4);
 	delete size;
 	delete integer;
+//	cout << "registro: " << registro[0] << registro [1] << registro [2] << registro [3]<< registro [4]<< registro [5]<< registro [6]<< registro [7] << endl;
 	return registro;
 }
 
