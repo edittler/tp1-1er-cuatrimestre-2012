@@ -58,11 +58,9 @@ Byte * Formacion::obtenerRegistro (int *tam){
 	 * dicho (el integer).
 	 */
 	// serializo el numero de formacion
-	Byte *integer = new Byte[sizeof(int)];
-	*integer = this->numero;
+	Byte *integer = intToBytesPointer(this->numero);
 	// serializo la cantidad de bytes que compone el campo.
-	Byte *size = new Byte[sizeof(int)];
-	*size = 4;
+	Byte *size = intToBytesPointer(4);
 	*tam = sizeof(int)*2; // tamaño total del registro a devolver
 	Byte *registro;
 	concatenar(&registro, size, 4, integer, 4);
@@ -73,5 +71,5 @@ Byte * Formacion::obtenerRegistro (int *tam){
 
 void Formacion::inicializarConRegistro(Byte * registro) {
 	// Al estar compuesta solo de un numero la asignacion es directa
-	numero = *registro;
+	this->numero = bytesToInt(registro);
 }

@@ -25,7 +25,8 @@ void obtenerPorcion(Byte * origen, Byte ** resultado, int inicio, int tam) {
  * perderá la informacion sin liberar la memoria).
  */
 void concatenar(Byte** resultado, Byte* registro1, int tam1, Byte* registro2, int tam2) {
-	*resultado = new Byte[tam1+tam2];
+	int tamTot = tam1 + tam2;
+	*resultado = new Byte[tamTot];
 	int i;
 	for (i = 0; i < tam1; i++) {
 		(*resultado)[i] = registro1[i];
@@ -57,10 +58,11 @@ Byte* intToBytesPointer(int paramInt)
 }
 
 int bytesToInt(Byte* bytes) {
-	int entero;
-	entero = bytes[0];
-	entero = entero + (bytes[1] << 8);
-	entero = entero + (bytes[2] << 16);
-	entero = entero + (bytes[3] << 24);
+	int entero = 0;
+	unsigned int temp;
+	for(int i=0; i<4; i++){
+		temp = bytes[i];
+		entero = entero + (temp << (8*i));
+	}
 	return entero;
 }
