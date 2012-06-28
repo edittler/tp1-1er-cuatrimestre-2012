@@ -9,6 +9,7 @@
 #define FORMACION_H_
 
 #include "Campo.h"
+#include "../Byte.h"
 
 class Formacion: public Campo {
 private:

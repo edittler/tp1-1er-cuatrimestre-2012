@@ -24,9 +24,9 @@ int main() {
 	ByteTest();
 	CampoCadenaTest();
 	FormacionTest();
-	FranjaHorariaTest();
 	FechaTest();
 	HorarioTest();
+	FranjaHorariaTest();
 	ClaveTest();
 	kdNodoHojaTest();
 	kdNodoInternoTest();
