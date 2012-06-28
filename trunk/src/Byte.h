@@ -30,4 +30,6 @@ Byte * convertirAByte(string unString);
 
 Byte* intToBytesPointer(int paramInt);
 
+int bytesToInt(Byte* bytes);
+
 #endif /* BYTE_H_ */

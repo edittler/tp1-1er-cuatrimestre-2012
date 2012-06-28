@@ -24,20 +24,14 @@ void obtenerPorcion(Byte * origen, Byte ** resultado, int inicio, int tam) {
  * en un puntero que se recibe por parametro (que debe ser NULL, caso contrario se
  * perderá la informacion sin liberar la memoria).
  */
-void concatenar(Byte ** resultado, Byte * registro1, int tam1, Byte* registro2, int tam2) {
+void concatenar(Byte** resultado, Byte* registro1, int tam1, Byte* registro2, int tam2) {
 	*resultado = new Byte[tam1+tam2];
 	int i;
-//	cout << "tam1: " << tam1 << ", tam2: " << tam2 << endl;
 	for (i = 0; i < tam1; i++) {
 		(*resultado)[i] = registro1[i];
-//		cout << "registro1|" << i << ": "<<registro1[i] << endl;
-//		cout << "*(resultado)" << i << ": " << (*resultado)[i] << endl;
 	}
-//	cout << "pasado a 2do registro" << endl;
 	for (i = 0; i < tam2; i++) {
 		(*resultado)[i+tam1] = registro2[i];
-//		cout << "registro2|" << i << ": "<<registro2[i] << endl;
-//		cout << "*(resultado)" << i <<"+" << tam1 << ": " << (*resultado)[i+tam1] << endl;
 	}
 }
 
@@ -60,4 +54,13 @@ Byte* intToBytesPointer(int paramInt)
 	byte[2] = (paramInt & 0x00ff0000) >> 16;
 	byte[3] = (paramInt & 0xff000000) >> 24;
 	return byte;
+}
+
+int bytesToInt(Byte* bytes) {
+	int entero;
+	entero = bytes[0];
+	entero = entero + (bytes[1] << 8);
+	entero = entero + (bytes[2] << 16);
+	entero = entero + (bytes[3] << 24);
+	return entero;
 }
