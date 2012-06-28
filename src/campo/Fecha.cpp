@@ -139,21 +139,16 @@ Byte * Fecha::obtenerRegistro (int *tam){
 	 * dicho (el integer).
 	 */
 	Byte *size = intToBytesPointer(4);
-	Byte* integer = intToBytesPointer(this->fecha);
-
-//	cout << "size[]: " << size[0] << size[1] << size[2] << size[3] << endl;
-//	cout << "integer[]: " << integer[0] << integer[1] << integer[2] << integer[3] << endl;
-
+	Byte *integer = intToBytesPointer(this->fecha);
 	*tam = sizeof(int)*2; // tamaño total del registro a devolver
 	Byte *registro;
 	concatenar(&registro, size, 4, integer, 4);
 	delete size;
 	delete integer;
-//	cout << "registro: " << registro[0] << registro [1] << registro [2] << registro [3]<< registro [4]<< registro [5]<< registro [6]<< registro [7] << endl;
 	return registro;
 }
 
 void Fecha::inicializarConRegistro(Byte * registro) {
 	// dado que fecha es un numero, la asignacion es directa
-	fecha = *registro;
+	fecha = bytesToInt(registro);
 }
