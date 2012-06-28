@@ -28,7 +28,7 @@ void concatenar(Byte **, Byte *, int, Byte*, int);
 
 Byte * convertirAByte(string unString);
 
-Byte* intToBytesPointer(int paramInt);
+Byte* intToBytes(int paramInt);
 
 int bytesToInt(Byte* bytes);
 

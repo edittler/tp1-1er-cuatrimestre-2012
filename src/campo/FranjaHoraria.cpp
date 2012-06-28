@@ -7,8 +7,6 @@
  */
 
 #include "FranjaHoraria.h"
-#include "Campo.h"
-
 
 FranjaHoraria::FranjaHoraria() {
 	this->fecha = new Fecha();
@@ -104,16 +102,13 @@ Byte * FranjaHoraria::obtenerRegistro (int *tam){
 	delete regHora;
 
 	// Calculo el tamaño total de la serializacion, y concateno junto con el tamaño de los campos
-	Byte *tamRegistro = new Byte[sizeof(int)];
-	*tamRegistro = tamReg;
+	Byte *tamRegistro = intToBytes(tamReg);
 	*tam = tamReg + sizeof(int);
 	Byte *registro;
 	concatenar(&registro, tamRegistro, sizeof(int), tmp, tamReg);
 	delete tmp;
 	delete tamRegistro;
 	return registro;
-
-	return NULL;
 }
 
 void FranjaHoraria::inicializarConRegistro(Byte * registro) {

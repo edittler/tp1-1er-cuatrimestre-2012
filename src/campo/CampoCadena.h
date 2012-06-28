@@ -9,6 +9,7 @@
 #define CAMPOCADENA_H_
 
 #include "Campo.h"
+#include "../Byte.h"
 
 using namespace std;
 

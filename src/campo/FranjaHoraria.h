@@ -10,6 +10,7 @@
 #define FRANJAHORARIA_H_
 
 #include <iostream>
+#include "../Byte.h"
 #include "Campo.h"
 #include "Fecha.h"
 #include "Horario.h"

@@ -90,9 +90,9 @@ ResultadoComparacion Horario::comparar(Horario* otroHorario) {
 
 Byte * Horario::obtenerRegistro (int *tam){
 	// serializo la hora de comienzo
-	Byte *horaComienzo = intToBytesPointer(this->horarioComienzo);
+	Byte *horaComienzo = intToBytes(this->horarioComienzo);
 	// serializo la hora de final
-	Byte *horaFinal = intToBytesPointer(this->horarioFin);
+	Byte *horaFinal = intToBytes(this->horarioFin);
 	// concateno las dos horas en un temporal
 	Byte *tmp;
 	concatenar(&tmp, horaComienzo, 4, horaFinal, 4);
@@ -101,7 +101,7 @@ Byte * Horario::obtenerRegistro (int *tam){
 	/* Ahora genero el tamaño que va a tener el campo y realizo la ultima
 	 * concatenacion.
 	 */
-	Byte *size = intToBytesPointer(sizeof(int)*2); // tamaño que tiene solo el campo Horario
+	Byte *size = intToBytes(sizeof(int)*2); // tamaño que tiene solo el campo Horario
 	*tam = sizeof(int)*3; // Almaceno el tamaño total para que lo utilize la clase externa.
 	Byte *registro = new Byte[*tam];
 	concatenar(&registro, size, sizeof(int), tmp, sizeof(int)*2);

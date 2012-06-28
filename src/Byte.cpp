@@ -47,13 +47,13 @@ Byte * convertirAByte(string unString){
 	return bytes;
 }
 
-Byte* intToBytesPointer(int paramInt)
+Byte* intToBytes(int unInt)
 {
 	Byte* byte =  new Byte[sizeof(int)];
-	byte[0] =  paramInt & 0x000000ff;
-	byte[1] = (paramInt & 0x0000ff00) >> 8;
-	byte[2] = (paramInt & 0x00ff0000) >> 16;
-	byte[3] = (paramInt & 0xff000000) >> 24;
+	byte[0] =  unInt & 0x000000ff;
+	byte[1] = (unInt & 0x0000ff00) >> 8;
+	byte[2] = (unInt & 0x00ff0000) >> 16;
+	byte[3] = (unInt & 0xff000000) >> 24;
 	return byte;
 }
 

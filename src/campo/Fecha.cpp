@@ -138,8 +138,8 @@ Byte * Fecha::obtenerRegistro (int *tam){
 	 * contendrá la clase Formación y el segundo es el que almacenará el campo propiamente
 	 * dicho (el integer).
 	 */
-	Byte *size = intToBytesPointer(4);
-	Byte *integer = intToBytesPointer(this->fecha);
+	Byte *size = intToBytes(4);
+	Byte *integer = intToBytes(this->fecha);
 	*tam = sizeof(int)*2; // tamaño total del registro a devolver
 	Byte *registro;
 	concatenar(&registro, size, 4, integer, 4);

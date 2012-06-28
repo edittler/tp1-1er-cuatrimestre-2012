@@ -54,7 +54,7 @@ void FechaTest() {
 	Byte * regTamano;
 	Byte * regTemp;
 	obtenerPorcion(registro, &regTamano, 0, sizeof(int));
-	int tamRegTamano = *regTamano;
+	int tamRegTamano = bytesToInt(regTamano);
 	obtenerPorcion(registro, &regTemp, sizeof(int), tamRegTamano);
 	//recupero registro ignorando primeros 4 bytes.
 	fecha1->inicializarConRegistro(regTemp);

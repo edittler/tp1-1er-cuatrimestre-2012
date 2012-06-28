@@ -38,14 +38,12 @@ void CampoCadena::setDescripcion(string descripcion) {
 Byte * CampoCadena::obtenerRegistro(int *tam){
 	//Obtengo el tamaño de la cadena y lo serializo
 	int tamDescripcion = this->descripcion.size()+1; //agrego 1 para incluir el caracter nulo
-	Byte *sizeString = new Byte[sizeof(int)];
-	*sizeString =  tamDescripcion;
+	Byte *sizeString = intToBytes(tamDescripcion);
 	// Serializo la descripcion
 	Byte *string = convertirAByte(this->descripcion);
 	// Defino el tamaño de 'sizeString'+'string' y lo serializo
 	int tamRegistro = (int)sizeof(int) + tamDescripcion;
-	Byte *sizeRegistro = new Byte[sizeof(int)];
-	*sizeRegistro =  tamRegistro;
+	Byte *sizeRegistro = intToBytes(tamRegistro);
 	// Defino el tamaño total que va a tener la serializacion
 	*tam = sizeof(int)*2 + tamDescripcion;
 	// concateno los integer
@@ -68,7 +66,7 @@ void CampoCadena::inicializarConRegistro(Byte * registro) {
 	int inicio = 0;
 	int tamRegTamDescripcion = sizeof(int);
 	obtenerPorcion(registro, &regTamDescripcion, inicio, tamRegTamDescripcion);
-	int tamDescripcion = *regTamDescripcion;
+	int tamDescripcion = bytesToInt(regTamDescripcion);
 	// conocida la longitud del string, procedo a leer esa cantidad de bytes
 	Byte * regDescripcion;
 	inicio = tamRegTamDescripcion; //incremento la posicion de lectura
